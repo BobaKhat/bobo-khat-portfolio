@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
+/*
+  Minimal skeleton styling only.
+  Color system is wired through CSS custom properties so the dark/light
+  toggle is functional, but the neomorphic shadow system + noise texture
+  from the build spec are intentionally NOT implemented yet (Phase 4).
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface: #d5d2cd;
+  --module: #e6e4e1;
+  --accent: #e85d2c;
+  --text-primary: #1a1a1a;
+  --text-secondary: #777777;
+  --border: #c5c3be;
+}
+
+:root[data-theme="dark"] {
+  --surface: #1a1a1a;
+  --module: #242424;
+  --accent: #e85d2c;
+  --text-primary: #e8e6e3;
+  --text-secondary: #888888;
+  --border: #333333;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-module: var(--module);
+  --color-accent: var(--accent);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
