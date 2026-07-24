@@ -64,6 +64,7 @@ export default function Home() {
             subtitle="Real-time collaboration for GoodNotes"
             tag="UX · Collaboration"
             href="/work/group-canvas"
+            image="/images/group-canvas-homepage-visual.png"
           />
         </div>
 
