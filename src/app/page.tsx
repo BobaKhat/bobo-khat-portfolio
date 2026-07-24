@@ -18,6 +18,7 @@ const primaryProjects = [
     subtitle: "Earthquake awareness platform",
     tag: "Product Design · Research",
     href: "/work/myshake",
+    image: "/images/myshake-homepage-visual.png",
   },
 ];
 
