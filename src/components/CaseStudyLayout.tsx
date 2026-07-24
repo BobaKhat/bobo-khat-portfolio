@@ -7,6 +7,7 @@ export type CaseStudyLayoutProps = {
   tools: string;
   timeline: string;
   next: { label: string; href: string };
+  heroImage?: string;
   children?: React.ReactNode;
 };
 
@@ -17,6 +18,7 @@ export default function CaseStudyLayout({
   tools,
   timeline,
   next,
+  heroImage,
   children,
 }: CaseStudyLayoutProps) {
   return (
@@ -56,9 +58,18 @@ export default function CaseStudyLayout({
 
       {/* Hero image placeholder */}
       <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-module">
-        <div className="grid h-full w-full place-items-center text-xs text-text-secondary">
-          {title} hero image
-        </div>
+        {heroImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={heroImage}
+            alt={`${title} — ${subtitle}`}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="grid h-full w-full place-items-center text-xs text-text-secondary">
+            {title} hero image
+          </div>
+        )}
       </div>
 
       <article className="prose-none flex flex-col gap-6 text-base leading-relaxed text-text-primary">
