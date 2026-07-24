@@ -8,6 +8,8 @@ export type CaseStudyLayoutProps = {
   timeline: string;
   next: { label: string; href: string };
   heroImage?: string;
+  /** Optional hero video path in /public. Takes priority over heroImage when set. */
+  heroVideo?: string;
   children?: React.ReactNode;
 };
 
@@ -19,6 +21,7 @@ export default function CaseStudyLayout({
   timeline,
   next,
   heroImage,
+  heroVideo,
   children,
 }: CaseStudyLayoutProps) {
   return (
@@ -56,21 +59,35 @@ export default function CaseStudyLayout({
         </dl>
       </header>
 
-      {/* Hero image placeholder */}
-      <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-module">
-        {heroImage ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={heroImage}
-            alt={`${title} — ${subtitle}`}
-            className="h-full w-full object-cover"
+      {/* Hero */}
+      {heroVideo ? (
+        <div className="mb-12 flex max-h-[720px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface p-4">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            src={heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="max-h-[688px] w-auto rounded-xl"
           />
-        ) : (
-          <div className="grid h-full w-full place-items-center text-xs text-text-secondary">
-            {title} hero image
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-module">
+          {heroImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={heroImage}
+              alt={`${title} — ${subtitle}`}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="grid h-full w-full place-items-center text-xs text-text-secondary">
+              {title} hero image
+            </div>
+          )}
+        </div>
+      )}
 
       <article className="prose-none flex flex-col gap-6 text-base leading-relaxed text-text-primary">
         {children ?? (

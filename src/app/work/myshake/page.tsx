@@ -13,9 +13,12 @@ export default function MyShakePage() {
       role="Product Designer"
       tools="Figma"
       timeline="Jan 2024 – Dec 2024"
-      heroImage="/images/myshake-homepage-visual.png"
+      heroVideo="/videos/case-studies/myshake/hero.mp4"
       next={{ label: "Group Canvas", href: "/work/group-canvas" }}
     >
+      <h2 className="mt-2 font-mono text-xl text-text-primary">
+        Introduction
+      </h2>
       <p>
         MyShake is built in partnership with USGS and UC Berkeley&apos;s
         Seismology Lab, delivering earthquake alerts seconds before shaking
@@ -26,6 +29,17 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
+      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/myshake/introduction.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-[600px] w-auto rounded-lg"
+        />
+      </div>
 
       <div className="grid grid-cols-2 gap-4 border-y border-border py-6 text-center sm:grid-cols-4">
         <div>
@@ -63,6 +77,17 @@ export default function MyShakePage() {
         goal was to make MyShake the #1 earthquake app by increasing
         engagement and building trust during emergencies.
       </p>
+      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/myshake/problem.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-[600px] w-auto rounded-lg"
+        />
+      </div>
 
       <h2 className="mt-2 font-mono text-xl text-text-primary">Research</h2>
       <p>
@@ -186,23 +211,86 @@ export default function MyShakePage() {
       <h2 className="mt-2 font-mono text-xl text-text-primary">
         Final solution
       </h2>
+      <h3 className="font-mono text-base text-text-primary">
+        First impressions
+      </h3>
       <p>
         First impressions mattered, so I designed a short tutorial that
         introduces the most important parts of the app through progressive
-        disclosure, giving new users two instant access points to enable an
-        early warning. Setup went from five steps to two — swipe right on
-        the map, or tap the banner.
+        disclosure.
       </p>
+      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/myshake/final-solution-first-impressions.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-[600px] w-auto rounded-lg"
+        />
+      </div>
+
+      <h3 className="font-mono text-base text-text-primary">
+        Early warning shortcuts
+      </h3>
       <p>
-        For staying connected to what matters, the dashboard keeps users
-        informed about the places that matter most to them — whether
-        that&apos;s their own home or their mom&apos;s apartment across the
-        state. I explored a contact-syncing system for safety confirmations
-        early on, but the Seismology Lab ruled it out of scope: users
-        didn&apos;t need MyShake to message family directly, they just
-        needed to know if an earthquake had happened near someone they
-        cared about.
+        New users get two instant access points to enable an early warning.
+        Setup went from five steps to two — swipe right on the map, or tap
+        the banner.
       </p>
+      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/myshake/final-solution-early-warning.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-[600px] w-auto rounded-lg"
+        />
+      </div>
+
+      <h3 className="font-mono text-base text-text-primary">
+        Staying connected to what matters
+      </h3>
+      <p>
+        The dashboard keeps users informed about the places that matter
+        most to them — whether that&apos;s their own home or their
+        mom&apos;s apartment across the state. I explored a contact-syncing
+        system for safety confirmations early on, but the Seismology Lab
+        ruled it out of scope: users didn&apos;t need MyShake to message
+        family directly, they just needed to know if an earthquake had
+        happened near someone they cared about.
+      </p>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            src="/videos/case-studies/myshake/final-solution-staying-connected-1.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="max-h-[500px] w-auto rounded-lg"
+          />
+        </div>
+        <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            src="/videos/case-studies/myshake/final-solution-staying-connected-2.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="max-h-[500px] w-auto rounded-lg"
+          />
+        </div>
+      </div>
+
+      <h3 className="font-mono text-base text-text-primary">
+        Reimagining the critical alert
+      </h3>
       <p>
         The alert itself is MyShake&apos;s core moment, and the original
         showed only basic detection info in an outdated UI. I redesigned
@@ -230,6 +318,9 @@ export default function MyShakePage() {
           />
         </div>
       </div>
+      <h3 className="font-mono text-base text-text-primary">
+        Interface improvements
+      </h3>
       <p>
         Navigation got more intuitive across the board, and the team
         reframed the settings screen as a profile page — a small shift that
