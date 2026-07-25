@@ -25,7 +25,7 @@ export default function CaseStudyLayout({
   children,
 }: CaseStudyLayoutProps) {
   return (
-    <main className="mx-auto w-full max-w-[900px] flex-1 px-6 pt-[56px]">
+    <main className="mx-auto w-full max-w-[900px] flex-1 px-3 pt-[56px]">
       <div className="py-8">
         <Link
           href="/"

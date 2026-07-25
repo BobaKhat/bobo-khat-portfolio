@@ -26,8 +26,8 @@ export default function FlashlightToggle() {
       <motion.div
         style={{
           position: "absolute",
-          width: 500,
-          height: 500,
+          width: 260,
+          height: 260,
           borderRadius: "50%",
           pointerEvents: "none",
           zIndex: 0,
