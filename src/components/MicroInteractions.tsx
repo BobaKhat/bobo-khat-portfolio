@@ -42,21 +42,21 @@ export default function MicroInteractions() {
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {/* Tap to reveal message — needs a dark backdrop, brings its own status caption */}
           <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
-            <div className="flex h-full items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
+            <div className="flex h-[420px] items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
               <MessageReveal />
             </div>
           </div>
 
           {/* Swipe to lock — needs a dark backdrop, brings its own status caption */}
           <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
-            <div className="flex h-full items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
+            <div className="flex h-[420px] items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
               <SwipeToLock />
             </div>
           </div>
 
           {/* Flashlight toggle — needs a dark backdrop for its glow to read */}
           <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
-            <div className="flex h-full flex-col items-center justify-center gap-4 overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
+            <div className="flex h-[420px] flex-col items-center justify-center gap-4 overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
               <FlashlightToggle />
               <p className="text-center font-mono text-[10px] uppercase tracking-wider text-[#4a4a48]">
                 Tap to toggle
