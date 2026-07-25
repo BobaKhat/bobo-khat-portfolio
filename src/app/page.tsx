@@ -23,10 +23,18 @@ const primaryProjects = [
 ];
 
 const labItems = [
-  { title: "Polaris", caption: "Brand identity + landing page" },
-  { title: "Graphic Design", caption: "Posters, REGEN branding" },
-  { title: "Micro-interactions", caption: "MoceanVault components" },
-  { title: "3D Experiments", caption: "Blender renders" },
+  {
+    title: "Polaris",
+    caption: "Brand identity + landing page",
+    image: "/images/lab/polaris.jpg",
+    href: "https://polaris-landing.vercel.app",
+  },
+  {
+    title: "Visual Experiments",
+    caption: "Graphic design + 3D renders",
+    image: "/images/lab/visual-experiments.jpg",
+    href: "https://www.bobokhat.com/gallery",
+  },
 ];
 
 export default function Home() {
@@ -72,21 +80,13 @@ export default function Home() {
           id="lab"
           className="scroll-mt-20 rounded-2xl border border-border bg-module p-6 lg:col-span-3"
         >
-          <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-              <span className="text-[11px] uppercase tracking-wider text-text-secondary">
-                The Lab
-              </span>
-            </div>
-            <a
-              href="#lab"
-              className="text-xs text-text-secondary transition-colors hover:text-accent"
-            >
-              See all →
-            </a>
+          <div className="mb-5 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+            <span className="text-[11px] uppercase tracking-wider text-text-secondary">
+              The Lab
+            </span>
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4">
             {labItems.map((item) => (
               <LabThumbnail key={item.title} {...item} />
             ))}
