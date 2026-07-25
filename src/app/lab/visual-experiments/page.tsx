@@ -15,6 +15,7 @@ const img = (file: string, aspect: number): GalleryItem => ({
 const vid = (file: string, aspect: number): GalleryItem => ({
   type: "video",
   src: `/videos/visual-experiments/${file}`,
+  poster: `/images/visual-experiments/posters/${file.replace(".mp4", ".jpg")}`,
   aspect,
 });
 

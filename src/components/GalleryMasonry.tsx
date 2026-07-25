@@ -8,6 +8,8 @@ export type GalleryItem = {
   src: string;
   /** width / height, used to estimate rendered height per column width */
   aspect: number;
+  /** first-frame still shown instantly for videos, before playback loads */
+  poster?: string;
 };
 
 function useColumnCount() {
@@ -57,7 +59,7 @@ export default function GalleryMasonry({ items }: { items: GalleryItem[] }) {
               className="overflow-hidden rounded-xl border border-border bg-module"
             >
               {item.type === "video" ? (
-                <GalleryVideo src={item.src} />
+                <GalleryVideo src={item.src} poster={item.poster} />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
