@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProjectCard from "@/components/ProjectCard";
 import LabThumbnail from "@/components/LabThumbnail";
+import MicroInteractions from "@/components/MicroInteractions";
 
 // Content per CLAUDE.md build spec. Images are placeholders until assets are
 // migrated (Figma Sites source — see Content Source note in CLAUDE.md).
@@ -93,6 +94,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* MICROINTERACTIONS */}
+      <div className="mt-7">
+        <MicroInteractions />
+      </div>
 
       {/* ABOUT */}
       <section id="about" className="scroll-mt-20 py-16">
