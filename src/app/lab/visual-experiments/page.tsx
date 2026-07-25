@@ -1,62 +1,62 @@
 import Link from "next/link";
-import GalleryVideo from "@/components/GalleryVideo";
+import type { GalleryItem } from "@/components/GalleryMasonry";
+import GalleryMasonryLoader from "@/components/GalleryMasonryLoader";
 
 export const metadata = {
   title: "Visual Experiments — Bobo Khat",
   description: "Graphic design and 3D renders",
 };
 
-type GalleryItem =
-  | { type: "image"; src: string }
-  | { type: "video"; src: string };
-
-const img = (file: string): GalleryItem => ({
+const img = (file: string, aspect: number): GalleryItem => ({
   type: "image",
   src: `/images/visual-experiments/${file}`,
+  aspect,
 });
-const vid = (file: string): GalleryItem => ({
+const vid = (file: string, aspect: number): GalleryItem => ({
   type: "video",
   src: `/videos/visual-experiments/${file}`,
+  aspect,
 });
 
-// Videos are sprinkled through the images roughly every third tile rather
-// than grouped together, per direction.
+// Videos sprinkled through the images roughly every third tile. Aspect
+// ratios (width / height) are the real measured values for each asset, used
+// to pack columns evenly without needing to measure the DOM.
 const items: GalleryItem[] = [
-  img("ve-01.jpg"),
-  img("ve-02.jpg"),
-  vid("ve-01.mp4"),
-  img("ve-03.jpg"),
-  img("ve-04.jpg"),
-  vid("ve-02.mp4"),
-  img("ve-05.jpg"),
-  img("ve-06.jpg"),
-  vid("ve-03.mp4"),
-  img("ve-07.jpg"),
-  img("ve-08.jpg"),
-  vid("ve-04.mp4"),
-  img("ve-09.jpg"),
-  img("ve-10.jpg"),
-  vid("ve-05.mp4"),
-  img("ve-11.jpg"),
-  img("ve-12.jpg"),
-  vid("ve-06.mp4"),
-  img("ve-13.jpg"),
-  img("ve-14.jpg"),
-  vid("ve-07.mp4"),
-  img("ve-15.jpg"),
-  img("ve-16.jpg"),
-  vid("ve-08.mp4"),
-  img("ve-17.jpg"),
-  img("ve-18.jpg"),
-  vid("ve-09.mp4"),
-  img("ve-19.jpg"),
-  img("ve-20.jpg"),
-  vid("ve-10.mp4"),
-  img("ve-21.jpg"),
-  img("ve-22.jpg"),
-  img("ve-23.jpg"),
-  img("ve-24.jpg"),
-  img("ve-25.jpg"),
+  img("ve-01.jpg", 1.004),
+  img("ve-02.jpg", 0.863),
+  vid("ve-01.mp4", 1.78),
+  img("ve-03.jpg", 1.537),
+  img("ve-04.jpg", 1.0),
+  vid("ve-02.mp4", 1.478),
+  img("ve-05.jpg", 0.8),
+  img("ve-06.jpg", 1.778),
+  vid("ve-03.mp4", 1.78),
+  img("ve-07.jpg", 0.791),
+  img("ve-08.jpg", 0.803),
+  vid("ve-04.mp4", 0.562),
+  img("ve-09.jpg", 1.143),
+  img("ve-10.jpg", 1.0),
+  vid("ve-05.mp4", 1.0),
+  img("ve-11.jpg", 0.8),
+  img("ve-12.jpg", 0.994),
+  vid("ve-06.mp4", 0.625),
+  img("ve-13.jpg", 0.8),
+  img("ve-14.jpg", 1.0),
+  vid("ve-07.mp4", 1.0),
+  img("ve-15.jpg", 0.808),
+  img("ve-16.jpg", 0.8),
+  vid("ve-08.mp4", 0.562),
+  img("ve-17.jpg", 0.863),
+  img("ve-18.jpg", 0.863),
+  vid("ve-09.mp4", 1.301),
+  img("ve-19.jpg", 0.897),
+  img("ve-20.jpg", 1.143),
+  vid("ve-10.mp4", 1.0),
+  img("ve-21.jpg", 0.8),
+  img("ve-22.jpg", 0.788),
+  img("ve-23.jpg", 0.8),
+  img("ve-24.jpg", 1.778),
+  img("ve-25.jpg", 1.778),
 ];
 
 export default function VisualExperimentsPage() {
@@ -80,26 +80,7 @@ export default function VisualExperimentsPage() {
         </p>
       </header>
 
-      <div className="columns-1 gap-4 pb-16 sm:columns-2 lg:columns-3">
-        {items.map((item, i) => (
-          <div
-            key={item.src}
-            className="mb-4 break-inside-avoid overflow-hidden rounded-xl border border-border bg-module"
-          >
-            {item.type === "video" ? (
-              <GalleryVideo src={item.src} />
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.src}
-                alt="Visual experiment — graphic design or 3D render"
-                className="w-full"
-                loading={i < 4 ? "eager" : "lazy"}
-              />
-            )}
-          </div>
-        ))}
-      </div>
+      <GalleryMasonryLoader items={items} />
     </main>
   );
 }
