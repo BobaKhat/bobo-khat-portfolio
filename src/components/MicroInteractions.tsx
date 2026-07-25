@@ -1,4 +1,4 @@
-import NetworthChart from "./NetworthChart";
+import MessageReveal from "./MessageReveal";
 import SwipeToLock from "./SwipeToLock";
 import FlashlightToggle from "./FlashlightToggle";
 
@@ -40,10 +40,10 @@ export default function MicroInteractions() {
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {/* Hover-to-inspect net worth chart — self-contained, brings its own screen bg */}
+          {/* Tap to reveal message — needs a dark backdrop, brings its own status caption */}
           <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
-            <div className="flex h-full items-center justify-center overflow-hidden rounded-xl">
-              <NetworthChart />
+            <div className="flex h-full items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
+              <MessageReveal />
             </div>
           </div>
 
