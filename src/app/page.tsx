@@ -33,7 +33,7 @@ const labItems = [
     title: "Visual Experiments",
     caption: "Graphic design + 3D renders",
     image: "/images/lab/visual-experiments.jpg",
-    href: "https://www.bobokhat.com/gallery",
+    href: "/lab/visual-experiments",
   },
 ];
 
