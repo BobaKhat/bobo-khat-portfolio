@@ -1,10 +1,12 @@
-import MicroScreen from "./MicroScreen";
-import NetWorthChart from "./NetWorthChart";
+import NetworthChart from "./NetworthChart";
 import SwipeToLock from "./SwipeToLock";
-import VolumeHold from "./VolumeHold";
+import FlashlightToggle from "./FlashlightToggle";
 
 const MOCEANVAULT_URL = "https://moceanvault.vercel.app/";
 
+// The 3 screens below are the real components from the MoceanVault project
+// (ported as-is, including their own colors/animation), not recreations —
+// only the surrounding bezel is themed to match this site's light/dark mode.
 export default function MicroInteractions() {
   return (
     <section id="micro-interactions" className="scroll-mt-20 py-2">
@@ -28,41 +30,38 @@ export default function MicroInteractions() {
             className="group flex shrink-0 items-center gap-1.5 text-xs text-text-primary transition-colors hover:text-accent"
           >
             See all 18 on MoceanVault
-            <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+            <span
+              className="transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
               →
             </span>
           </a>
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-border bg-surface p-2">
-            <MicroScreen
-              footer={
-                <p className="text-center font-mono text-[10px] text-[#55554e]">
-                  hover to inspect
-                </p>
-              }
-            >
-              <NetWorthChart />
-            </MicroScreen>
+          {/* Hover-to-inspect net worth chart — self-contained, brings its own screen bg */}
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
+            <div className="flex h-full items-center justify-center overflow-hidden rounded-xl">
+              <NetworthChart />
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface p-2">
-            <MicroScreen>
+          {/* Swipe to lock — needs a dark backdrop, brings its own status caption */}
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
+            <div className="flex h-full items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
               <SwipeToLock />
-            </MicroScreen>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface p-2">
-            <MicroScreen
-              footer={
-                <p className="text-center font-mono text-[10px] text-[#55554e]">
-                  Hold the button to increase volume
-                </p>
-              }
-            >
-              <VolumeHold />
-            </MicroScreen>
+          {/* Flashlight toggle — needs a dark backdrop for its glow to read */}
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
+            <div className="flex h-full flex-col items-center justify-center gap-4 overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
+              <FlashlightToggle />
+              <p className="text-center font-mono text-[10px] uppercase tracking-wider text-[#4a4a48]">
+                Tap to toggle
+              </p>
+            </div>
           </div>
         </div>
       </div>
