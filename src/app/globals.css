@@ -15,10 +15,10 @@
   --text-secondary: #777777;
   --border: #e5e3df;
   /* Neomorphic shadow system — exact values from the build spec. */
-  --shadow-raised: 6px 6px 12px rgba(0, 0, 0, 0.08),
-    -4px -4px 10px rgba(255, 255, 255, 0.5);
-  --shadow-recessed: inset 4px 4px 8px rgba(0, 0, 0, 0.06),
-    inset -3px -3px 6px rgba(255, 255, 255, 0.4);
+  --shadow-raised: 8px 8px 20px rgba(0, 0, 0, 0.16),
+    -6px -6px 14px rgba(255, 255, 255, 0.6);
+  --shadow-recessed: inset 5px 5px 10px rgba(0, 0, 0, 0.12),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.5);
 }
 
 :root[data-theme="dark"] {

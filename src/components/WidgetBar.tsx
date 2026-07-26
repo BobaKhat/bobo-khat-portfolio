@@ -2,6 +2,7 @@ import Clock from "./Clock";
 import ThemeToggle from "./ThemeToggle";
 import SpotifyWidget from "./SpotifyWidget";
 import ScrollProgress from "./ScrollProgress";
+import Navigation from "./Navigation";
 
 /*
   Fixed status/control strip, inset from the screen edges with rounded
@@ -20,6 +21,8 @@ export default function WidgetBar() {
             <Clock />
           </div>
         </div>
+
+        <Navigation />
 
         <div className="flex items-center gap-6">
           <div className="hidden md:block">

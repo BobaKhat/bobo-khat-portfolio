@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import ProjectCard from "@/components/ProjectCard";
 import LabThumbnail from "@/components/LabThumbnail";
 import MicroInteractions from "@/components/MicroInteractions";
@@ -60,7 +59,6 @@ export default function Home() {
             I design digital things people can feel.
           </p>
         </div>
-        <Navigation />
       </section>
 
       {/* PRIMARY CASE STUDIES + THE LAB — all equal-size cells in one grid */}
