@@ -3,8 +3,8 @@ import ProjectCard from "@/components/ProjectCard";
 import LabThumbnail from "@/components/LabThumbnail";
 import MicroInteractions from "@/components/MicroInteractions";
 
-// Content per CLAUDE.md build spec. Images are placeholders until assets are
-// migrated (Figma Sites source — see Content Source note in CLAUDE.md).
+// Content per CLAUDE.md build spec. Drift, MyShake, and Group Canvas use
+// screen-recorded video on the homepage instead of static screenshots.
 const primaryProjects = [
   {
     index: "01",
@@ -12,6 +12,7 @@ const primaryProjects = [
     subtitle: "Spatial music discovery map",
     tag: "Product Design · Interaction",
     href: "/work/drift",
+    video: "/videos/drift-homepage.mp4",
   },
   {
     index: "02",
@@ -19,7 +20,7 @@ const primaryProjects = [
     subtitle: "Earthquake awareness platform",
     tag: "Product Design · Research",
     href: "/work/myshake",
-    image: "/images/myshake-homepage-visual.png",
+    video: "/videos/myshake-homepage.mp4",
   },
 ];
 
@@ -73,7 +74,7 @@ export default function Home() {
             subtitle="Real-time collaboration for GoodNotes"
             tag="UX · Collaboration"
             href="/work/group-canvas"
-            image="/images/group-canvas-homepage-visual.png"
+            video="/videos/group-canvas-homepage.mp4"
           />
         </div>
 

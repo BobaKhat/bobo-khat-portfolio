@@ -8,6 +8,8 @@ export type ProjectCardProps = {
   href: string;
   /** Optional screenshot path in /public. Placeholder shown when absent. */
   image?: string;
+  /** Optional video path in /public. Takes priority over `image` when set. */
+  video?: string;
   /** "large" dominates the page; "small" is the secondary variant. */
   size?: "large" | "small";
 };
@@ -19,6 +21,7 @@ export default function ProjectCard({
   tag,
   href,
   image,
+  video,
   size = "large",
 }: ProjectCardProps) {
   return (
@@ -45,13 +48,24 @@ export default function ProjectCard({
         </p>
       </div>
 
-      {/* Screenshot slot */}
+      {/* Screenshot / video slot */}
       <div
-        className={`relative w-full overflow-hidden rounded-2xl bg-surface shadow-[var(--shadow-recessed)] ${
+        className={`relative flex w-full items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-[var(--shadow-recessed)] ${
           size === "large" ? "aspect-[16/10]" : "aspect-[16/11]"
         }`}
       >
-        {image ? (
+        {video ? (
+          // eslint-disable-next-line jsx-a11y/media-has-caption
+          <video
+            src={video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="h-full w-full object-contain"
+          />
+        ) : image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={image}
