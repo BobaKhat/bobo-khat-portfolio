@@ -29,7 +29,7 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/introduction.mp4"
@@ -77,7 +77,7 @@ export default function MyShakePage() {
         goal was to make MyShake the #1 earthquake app by increasing
         engagement and building trust during emergencies.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/problem.mp4"
@@ -108,7 +108,7 @@ export default function MyShakePage() {
         of when the earthquake would hit or how strong the shaking would
         be.
       </p>
-      <div className="overflow-hidden rounded-xl border border-border">
+      <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/old-alert-screen.png"
@@ -126,7 +126,7 @@ export default function MyShakePage() {
         features — alerts and earthquake information — in something both
         beautiful and powerful.
       </p>
-      <div className="overflow-hidden rounded-xl border border-border">
+      <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-map-profile.png"
@@ -145,7 +145,7 @@ export default function MyShakePage() {
         proposed making MyShake open to a personalized dashboard instead of
         a map.
       </p>
-      <div className="overflow-hidden rounded-xl border border-border">
+      <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-dashboard-concept.png"
@@ -164,7 +164,7 @@ export default function MyShakePage() {
         touching the app&apos;s underlying structure.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/option-a-refined-landing.png"
@@ -176,7 +176,7 @@ export default function MyShakePage() {
             Option A — safer, familiar, visual improvements only
           </p>
         </div>
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/option-b-dashboard-landing.png"
@@ -198,7 +198,7 @@ export default function MyShakePage() {
         that followed simplified navigation so users could reach any key
         feature within one or two taps, instead of digging through menus.
       </p>
-      <div className="overflow-hidden rounded-xl border border-border">
+      <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/information-architecture.png"
@@ -219,7 +219,7 @@ export default function MyShakePage() {
         introduces the most important parts of the app through progressive
         disclosure.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-first-impressions.mp4"
@@ -239,7 +239,7 @@ export default function MyShakePage() {
         Setup went from five steps to two — swipe right on the map, or tap
         the banner.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-early-warning.mp4"
@@ -264,7 +264,7 @@ export default function MyShakePage() {
         happened near someone they cared about.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+        <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-1.mp4"
@@ -275,7 +275,7 @@ export default function MyShakePage() {
             className="max-h-[500px] w-auto rounded-lg"
           />
         </div>
-        <div className="flex justify-center overflow-hidden rounded-xl border border-border bg-surface p-4">
+        <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-2.mp4"
@@ -299,7 +299,7 @@ export default function MyShakePage() {
         clear next steps.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-1.png"
@@ -308,7 +308,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-2.png"
@@ -327,7 +327,7 @@ export default function MyShakePage() {
         introduced a real sense of ownership and personalization.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-1.png"
@@ -336,7 +336,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-2.png"
@@ -346,7 +346,7 @@ export default function MyShakePage() {
           />
         </div>
       </div>
-      <div className="overflow-hidden rounded-xl border border-border">
+      <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/profile-page.png"
@@ -388,7 +388,7 @@ export default function MyShakePage() {
         immediately clear.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-banner.png"
@@ -397,7 +397,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-xl shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-detail.png"

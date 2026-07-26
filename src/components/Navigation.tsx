@@ -29,7 +29,7 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className="flex items-center gap-1 rounded-full border border-border bg-module p-1">
+    <nav className="flex items-center gap-1 rounded-full bg-module p-1 shadow-[var(--shadow-raised)]">
       {items.map((item) => {
         const id = item.href.slice(1);
         const isActive = active === id;

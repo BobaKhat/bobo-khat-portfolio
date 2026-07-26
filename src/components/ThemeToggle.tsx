@@ -36,7 +36,7 @@ export default function ThemeToggle() {
     >
       <span className={isDark ? "" : "text-text-primary"}>Light</span>
       {/* Recessed track + sliding knob — plain styling for now */}
-      <span className="relative inline-flex h-4 w-8 items-center rounded-full border border-border bg-surface">
+      <span className="relative inline-flex h-4 w-8 items-center rounded-full bg-surface shadow-[var(--shadow-recessed)]">
         <span
           className="absolute h-3 w-3 rounded-full bg-accent transition-transform duration-300"
           style={{ transform: isDark ? "translateX(16px)" : "translateX(2px)" }}

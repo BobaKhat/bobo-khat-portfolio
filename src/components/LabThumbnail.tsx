@@ -19,7 +19,7 @@ export default function LabThumbnail({
       rel={isExternal ? "noopener noreferrer" : undefined}
       className="group flex flex-col"
     >
-      <div className="aspect-square w-full overflow-hidden rounded-xl border border-border bg-surface transition-transform duration-300 group-hover:scale-[1.02]">
+      <div className="aspect-square w-full overflow-hidden rounded-xl bg-surface shadow-[var(--shadow-recessed)] transition-transform duration-300 group-hover:scale-[1.02]">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

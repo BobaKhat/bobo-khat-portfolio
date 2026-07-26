@@ -8,7 +8,7 @@
 export default function SpotifyWidget() {
   return (
     <div className="flex items-center gap-2">
-      <span className="grid h-8 w-8 place-items-center rounded-md border border-border text-text-secondary">
+      <span className="grid h-8 w-8 place-items-center rounded-md bg-surface text-text-secondary shadow-[var(--shadow-recessed)]">
         {/* pause icon */}
         <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
           <rect x="1" y="1" width="3" height="8" fill="currentColor" />

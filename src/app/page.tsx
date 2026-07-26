@@ -79,7 +79,7 @@ export default function Home() {
 
         <div
           id="lab"
-          className="scroll-mt-20 rounded-3xl border border-border bg-module p-6 lg:col-span-3"
+          className="scroll-mt-20 rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] lg:col-span-3"
         >
           <div className="mb-5">
             <div className="flex items-center gap-2">
@@ -107,7 +107,7 @@ export default function Home() {
 
       {/* ABOUT */}
       <section id="about" className="scroll-mt-20 py-16">
-        <div className="rounded-3xl border border-border bg-module p-8">
+        <div className="rounded-3xl bg-module p-8 shadow-[var(--shadow-raised)]">
           <span className="text-[11px] uppercase tracking-wider text-text-secondary">
             About
           </span>

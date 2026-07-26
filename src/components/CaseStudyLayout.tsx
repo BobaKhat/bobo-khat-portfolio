@@ -61,7 +61,7 @@ export default function CaseStudyLayout({
 
       {/* Hero */}
       {heroVideo ? (
-        <div className="mb-12 flex max-h-[720px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface p-4">
+        <div className="mb-12 flex max-h-[720px] w-full items-center justify-center overflow-hidden rounded-2xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src={heroVideo}
@@ -73,7 +73,7 @@ export default function CaseStudyLayout({
           />
         </div>
       ) : (
-        <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-module">
+        <div className="mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-module shadow-[var(--shadow-recessed)]">
           {heroImage ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img

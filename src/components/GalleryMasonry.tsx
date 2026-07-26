@@ -56,7 +56,7 @@ export default function GalleryMasonry({ items }: { items: GalleryItem[] }) {
           {col.map((item) => (
             <div
               key={item.src}
-              className="overflow-hidden rounded-xl border border-border bg-module"
+              className="overflow-hidden rounded-xl bg-module shadow-[var(--shadow-recessed)]"
             >
               {item.type === "video" ? (
                 <GalleryVideo src={item.src} poster={item.poster} />

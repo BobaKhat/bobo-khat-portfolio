@@ -10,7 +10,7 @@ const MOCEANVAULT_URL = "https://moceanvault.vercel.app/";
 export default function MicroInteractions() {
   return (
     <section id="micro-interactions" className="scroll-mt-20 py-2">
-      <div className="rounded-3xl border border-border bg-module p-6 md:p-8">
+      <div className="rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] md:p-8">
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
           <div>
             <div className="flex items-center gap-2">
@@ -41,21 +41,21 @@ export default function MicroInteractions() {
 
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {/* Tap to reveal message — needs a dark backdrop, brings its own status caption */}
-          <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
+          <div className="overflow-hidden rounded-2xl bg-surface p-2 shadow-[var(--shadow-recessed)]">
             <div className="flex h-[420px] items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
               <MessageReveal />
             </div>
           </div>
 
           {/* Swipe to lock — needs a dark backdrop, brings its own status caption */}
-          <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
+          <div className="overflow-hidden rounded-2xl bg-surface p-2 shadow-[var(--shadow-recessed)]">
             <div className="flex h-[420px] items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
               <SwipeToLock />
             </div>
           </div>
 
           {/* Flashlight toggle — needs a dark backdrop for its glow to read */}
-          <div className="overflow-hidden rounded-2xl border border-border bg-surface p-2">
+          <div className="overflow-hidden rounded-2xl bg-surface p-2 shadow-[var(--shadow-recessed)]">
             <div className="flex h-[420px] flex-col items-center justify-center gap-4 overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
               <FlashlightToggle />
               <p className="text-center font-mono text-[10px] uppercase tracking-wider text-[#4a4a48]">
