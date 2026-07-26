@@ -42,3 +42,4 @@ next-env.d.ts
 
 # local claude settings
 .claude/settings.local.json
+src/app/work/**/*.mov
