@@ -4,13 +4,15 @@ import SpotifyWidget from "./SpotifyWidget";
 import ScrollProgress from "./ScrollProgress";
 
 /*
-  Fixed status/control strip. Position (top vs bottom) is still an open
-  decision in the spec — using fixed-top for now. Styling is minimal:
-  a plain bordered bar rather than the recessed neomorphic surface.
+  Fixed status/control strip, inset from the screen edges with rounded
+  corners rather than flush edge-to-edge — matches the softer, "nothing
+  touches the raw edge" treatment used across the rest of the site.
+  Position (top vs bottom) is still an open decision in the spec — using
+  fixed-top for now.
 */
 export default function WidgetBar() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 h-[56px] border-b border-border bg-module">
+    <header className="fixed inset-x-3 top-3 z-50 h-[56px] rounded-2xl border border-border bg-module">
       <div className="mx-auto flex h-full max-w-[1300px] items-center justify-between gap-6 px-3">
         <div className="flex items-center gap-6">
           <SpotifyWidget />

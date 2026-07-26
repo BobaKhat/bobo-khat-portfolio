@@ -10,7 +10,7 @@ const MOCEANVAULT_URL = "https://moceanvault.vercel.app/";
 export default function MicroInteractions() {
   return (
     <section id="micro-interactions" className="scroll-mt-20 py-2">
-      <div className="rounded-2xl border border-border bg-module p-6 md:p-8">
+      <div className="rounded-3xl border border-border bg-module p-6 md:p-8">
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
           <div>
             <div className="flex items-center gap-2">

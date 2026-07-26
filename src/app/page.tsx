@@ -40,7 +40,7 @@ const labItems = [
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-[1300px] flex-1 px-3 pt-[56px]">
+    <main className="mx-auto w-full max-w-[1300px] flex-1 px-3 pt-[84px]">
       {/* HERO */}
       <section className="flex flex-col gap-8 py-16 md:flex-row md:items-start md:justify-between">
         <div>
@@ -79,13 +79,18 @@ export default function Home() {
 
         <div
           id="lab"
-          className="scroll-mt-20 rounded-2xl border border-border bg-module p-6 lg:col-span-3"
+          className="scroll-mt-20 rounded-3xl border border-border bg-module p-6 lg:col-span-3"
         >
-          <div className="mb-5 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-            <span className="text-[11px] uppercase tracking-wider text-text-secondary">
-              The Lab
-            </span>
+          <div className="mb-5">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+              <span className="text-[11px] uppercase tracking-wider text-text-secondary">
+                The Lab
+              </span>
+            </div>
+            <p className="mt-2 text-sm text-text-secondary">
+              Explorations and experiments
+            </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {labItems.map((item) => (
@@ -102,7 +107,7 @@ export default function Home() {
 
       {/* ABOUT */}
       <section id="about" className="scroll-mt-20 py-16">
-        <div className="rounded-2xl border border-border bg-module p-8">
+        <div className="rounded-3xl border border-border bg-module p-8">
           <span className="text-[11px] uppercase tracking-wider text-text-secondary">
             About
           </span>
