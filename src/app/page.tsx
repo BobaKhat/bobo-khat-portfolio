@@ -49,7 +49,7 @@ const labItems = [
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-[1300px] flex-1 px-3 pt-[84px]">
+    <main className="mx-auto w-full max-w-[1800px] flex-1 px-3 pt-[84px]">
       {/* HERO */}
       <section className="flex flex-col gap-8 py-16 md:flex-row md:items-start md:justify-between">
         <div>

@@ -13,7 +13,7 @@ import ScrollProgress from "./ScrollProgress";
 export default function WidgetBar() {
   return (
     <header className="fixed inset-x-3 top-3 z-50 h-[56px] rounded-2xl bg-module shadow-[var(--shadow-raised)]">
-      <div className="mx-auto flex h-full max-w-[1300px] items-center justify-between gap-6 px-3">
+      <div className="mx-auto flex h-full max-w-[1800px] items-center justify-between gap-6 px-3">
         <div className="flex items-center gap-6">
           <SpotifyWidget />
           <div className="hidden sm:block">
