@@ -22,6 +22,14 @@ const primaryProjects = [
     href: "/work/myshake",
     video: "/videos/myshake-homepage.mp4",
   },
+  {
+    index: "03",
+    title: "Group Canvas",
+    subtitle: "Real-time collaboration for GoodNotes",
+    tag: "UX · Collaboration",
+    href: "/work/group-canvas",
+    video: "/videos/group-canvas-homepage.mp4",
+  },
 ];
 
 const labItems = [
@@ -55,48 +63,33 @@ export default function Home() {
         <Navigation />
       </section>
 
-      {/* PRIMARY CASE STUDIES */}
+      {/* PRIMARY CASE STUDIES + THE LAB — all equal-size cells in one grid */}
       <section id="work" className="scroll-mt-20">
         <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
           {primaryProjects.map((p) => (
             <ProjectCard key={p.index} size="large" {...p} />
           ))}
-        </div>
-      </section>
 
-      {/* SECONDARY ROW: Group Canvas + The Lab */}
-      <section className="mt-7 grid grid-cols-1 gap-7 lg:grid-cols-5">
-        <div className="lg:col-span-2">
-          <ProjectCard
-            size="small"
-            index="03"
-            title="Group Canvas"
-            subtitle="Real-time collaboration for GoodNotes"
-            tag="UX · Collaboration"
-            href="/work/group-canvas"
-            video="/videos/group-canvas-homepage.mp4"
-          />
-        </div>
-
-        <div
-          id="lab"
-          className="scroll-mt-20 rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] lg:col-span-3"
-        >
-          <div className="mb-5">
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-              <span className="text-[11px] uppercase tracking-wider text-text-secondary">
-                The Lab
-              </span>
+          <div
+            id="lab"
+            className="scroll-mt-20 flex h-full flex-col rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)]"
+          >
+            <div className="mb-5">
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                <span className="text-[11px] uppercase tracking-wider text-text-secondary">
+                  The Lab
+                </span>
+              </div>
+              <p className="mt-2 text-sm text-text-secondary">
+                Explorations and experiments
+              </p>
             </div>
-            <p className="mt-2 text-sm text-text-secondary">
-              Explorations and experiments
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {labItems.map((item) => (
-              <LabThumbnail key={item.title} {...item} />
-            ))}
+            <div className="grid flex-1 grid-cols-2 content-center gap-4">
+              {labItems.map((item) => (
+                <LabThumbnail key={item.title} {...item} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
