@@ -8,12 +8,12 @@
 */
 
 :root {
-  --surface: #d5d2cd;
-  --module: #e6e4e1;
+  --surface: #f7f6f4;
+  --module: #fcfcfb;
   --accent: #e85d2c;
   --text-primary: #1a1a1a;
   --text-secondary: #777777;
-  --border: #c5c3be;
+  --border: #e5e3df;
   /* Neomorphic shadow system — exact values from the build spec. */
   --shadow-raised: 6px 6px 12px rgba(0, 0, 0, 0.08),
     -4px -4px 10px rgba(255, 255, 255, 0.5);
