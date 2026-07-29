@@ -6,16 +6,12 @@ export type ProjectCardProps = {
   subtitle: string;
   tag: string;
   href: string;
-  /** Optional screenshot path in /public. Placeholder shown when absent. */
   image?: string;
-  /** Optional video path in /public. Takes priority over `image` when set. */
   video?: string;
-  /** Scale factor for the video within its well (1 = fill). e.g. 0.85 shrinks it 15%. */
   videoScale?: number;
-  /** Corner radius (px) applied to the video only. Omit for square corners. */
   videoRadius?: number;
-  /** "large" dominates the page; "small" is the secondary variant. */
   size?: "large" | "small";
+  id?: string;
 };
 
 export default function ProjectCard({
@@ -29,12 +25,14 @@ export default function ProjectCard({
   videoScale,
   videoRadius,
   size = "large",
+  id,
 }: ProjectCardProps) {
-  return (
-    <Link
-      href={href}
-      className="group flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1"
-    >
+  const isExternal = href.startsWith("http");
+  const cardClassName =
+    "group flex scroll-mt-20 flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1";
+
+  const content = (
+    <>
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
           <div className="flex items-baseline gap-3">
@@ -54,7 +52,6 @@ export default function ProjectCard({
         </p>
       </div>
 
-      {/* Screenshot / video slot */}
       <div
         className={`relative flex w-full items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-[var(--shadow-recessed)] ${
           size === "large" ? "aspect-[16/10]" : "aspect-[16/11]"
@@ -93,11 +90,24 @@ export default function ProjectCard({
           </div>
         )}
 
-        {/* Floating launch button */}
         <span className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-module text-text-primary shadow-[var(--shadow-raised-sm)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
           →
         </span>
       </div>
+    </>
+  );
+
+  if (isExternal) {
+    return (
+      <a href={href} id={id} target="_blank" rel="noopener noreferrer" className={cardClassName}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} id={id} className={cardClassName}>
+      {content}
     </Link>
   );
 }

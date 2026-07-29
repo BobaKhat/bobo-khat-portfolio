@@ -1,5 +1,4 @@
 import ProjectCard from "@/components/ProjectCard";
-import LabThumbnail from "@/components/LabThumbnail";
 import MicroInteractions from "@/components/MicroInteractions";
 
 // Content per CLAUDE.md build spec. Drift, MyShake, and Group Canvas use
@@ -33,19 +32,11 @@ const primaryProjects = [
   },
 ];
 
-const labItems = [
-  {
-    title: "Polaris",
-    caption: "Brand identity + landing page",
-    image: "/images/lab/polaris-landing.jpg",
-    href: "https://polaris-landing.vercel.app",
-  },
-  {
-    title: "Visual Experiments",
-    caption: "Graphic design + 3D renders",
-    image: "/images/lab/visual-experiments.jpg",
-    href: "/lab/visual-experiments",
-  },
+const visualExperimentsPreview = [
+  "/images/visual-experiments/ve-01.jpg",
+  "/images/visual-experiments/ve-03.jpg",
+  "/images/visual-experiments/ve-06.jpg",
+  "/images/visual-experiments/ve-09.jpg",
 ];
 
 export default function Home() {
@@ -70,34 +61,64 @@ export default function Home() {
             <ProjectCard key={p.index} size="large" {...p} />
           ))}
 
-          <div
+          <MicroInteractions className="md:row-span-2" />
+
+          <ProjectCard
             id="lab"
-            className="scroll-mt-20 flex h-full flex-col rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)]"
+            index="04"
+            title="Polaris"
+            subtitle="Brand identity + landing page"
+            tag="Brand · Landing Page"
+            href="https://polaris-landing.vercel.app"
+            image="/images/lab/polaris-landing.jpg"
+            size="large"
+          />
+
+          <a
+            href="/lab/visual-experiments"
+            className="group flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1 md:col-span-2 md:p-8"
           >
-            <div className="mb-5">
-              <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                <span className="text-[11px] uppercase tracking-wider text-text-secondary">
-                  The Lab
-                </span>
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                  <span className="text-[11px] uppercase tracking-wider text-text-secondary">
+                    The Lab
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-text-secondary">
+                  Visual Experiments — Graphic design + 3D renders
+                </p>
               </div>
-              <p className="mt-2 text-sm text-text-secondary">
-                Explorations and experiments
-              </p>
+              <span className="flex shrink-0 items-center gap-1.5 text-xs text-text-primary transition-colors group-hover:text-accent">
+                See the full gallery
+                <span
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+              </span>
             </div>
-            <div className="grid flex-1 grid-cols-2 content-center gap-4">
-              {labItems.map((item) => (
-                <LabThumbnail key={item.title} {...item} />
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {visualExperimentsPreview.map((src) => (
+                <div
+                  key={src}
+                  className="aspect-[4/3] overflow-hidden rounded-xl bg-surface shadow-[var(--shadow-recessed)]"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt="Visual experiment preview"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
               ))}
             </div>
-          </div>
+          </a>
         </div>
       </section>
-
-      {/* MICROINTERACTIONS */}
-      <div className="mt-7">
-        <MicroInteractions />
-      </div>
 
       {/* ABOUT */}
       <section id="about" className="scroll-mt-20 py-16">

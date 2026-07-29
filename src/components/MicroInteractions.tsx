@@ -1,16 +1,27 @@
 import MessageReveal from "./MessageReveal";
+import { VolumeInteraction } from "./VolumeInteraction";
 import SwipeToLock from "./SwipeToLock";
-import FlashlightToggle from "./FlashlightToggle";
 
 const MOCEANVAULT_URL = "https://moceanvault.vercel.app/";
 
-// The 3 screens below are the real components from the MoceanVault project
-// (ported as-is, including their own colors/animation), not recreations —
-// only the surrounding bezel is themed to match this site's light/dark mode.
-export default function MicroInteractions() {
+// The 3 screens below are real components from the MoceanVault project
+// (ported as-is, including their own colors/animation), not recreations.
+// Now stacked vertically (was side-by-side) to fill a row-span-2 grid
+// cell — each screen uses flex-1 instead of a fixed height so they
+// share whatever vertical space the grid gives this card, rather than
+// a hardcoded pixel value that would drift out of sync with its
+// neighbors' real heights.
+export default function MicroInteractions({
+  className = "",
+}: {
+  className?: string;
+}) {
   return (
-    <section id="micro-interactions" className="scroll-mt-20 py-2">
-      <div className="rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] md:p-8">
+    <section
+      id="micro-interactions"
+      className={`scroll-mt-20 flex h-full flex-col ${className}`}
+    >
+      <div className="flex h-full flex-col rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] md:p-8">
         <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
           <div>
             <div className="flex items-center gap-2">
@@ -39,28 +50,22 @@ export default function MicroInteractions() {
           </a>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {/* Tap to reveal message — needs a dark backdrop, brings its own status caption */}
-          <div className="overflow-hidden rounded-2xl bg-surface p-2 shadow-[var(--shadow-recessed)]">
-            <div className="flex h-[420px] items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
+        <div className="mt-6 flex flex-1 flex-col gap-4">
+          <div className="flex flex-1 overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
+            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-surface px-4 py-8">
               <MessageReveal />
             </div>
           </div>
 
-          {/* Swipe to lock — needs a dark backdrop, brings its own status caption */}
-          <div className="overflow-hidden rounded-2xl bg-surface p-2 shadow-[var(--shadow-recessed)]">
-            <div className="flex h-[420px] items-center justify-center overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
-              <SwipeToLock />
+          <div className="flex flex-1 overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
+            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-surface px-4 py-8">
+              <VolumeInteraction />
             </div>
           </div>
 
-          {/* Flashlight toggle — needs a dark backdrop for its glow to read */}
-          <div className="overflow-hidden rounded-2xl bg-surface p-2 shadow-[var(--shadow-recessed)]">
-            <div className="flex h-[420px] flex-col items-center justify-center gap-4 overflow-hidden rounded-xl bg-[#141414] px-4 py-8">
-              <FlashlightToggle />
-              <p className="text-center font-mono text-[10px] uppercase tracking-wider text-[#4a4a48]">
-                Tap to toggle
-              </p>
+          <div className="flex flex-1 overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
+            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-surface px-4 py-8">
+              <SwipeToLock />
             </div>
           </div>
         </div>
