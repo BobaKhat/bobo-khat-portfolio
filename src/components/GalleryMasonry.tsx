@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import GalleryVideo from "@/components/GalleryVideo";
+import GalleryLightbox from "@/components/GalleryLightbox";
 
 export type GalleryItem = {
   type: "image" | "video";
@@ -33,6 +34,7 @@ function useColumnCount() {
 
 export default function GalleryMasonry({ items }: { items: GalleryItem[] }) {
   const columnCount = useColumnCount();
+  const [active, setActive] = useState<GalleryItem | null>(null);
 
   // Greedy "shortest column gets the next item" packing. Column width is
   // uniform within a given breakpoint, so relative rendered height for an
@@ -50,29 +52,38 @@ export default function GalleryMasonry({ items }: { items: GalleryItem[] }) {
   }
 
   return (
-    <div className="flex gap-4 pb-16">
-      {columns.map((col, i) => (
-        <div key={i} className="flex flex-1 flex-col gap-4">
-          {col.map((item) => (
-            <div
-              key={item.src}
-              className="overflow-hidden rounded-xl bg-module shadow-[var(--shadow-recessed)]"
-            >
-              {item.type === "video" ? (
-                <GalleryVideo src={item.src} poster={item.poster} />
-              ) : (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={item.src}
-                  alt="Visual experiment — graphic design or 3D render"
-                  className="w-full"
-                  loading="lazy"
-                />
-              )}
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="flex gap-4 pb-16">
+        {columns.map((col, i) => (
+          <div key={i} className="flex flex-1 flex-col gap-4">
+            {col.map((item) => (
+              <button
+                key={item.src}
+                type="button"
+                onClick={() => setActive(item)}
+                aria-label="Expand to view larger"
+                className="block w-full cursor-zoom-in overflow-hidden rounded-xl bg-module shadow-[var(--shadow-recessed)] transition-transform duration-200 hover:scale-[1.01]"
+              >
+                {item.type === "video" ? (
+                  <GalleryVideo src={item.src} poster={item.poster} />
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.src}
+                    alt="Visual experiment — graphic design or 3D render"
+                    className="w-full"
+                    loading="lazy"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {active && (
+        <GalleryLightbox item={active} onClose={() => setActive(null)} />
+      )}
+    </>
   );
 }

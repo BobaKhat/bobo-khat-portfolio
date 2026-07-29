@@ -19,7 +19,9 @@ const primaryProjects = [
     subtitle: "Earthquake awareness platform",
     tag: "Product Design · Research",
     href: "/work/myshake",
-    video: "/videos/myshake-homepage.mp4",
+    video: "/videos/myshake.mp4",
+    videoScale: 0.85,
+    videoRadius: 15,
   },
   {
     index: "03",
@@ -35,7 +37,7 @@ const labItems = [
   {
     title: "Polaris",
     caption: "Brand identity + landing page",
-    image: "/images/lab/polaris.jpg",
+    image: "/images/lab/polaris-landing.jpg",
     href: "https://polaris-landing.vercel.app",
   },
   {
@@ -48,7 +50,7 @@ const labItems = [
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-[1800px] flex-1 px-3 pt-[84px]">
+    <main className="mx-auto w-full max-w-[1800px] flex-1 px-8 pt-[84px]">
       {/* HERO */}
       <section className="flex flex-col gap-8 py-16 md:flex-row md:items-start md:justify-between">
         <div>

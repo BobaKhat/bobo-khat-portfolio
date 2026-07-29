@@ -24,7 +24,7 @@ export default function ScrollProgress() {
   return (
     <div className="flex items-center gap-2">
       {/* Recessed rail — plain styling for now */}
-      <div className="h-1 w-16 overflow-hidden rounded-full bg-surface shadow-[var(--shadow-recessed)]">
+      <div className="h-1 w-16 overflow-hidden rounded-full bg-surface shadow-[var(--shadow-recessed-sm)]">
         <div
           className="h-full bg-accent transition-[width] duration-150"
           style={{ width: `${pct}%` }}

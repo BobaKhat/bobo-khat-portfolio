@@ -13,18 +13,16 @@ import Navigation from "./Navigation";
 */
 export default function WidgetBar() {
   return (
-    <header className="fixed inset-x-3 top-3 z-50 h-[56px] rounded-2xl bg-module shadow-[var(--shadow-raised)]">
-      <div className="mx-auto flex h-full max-w-[1800px] items-center justify-between gap-6 px-3">
-        <div className="flex items-center gap-6">
+    <header className="fixed inset-x-3 top-3 z-50 h-[76px] rounded-full bg-module shadow-[var(--shadow-raised)]">
+      <div className="mx-auto flex h-full max-w-[1800px] items-center justify-between gap-8 px-5">
+        <div className="flex items-center gap-8">
           <SpotifyWidget />
           <div className="hidden sm:block">
             <Clock />
           </div>
         </div>
-
         <Navigation />
-
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-8">
           <div className="hidden md:block">
             <ScrollProgress />
           </div>

@@ -8,17 +8,37 @@
 */
 
 :root {
-  --surface: #f7f6f4;
-  --module: #fcfcfb;
+  --surface: #f6f6f5;
+  --module: #e4e4e6;
   --accent: #e85d2c;
   --text-primary: #1a1a1a;
   --text-secondary: #777777;
-  --border: #e5e3df;
-  /* Neomorphic shadow system — exact values from the build spec. */
-  --shadow-raised: 8px 8px 20px rgba(0, 0, 0, 0.16),
-    -6px -6px 14px rgba(255, 255, 255, 0.6);
-  --shadow-recessed: inset 5px 5px 10px rgba(0, 0, 0, 0.12),
-    inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  --border: #d4d4d6;
+  /*
+    Neomorphic shadow system — matched to the physical toggle switch so
+    every raised card/container reads as the same milled material. Two
+    outer shadows extrude the shape (tight warm-grey drop toward the
+    bottom-right, soft light lift toward the top-left) and two inset
+    shadows carve the beveled edge the toggle plate/knob have: a bright
+    top-left highlight rim and a faint bottom-right inner shade.
+  */
+  --shadow-raised: 6px 6px 14px rgba(0, 0, 0, 0.13),
+    -5px -5px 12px rgba(255, 255, 255, 0.8),
+    inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.05);
+  /* Recessed wells: the toggle track — deep top-left inner shadow, soft
+     bottom-right light return, and a tight lip at the top-left edge. */
+  --shadow-recessed: inset 4px 4px 9px rgba(0, 0, 0, 0.14),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.6),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.06);
+  /* Small-scale variants, sized down for compact widgets/buttons. */
+  --shadow-raised-sm: 3px 3px 7px rgba(0, 0, 0, 0.13),
+    -2.5px -2.5px 6px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.9),
+    inset -1px -1px 1.5px rgba(0, 0, 0, 0.05);
+  --shadow-recessed-sm: inset 2px 2px 4.5px rgba(0, 0, 0, 0.14),
+    inset -1.5px -1.5px 3.5px rgba(255, 255, 255, 0.6),
+    inset 0.5px 0.5px 1px rgba(0, 0, 0, 0.06);
 }
 
 :root[data-theme="dark"] {
@@ -29,14 +49,27 @@
   --text-secondary: #888888;
   --border: #333333;
   /*
-    Same technique, recalibrated for a dark surface: the dark side of the
-    shadow needs more opacity to read against near-black, and the "light"
-    side becomes a faint highlight rather than a bright one.
+    Same construction as the toggle's DARK colorway: inverted material.
+    The drop shadow goes near-black to read against the module surface,
+    the outer light lift is barely-there, and the inner bevel rim is a
+    restrained light grey — never white, which reads as plastic glare in
+    dark neomorphism rather than a soft edge.
   */
-  --shadow-raised: 6px 6px 14px rgba(0, 0, 0, 0.45),
-    -4px -4px 10px rgba(255, 255, 255, 0.04);
-  --shadow-recessed: inset 4px 4px 8px rgba(0, 0, 0, 0.35),
-    inset -3px -3px 6px rgba(255, 255, 255, 0.03);
+  --shadow-raised: 6px 6px 14px rgba(0, 0, 0, 0.55),
+    -4px -4px 10px rgba(255, 255, 255, 0.035),
+    inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.12),
+    inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.4);
+  --shadow-recessed: inset 4px 4px 9px rgba(0, 0, 0, 0.5),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.03),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+  /* Small-scale variants, sized down for compact widgets/buttons. */
+  --shadow-raised-sm: 3px 3px 7px rgba(0, 0, 0, 0.55),
+    -2px -2px 5px rgba(255, 255, 255, 0.035),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.12),
+    inset -1px -1px 1.5px rgba(0, 0, 0, 0.4);
+  --shadow-recessed-sm: inset 2px 2px 4.5px rgba(0, 0, 0, 0.5),
+    inset -1.5px -1.5px 3.5px rgba(255, 255, 255, 0.03),
+    inset 0.5px 0.5px 1px rgba(0, 0, 0, 0.35);
 }
 
 @theme inline {

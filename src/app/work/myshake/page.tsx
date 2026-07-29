@@ -13,7 +13,8 @@ export default function MyShakePage() {
       role="Product Designer"
       tools="Figma"
       timeline="Jan 2024 – Dec 2024"
-      heroVideo="/videos/case-studies/myshake/hero.mp4"
+      heroVideo="/videos/myshake.mp4"
+      heroVideoRadius={15}
       next={{ label: "Group Canvas", href: "/work/group-canvas" }}
     >
       <h2 className="mt-2 font-mono text-xl text-text-primary">

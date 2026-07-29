@@ -10,6 +10,8 @@ export type CaseStudyLayoutProps = {
   heroImage?: string;
   /** Optional hero video path in /public. Takes priority over heroImage when set. */
   heroVideo?: string;
+  /** Corner radius (px) for the hero video. Defaults to the standard rounded-xl (12px). */
+  heroVideoRadius?: number;
   children?: React.ReactNode;
 };
 
@@ -22,10 +24,11 @@ export default function CaseStudyLayout({
   next,
   heroImage,
   heroVideo,
+  heroVideoRadius,
   children,
 }: CaseStudyLayoutProps) {
   return (
-    <main className="mx-auto w-full max-w-[1000px] flex-1 px-3 pt-[84px]">
+    <main className="mx-auto w-full max-w-[1000px] flex-1 px-8 pt-[84px]">
       <div className="py-8">
         <Link
           href="/"
@@ -70,6 +73,11 @@ export default function CaseStudyLayout({
             muted
             playsInline
             className="max-h-[688px] w-auto rounded-xl"
+            style={
+              heroVideoRadius != null
+                ? { borderRadius: `${heroVideoRadius}px` }
+                : undefined
+            }
           />
         </div>
       ) : (
