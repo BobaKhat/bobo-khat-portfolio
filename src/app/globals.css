@@ -17,6 +17,9 @@
   --text-primary: #1a1a1a;
   --text-secondary: #777777;
   --border: #d4d4d6;
+  /* Full-page wash used by the project-card arrow "spotlight" hover —
+     blows the rest of the page out to near-white in light mode. */
+  --spotlight: #ffffff;
   /*
     Neomorphic shadow system — matched to the physical toggle switch so
     every raised card/container reads as the same milled material. Two
@@ -56,6 +59,8 @@
   --text-primary: #e8e6e3;
   --text-secondary: #888888;
   --border: #333333;
+  /* Dark colorway: wash the rest of the page down to near-black. */
+  --spotlight: #000000;
   /*
     Same construction as the toggle's DARK colorway: inverted material.
     The drop shadow goes near-black to read against the module surface,

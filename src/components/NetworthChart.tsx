@@ -100,7 +100,7 @@ export function NetworthChart() {
         justifyContent: "center",
         width: "100%",
         maxWidth: "100%",
-        backgroundColor: "var(--well)",
+        backgroundColor: "transparent",
         userSelect: "none",
         WebkitUserSelect: "none",
         fontFamily: FONT_SF,
@@ -402,16 +402,6 @@ export function NetworthChart() {
             );
           })}
         </div>
-
-        <p
-          style={{
-            color: "#383838",
-            fontSize: 11,
-            fontWeight: 500,
-          }}
-        >
-          hover to inspect
-        </p>
 
       </div>
     </div>

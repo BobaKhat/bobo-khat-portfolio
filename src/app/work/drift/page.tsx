@@ -15,6 +15,7 @@ export default function DriftPage() {
       tools="Figma, React, React Flow, Three.js, Claude Code"
       timeline="2025"
       heroVideo="/videos/drift-homepage.mp4"
+      heroVideoRadius={22}
       next={{ label: "MyShake", href: "/work/myshake" }}
     >
       <p>

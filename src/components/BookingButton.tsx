@@ -148,7 +148,7 @@ export function BookingButton({
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        backgroundColor: "var(--well)",
+        backgroundColor: "transparent",
         userSelect: "none",
         WebkitUserSelect: "none",
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
