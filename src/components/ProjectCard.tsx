@@ -48,8 +48,8 @@ export default function ProjectCard({
       <SpotlightOverlay active={arrowHover} />
 
       <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1">
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <div>
+        <div className="flex items-start gap-4">
+          <div className="min-w-0">
             <div className="flex items-baseline gap-3">
               <span className="t-stat text-sm text-accent">{index}</span>
               <h3
@@ -64,10 +64,24 @@ export default function ProjectCard({
               {subtitle}
             </p>
           </div>
-          <div className="flex shrink-0 flex-col items-end gap-3">
+          {/* Tag, with the arrow button below it */}
+          <div className="ml-auto flex shrink-0 flex-col items-end gap-3">
             <p className="text-right t-eyebrow text-text-secondary">{tag}</p>
+            <div
+              className="relative"
+              onMouseEnter={() => setArrowHover(true)}
+              onMouseLeave={() => setArrowHover(false)}
+            >
+              <span className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+                <ArrowGlyph />
+              </span>
+              <SpotlightCaption label={title} active={arrowHover} align="right" />
+            </div>
           </div>
         </div>
+
+        {/* Divider between the header and the work */}
+        <div className="my-5 border-t border-text-secondary/30" />
 
         <div
           className={`relative flex w-full items-center justify-center overflow-hidden rounded-2xl ${
@@ -107,19 +121,6 @@ export default function ProjectCard({
             </div>
           )}
         </div>
-      </div>
-
-      {/* Arrow + reveal caption. Kept outside the overflow-hidden card body
-          so the caption can hang beneath the arrow without being clipped. */}
-      <div className="absolute bottom-6 right-6 z-[2]">
-        <span
-          onMouseEnter={() => setArrowHover(true)}
-          onMouseLeave={() => setArrowHover(false)}
-          className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white"
-        >
-          <ArrowGlyph />
-        </span>
-        <SpotlightCaption label={title} active={arrowHover} />
       </div>
     </>
   );

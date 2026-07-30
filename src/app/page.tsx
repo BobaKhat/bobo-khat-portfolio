@@ -1,6 +1,8 @@
+import Image from "next/image";
 import ProjectCard from "@/components/ProjectCard";
 import MicroInteractions from "@/components/MicroInteractions";
 import LabCard from "@/components/LabCard";
+import WidgetBar from "@/components/WidgetBar";
 
 // Content per CLAUDE.md build spec. Drift, MyShake, and Group Canvas use
 // screen-recorded video on the homepage instead of static screenshots.
@@ -45,17 +47,32 @@ const visualExperimentsPreview = [
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-[1800px] flex-1 px-8 pt-[84px]">
-      {/* HERO */}
-      <section className="flex flex-col gap-8 py-16 md:flex-row md:items-start md:justify-between">
-        <div>
-          <h1 className="t-display text-5xl text-text-primary md:text-6xl">
-            Bobo Khat
-          </h1>
-          <p className="t-subtitle mt-3 text-sm italic text-text-secondary">
-            I design digital things people can feel.
-          </p>
+    <main className="mx-auto w-full max-w-[1800px] flex-1 px-8 pt-10">
+      {/* HERO — name card on the left (matching Drift's width), the split
+          widget stack on the right. Same 2-col grid as the work section so
+          the left card lines up exactly with the Drift card below it. */}
+      <section className="grid grid-cols-1 gap-7 pt-16 pb-6 md:grid-cols-2">
+        <div className="flex items-center gap-9 rounded-3xl bg-module p-12 shadow-[var(--shadow-raised)]">
+          {/* Memoji self-portrait — static, keyed to a transparent PNG. */}
+          <Image
+            src="/images/memoji-avatar-v3.png"
+            alt="Bobo Khat memoji self-portrait"
+            width={344}
+            height={440}
+            priority
+            className="h-42 w-auto shrink-0"
+          />
+          <div>
+            <h1 className="t-display text-[4rem] text-text-primary">
+              Bobo Khat
+            </h1>
+            <p className="t-subtitle mt-4 max-w-xl text-base text-text-secondary">
+              Product Designer prev @ MyShake (4M Users) – UX-First With Motion
+              and Visual Experiments – UC Berkeley – B.A. Cognitive Science
+            </p>
+          </div>
         </div>
+        <WidgetBar />
       </section>
 
       {/* PRIMARY CASE STUDIES + THE LAB — all equal-size cells in one grid */}

@@ -29,11 +29,14 @@ export function SpotlightCaption({
   active: boolean;
   // "center" hangs the pill centred under the arrow (bottom-corner arrows);
   // "right" pins its right edge to the arrow's, so a long label grows
-  // leftward and stays inside cards whose arrow sits near the right edge.
-  align?: "center" | "right";
+  // leftward and stays inside cards whose arrow sits near the right edge;
+  // "left" pins its left edge to the arrow's, so a label grows rightward and
+  // stays inside cards whose arrow sits near the left edge.
+  align?: "center" | "right" | "left";
 }) {
-  const positionClass = align === "right" ? "right-0" : "left-1/2";
-  const translateX = align === "right" ? "0px" : "-50%";
+  const positionClass =
+    align === "right" ? "right-0" : align === "left" ? "left-0" : "left-1/2";
+  const translateX = align === "center" ? "-50%" : "0px";
   return (
     <span
       aria-hidden={!active}

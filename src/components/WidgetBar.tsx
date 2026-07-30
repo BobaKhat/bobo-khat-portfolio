@@ -1,34 +1,30 @@
-import Clock from "./Clock";
+import Navigation from "./Navigation";
 import ThemeToggle from "./ThemeToggle";
 import SpotifyWidget from "./SpotifyWidget";
 import ScrollProgress from "./ScrollProgress";
-import Navigation from "./Navigation";
 
 /*
-  Fixed status/control strip, inset from the screen edges with rounded
-  corners rather than flush edge-to-edge — matches the softer, "nothing
-  touches the raw edge" treatment used across the rest of the site.
-  Position (top vs bottom) is still an open decision in the spec — using
-  fixed-top for now.
+  Single control bar fixed to the top-center of the viewport, above
+  everything. Three columns: Spotify on the left, navigation centered in
+  the middle, scroll progress + theme toggle on the right.
 */
 export default function WidgetBar() {
   return (
-    <header className="fixed inset-x-3 top-3 z-50 h-[76px] rounded-full bg-module shadow-[var(--shadow-raised)]">
-      <div className="mx-auto flex h-full max-w-[1800px] items-center justify-between gap-8 px-5">
-        <div className="flex items-center gap-8">
+    <div className="fixed inset-x-0 top-6 z-[80] flex justify-center px-4">
+      <div className="grid w-[min(1200px,100%)] grid-cols-3 items-center gap-6 rounded-full bg-module px-6 py-3 shadow-[var(--shadow-raised)]">
+        <div className="flex min-w-0 justify-start">
           <SpotifyWidget />
-          <div className="hidden sm:block">
-            <Clock />
-          </div>
         </div>
-        <Navigation />
-        <div className="flex items-center gap-8">
-          <div className="hidden md:block">
+        <div className="flex justify-center">
+          <Navigation />
+        </div>
+        <div className="flex items-center justify-end gap-4">
+          <div className="w-32">
             <ScrollProgress />
           </div>
           <ThemeToggle />
         </div>
       </div>
-    </header>
+    </div>
   );
 }

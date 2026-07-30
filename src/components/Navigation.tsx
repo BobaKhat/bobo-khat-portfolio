@@ -37,10 +37,10 @@ export default function Navigation() {
           <a
             key={item.href}
             href={item.href}
-            className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs text-text-primary transition-colors hover:text-accent"
+            className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-base font-semibold text-text-primary transition-colors hover:text-accent"
           >
             {isActive && (
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+              <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
             )}
             {item.label}
           </a>
@@ -50,7 +50,7 @@ export default function Navigation() {
         href="/resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        className="rounded-full px-3 py-1.5 text-xs text-text-primary transition-colors hover:text-accent"
+        className="rounded-full px-3 py-1.5 text-base font-semibold text-text-primary transition-colors hover:text-accent"
       >
         Resume
       </a>
