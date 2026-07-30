@@ -101,7 +101,7 @@ export function VolumeInteraction() {
       style={{
         backgroundColor: "transparent",
         fontFamily: "'Inter', sans-serif",
-        padding: "24px 16px",
+        padding: "12px 16px",
       }}
     >
       <div style={{ width: "100%", maxWidth: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>

@@ -23,7 +23,7 @@ export default function GroupCanvasPage() {
         note-taking experience.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Introduction
       </h2>
       <p>
@@ -49,7 +49,7 @@ export default function GroupCanvasPage() {
         person or joining remotely during hybrid learning.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         The problem
       </h2>
       <p>
@@ -83,16 +83,16 @@ export default function GroupCanvasPage() {
         students want to participate.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">Research</h2>
+      <h2 className="mt-2 t-heading text-xl text-text-primary">Research</h2>
       <div className="grid grid-cols-2 gap-4 border-y border-border py-6 text-center sm:grid-cols-2">
         <div>
-          <p className="font-mono text-2xl text-accent">20+</p>
+          <p className="t-stat text-2xl text-accent">20+</p>
           <p className="mt-1 text-xs text-text-secondary">
             Students surveyed across lecture and discussion classes
           </p>
         </div>
         <div>
-          <p className="font-mono text-2xl text-accent">5</p>
+          <p className="t-stat text-2xl text-accent">5</p>
           <p className="mt-1 text-xs text-text-secondary">
             Educators surveyed across lecture and discussion classes
           </p>
@@ -154,7 +154,7 @@ export default function GroupCanvasPage() {
         </span>
       </blockquote>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Design process
       </h2>
       <h3 className="font-mono text-base text-text-primary">
@@ -203,7 +203,7 @@ export default function GroupCanvasPage() {
         layer on top.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Final solution
       </h2>
       <p>
@@ -220,7 +220,7 @@ export default function GroupCanvasPage() {
         workspace, immediately seeing their group members and the main
         canvas — establishing context from the start.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-land-workspace.mp4"
@@ -241,7 +241,7 @@ export default function GroupCanvasPage() {
         need structure to stay on track — they can set a duration, add
         tasks, assign them to individuals or the group, then start.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-timer-tasks.mp4"
@@ -263,7 +263,7 @@ export default function GroupCanvasPage() {
         working through ideas privately before sharing, while still
         maintaining group awareness.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-individual-tab.mp4"
@@ -285,7 +285,7 @@ export default function GroupCanvasPage() {
         than scattered across chat threads. All members can see and
         resolve comments once they&apos;re addressed.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-comments.mp4"
@@ -308,7 +308,7 @@ export default function GroupCanvasPage() {
         people&rdquo; — work stays organized because students synthesize
         intentionally rather than everyone editing simultaneously.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-complete-canvas.mp4"
@@ -331,7 +331,7 @@ export default function GroupCanvasPage() {
         both needs. Teachers can use it for grading and students can
         verify contributions, without constant social pressure.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-contribution-toggle.mp4"
@@ -343,7 +343,7 @@ export default function GroupCanvasPage() {
         />
       </div>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Design decisions
       </h2>
       <p>
@@ -370,7 +370,7 @@ export default function GroupCanvasPage() {
         </li>
       </ul>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Next steps
       </h2>
       <p>
@@ -393,7 +393,7 @@ export default function GroupCanvasPage() {
         </li>
       </ul>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Industry insight
       </h2>
       <p>
@@ -404,7 +404,7 @@ export default function GroupCanvasPage() {
         collaborate in breakout sessions.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Reflection
       </h2>
       <p>

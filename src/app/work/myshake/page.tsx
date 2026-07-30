@@ -17,7 +17,7 @@ export default function MyShakePage() {
       heroVideoRadius={15}
       next={{ label: "Group Canvas", href: "/work/group-canvas" }}
     >
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Introduction
       </h2>
       <p>
@@ -30,7 +30,7 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/introduction.mp4"
@@ -44,32 +44,32 @@ export default function MyShakePage() {
 
       <div className="grid grid-cols-2 gap-4 border-y border-border py-6 text-center sm:grid-cols-4">
         <div>
-          <p className="font-mono text-2xl text-accent">4/5</p>
+          <p className="t-stat text-2xl text-accent">4/5</p>
           <p className="mt-1 text-xs text-text-secondary">
             Usability, tested with 16 users (up from a 2.8 App Store rating)
           </p>
         </div>
         <div>
-          <p className="font-mono text-2xl text-accent">50%</p>
+          <p className="t-stat text-2xl text-accent">50%</p>
           <p className="mt-1 text-xs text-text-secondary">
             Fewer clicks to set up early warning — 5 steps down to 2–3
           </p>
         </div>
         <div>
-          <p className="font-mono text-2xl text-accent">41%</p>
+          <p className="t-stat text-2xl text-accent">41%</p>
           <p className="mt-1 text-xs text-text-secondary">
             Faster key task time — 2:47 down to 1:38
           </p>
         </div>
         <div>
-          <p className="font-mono text-2xl text-accent">2026</p>
+          <p className="t-stat text-2xl text-accent">2026</p>
           <p className="mt-1 text-xs text-text-secondary">
             Shipping — I&apos;m now sole designer on responsive + sensor work
           </p>
         </div>
       </div>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">The problem</h2>
+      <h2 className="mt-2 t-heading text-xl text-text-primary">The problem</h2>
       <p>
         Despite having life-saving technology, MyShake was losing users.
         There was only one access point for setting up an early warning
@@ -78,7 +78,7 @@ export default function MyShakePage() {
         goal was to make MyShake the #1 earthquake app by increasing
         engagement and building trust during emergencies.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/problem.mp4"
@@ -90,7 +90,7 @@ export default function MyShakePage() {
         />
       </div>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">Research</h2>
+      <h2 className="mt-2 t-heading text-xl text-text-primary">Research</h2>
       <p>
         We surveyed 30 users and analyzed two competitors. The key insight:
         users didn&apos;t just want faster access — they wanted to feel like
@@ -119,7 +119,7 @@ export default function MyShakePage() {
         />
       </div>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Design process
       </h2>
       <p>
@@ -209,7 +209,7 @@ export default function MyShakePage() {
         />
       </div>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Final solution
       </h2>
       <h3 className="font-mono text-base text-text-primary">
@@ -220,7 +220,7 @@ export default function MyShakePage() {
         introduces the most important parts of the app through progressive
         disclosure.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-first-impressions.mp4"
@@ -240,7 +240,7 @@ export default function MyShakePage() {
         Setup went from five steps to two — swipe right on the map, or tap
         the banner.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+      <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-early-warning.mp4"
@@ -265,7 +265,7 @@ export default function MyShakePage() {
         happened near someone they cared about.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+        <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-1.mp4"
@@ -276,7 +276,7 @@ export default function MyShakePage() {
             className="max-h-[500px] w-auto rounded-lg"
           />
         </div>
-        <div className="flex justify-center overflow-hidden rounded-xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+        <div className="flex justify-center overflow-hidden rounded-xl bg-well p-4 shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-2.mp4"
@@ -357,7 +357,7 @@ export default function MyShakePage() {
         />
       </div>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">Validation</h2>
+      <h2 className="mt-2 t-heading text-xl text-text-primary">Validation</h2>
       <p>
         Three of us ran two rounds of usability testing across 16
         participants — young adults and seniors at the Rossmore retirement
@@ -409,7 +409,7 @@ export default function MyShakePage() {
         </div>
       </div>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         What I learned
       </h2>
       <p>

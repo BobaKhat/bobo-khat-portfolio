@@ -26,13 +26,6 @@ export default function WidgetBar() {
           <div className="hidden md:block">
             <ScrollProgress />
           </div>
-          {/* Availability */}
-          <div className="hidden items-center gap-2 lg:flex">
-            <span className="h-2 w-2 rounded-full bg-green-500" aria-hidden="true" />
-            <span className="text-[10px] uppercase tracking-wider text-text-secondary">
-              Open to new work
-            </span>
-          </div>
           <ThemeToggle />
         </div>
       </div>

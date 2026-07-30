@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ArrowGlyph from "./ArrowGlyph";
 
 export type ProjectCardProps = {
   index: string;
@@ -36,24 +37,27 @@ export default function ProjectCard({
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
           <div className="flex items-baseline gap-3">
-            <span className="font-mono text-sm text-accent">{index}</span>
+            <span className="t-stat text-sm text-accent">{index}</span>
             <h3
-              className={`font-mono ${
+              className={`t-heading ${
                 size === "large" ? "text-2xl" : "text-xl"
               } text-text-primary`}
             >
               {title}
             </h3>
           </div>
-          <p className="mt-1 text-sm text-text-secondary">{subtitle}</p>
+          <p className="t-subtitle mt-1 text-sm text-text-secondary">{subtitle}</p>
         </div>
-        <p className="shrink-0 text-right text-[11px] uppercase tracking-wider text-text-secondary">
-          {tag}
-        </p>
+        <div className="flex shrink-0 flex-col items-end gap-3">
+          <p className="text-right t-eyebrow text-text-secondary">{tag}</p>
+          <span className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+            <ArrowGlyph />
+          </span>
+        </div>
       </div>
 
       <div
-        className={`relative flex w-full items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-[var(--shadow-recessed)] ${
+        className={`relative flex w-full items-center justify-center overflow-hidden rounded-2xl bg-well shadow-[var(--shadow-recessed)] ${
           size === "large" ? "aspect-[16/10]" : "aspect-[16/11]"
         }`}
       >
@@ -67,7 +71,7 @@ export default function ProjectCard({
             playsInline
             preload="metadata"
             className={
-              videoRadius != null
+              videoScale != null
                 ? "h-full w-auto object-contain"
                 : "h-full w-full object-contain"
             }
@@ -89,10 +93,6 @@ export default function ProjectCard({
             {title} screenshot
           </div>
         )}
-
-        <span className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-module text-text-primary shadow-[var(--shadow-raised-sm)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-          →
-        </span>
       </div>
     </>
   );

@@ -39,32 +39,32 @@ export default function CaseStudyLayout({
       </div>
 
       <header className="pb-8">
-        <h1 className="font-mono text-3xl text-text-primary md:text-4xl">
+        <h1 className="t-heading text-3xl text-text-primary md:text-4xl">
           {title}
         </h1>
-        <p className="mt-2 text-base text-text-secondary">{subtitle}</p>
+        <p className="t-subtitle mt-2 text-base text-text-secondary">{subtitle}</p>
 
         <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-6 text-xs sm:grid-cols-3">
           <div>
-            <dt className="uppercase tracking-wider text-text-secondary">Role</dt>
-            <dd className="mt-1 text-text-primary">{role}</dd>
+            <dt className="t-eyebrow text-text-secondary">Role</dt>
+            <dd className="t-label mt-1 text-text-primary">{role}</dd>
           </div>
           <div>
-            <dt className="uppercase tracking-wider text-text-secondary">Tools</dt>
-            <dd className="mt-1 text-text-primary">{tools}</dd>
+            <dt className="t-eyebrow text-text-secondary">Tools</dt>
+            <dd className="t-label mt-1 text-text-primary">{tools}</dd>
           </div>
           <div>
-            <dt className="uppercase tracking-wider text-text-secondary">
+            <dt className="t-eyebrow text-text-secondary">
               Timeline
             </dt>
-            <dd className="mt-1 text-text-primary">{timeline}</dd>
+            <dd className="t-label mt-1 text-text-primary">{timeline}</dd>
           </div>
         </dl>
       </header>
 
       {/* Hero */}
       {heroVideo ? (
-        <div className="mb-12 flex max-h-[720px] w-full items-center justify-center overflow-hidden rounded-2xl bg-surface p-4 shadow-[var(--shadow-recessed)]">
+        <div className="mb-12 flex max-h-[720px] w-full items-center justify-center overflow-hidden rounded-2xl bg-well p-4 shadow-[var(--shadow-recessed)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src={heroVideo}

@@ -1,5 +1,6 @@
 import ProjectCard from "@/components/ProjectCard";
 import MicroInteractions from "@/components/MicroInteractions";
+import ArrowGlyph from "@/components/ArrowGlyph";
 
 // Content per CLAUDE.md build spec. Drift, MyShake, and Group Canvas use
 // screen-recorded video on the homepage instead of static screenshots.
@@ -11,6 +12,7 @@ const primaryProjects = [
     tag: "Product Design · Interaction",
     href: "/work/drift",
     video: "/videos/drift-homepage.mp4",
+    videoRadius: 5,
   },
   {
     index: "02",
@@ -45,10 +47,10 @@ export default function Home() {
       {/* HERO */}
       <section className="flex flex-col gap-8 py-16 md:flex-row md:items-start md:justify-between">
         <div>
-          <h1 className="font-sans text-5xl font-black tracking-tight text-text-primary md:text-6xl">
+          <h1 className="t-display text-5xl text-text-primary md:text-6xl">
             Bobo Khat
           </h1>
-          <p className="mt-3 font-mono text-sm italic text-text-secondary">
+          <p className="t-subtitle mt-3 text-sm italic text-text-secondary">
             I design digital things people can feel.
           </p>
         </div>
@@ -76,35 +78,32 @@ export default function Home() {
 
           <a
             href="/lab/visual-experiments"
-            className="group flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1 md:col-span-2 md:p-8"
+            className="group relative flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1 md:col-span-2 md:p-8"
           >
-            <div className="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+            <div className="mb-5 flex flex-wrap items-start justify-between gap-x-6 gap-y-4">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                  <span className="text-[11px] uppercase tracking-wider text-text-secondary">
+                  <span className="t-eyebrow text-text-secondary">
                     The Lab
                   </span>
                 </div>
-                <p className="mt-2 text-sm text-text-secondary">
+                <p className="t-subtitle mt-2 text-sm text-text-secondary">
                   Visual Experiments — Graphic design + 3D renders
                 </p>
               </div>
-              <span className="flex shrink-0 items-center gap-1.5 text-xs text-text-primary transition-colors group-hover:text-accent">
-                See the full gallery
-                <span
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                  aria-hidden="true"
-                >
-                  →
+              <div className="flex shrink-0 flex-col items-end gap-3">
+                <span className="text-xs text-text-secondary">See the full gallery</span>
+                <span className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+                  <ArrowGlyph />
                 </span>
-              </span>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {visualExperimentsPreview.map((src) => (
                 <div
                   key={src}
-                  className="aspect-[4/3] overflow-hidden rounded-xl bg-surface shadow-[var(--shadow-recessed)]"
+                  className="aspect-[4/3] overflow-hidden rounded-xl bg-well shadow-[var(--shadow-recessed)]"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -123,10 +122,10 @@ export default function Home() {
       {/* ABOUT */}
       <section id="about" className="scroll-mt-20 py-16">
         <div className="rounded-3xl bg-module p-8 shadow-[var(--shadow-raised)]">
-          <span className="text-[11px] uppercase tracking-wider text-text-secondary">
+          <span className="t-eyebrow text-text-secondary">
             About
           </span>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-primary">
+          <p className="t-body mt-4 max-w-2xl text-base text-text-primary">
             Product designer studying Cognitive Science at UC Berkeley. I&apos;m
             interested in interfaces that feel intuitive and considered — digital
             things people can actually feel.

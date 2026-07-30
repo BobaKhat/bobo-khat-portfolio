@@ -36,7 +36,7 @@ export default function DriftPage() {
         that space.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Quantifying vibe
       </h2>
       <p>
@@ -62,7 +62,7 @@ export default function DriftPage() {
         is what makes the map feel like taste instead of data.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         The overplotting problem
       </h2>
       <p>
@@ -129,7 +129,7 @@ export default function DriftPage() {
       </p>
       <AssetPlaceholder note="VIDEO — 10s: zooming into the dense cluster, nodes counter-scaling, space opening up between them, then a node morphing circle → pill → card." />
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Sets as routes, not playlists
       </h2>
       <p>
@@ -166,7 +166,7 @@ export default function DriftPage() {
         panel; the map stays under your feet.
       </p>
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Seeing the journey
       </h2>
       <p>
@@ -189,7 +189,7 @@ export default function DriftPage() {
       </p>
       <AssetPlaceholder note="VIDEO — 12s: toggling Flow on, the map dimming, the strobe pulse traveling head-to-tail along the chain. This is the most cinematic capture in the case study — worth extra takes." />
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Informing, not alarming
       </h2>
       <p>
@@ -218,7 +218,7 @@ export default function DriftPage() {
       </p>
       <AssetPlaceholder note="IMAGE — side-by-side: the same set with red wires vs. coral, plus a close-up of the compatibility card." />
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         From eye candy to identity
       </h2>
       <p>
@@ -245,7 +245,7 @@ export default function DriftPage() {
       <AssetPlaceholder note="VIDEO — 10s: the particle field forming a pattern as a song plays." />
       <AssetPlaceholder note="IMAGE — 2×3 grid: six different songs' Chladni patterns, side by side. This is the money shot — it proves &quot;fingerprint&quot; instantly." />
 
-      <h2 className="mt-2 font-mono text-xl text-text-primary">
+      <h2 className="mt-2 t-heading text-xl text-text-primary">
         Reflection
       </h2>
       <p>

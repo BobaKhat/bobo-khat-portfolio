@@ -1,16 +1,22 @@
-import MessageReveal from "./MessageReveal";
 import { VolumeInteraction } from "./VolumeInteraction";
-import SwipeToLock from "./SwipeToLock";
+import { NetworthChart } from "./NetworthChart";
+import { BookingButton } from "./BookingButton";
+import ArrowGlyph from "./ArrowGlyph";
 
 const MOCEANVAULT_URL = "https://moceanvault.vercel.app/";
 
 // The 3 screens below are real components from the MoceanVault project
 // (ported as-is, including their own colors/animation), not recreations.
-// Now stacked vertically (was side-by-side) to fill a row-span-2 grid
-// cell — each screen uses flex-1 instead of a fixed height so they
-// share whatever vertical space the grid gives this card, rather than
-// a hardcoded pixel value that would drift out of sync with its
-// neighbors' real heights.
+// Both the outer bezel and the inner screen follow the site's light/dark
+// theme via bg-module/bg-surface — the components' own internal colors
+// are untouched, so some elements (pale text, glow effects calibrated
+// for black) may be hard to read in light mode.
+//
+// Each demo is sized to its own natural content height (not forced to
+// share equal space) — some of these are inherently smaller than
+// others, and stretching everything to match the tallest one looked
+// artificial. If the three combined don't fill the full card height,
+// that's expected — genuine breathing room, not a bug.
 export default function MicroInteractions({
   className = "",
 }: {
@@ -21,51 +27,56 @@ export default function MicroInteractions({
       id="micro-interactions"
       className={`scroll-mt-20 flex h-full flex-col ${className}`}
     >
-      <div className="flex h-full flex-col rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] md:p-8">
-        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+      <div className="relative flex h-full flex-col rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] md:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-4">
           <div>
             <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-              <span className="text-[11px] uppercase tracking-wider text-text-secondary">
+              <span className="t-eyebrow text-text-secondary">
                 Microinteractions
               </span>
             </div>
-            <p className="mt-2 max-w-md text-sm text-text-secondary">
+            <p className="t-subtitle mt-2 max-w-md text-sm text-text-secondary">
               A sneak peek at my new project — launching on a new site soon.
             </p>
           </div>
-          <a
-            href={MOCEANVAULT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex shrink-0 items-center gap-1.5 text-xs text-text-primary transition-colors hover:text-accent"
-          >
-            See all 18 on MoceanVault
-            <span
-              className="transition-transform duration-300 group-hover:translate-x-1"
-              aria-hidden="true"
+          <div className="flex shrink-0 flex-col items-end gap-3">
+            <a
+              href={MOCEANVAULT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-text-secondary transition-colors hover:text-accent"
             >
-              →
-            </span>
-          </a>
+              See all 18 on MoceanVault
+            </a>
+            <a
+              href={MOCEANVAULT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="See all 18 on MoceanVault"
+              className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 hover:bg-accent hover:text-white"
+            >
+              <ArrowGlyph />
+            </a>
+          </div>
         </div>
 
-        <div className="mt-6 flex flex-1 flex-col gap-4">
-          <div className="flex flex-1 overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
-            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-surface px-4 py-8">
-              <MessageReveal />
+        <div className="mt-6 flex flex-col gap-4">
+          <div className="overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
+            <div className="flex items-center justify-center overflow-hidden rounded-xl bg-well px-4 py-8 shadow-[var(--shadow-recessed)]">
+              <NetworthChart />
             </div>
           </div>
 
-          <div className="flex flex-1 overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
-            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-surface px-4 py-8">
+          <div className="overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
+            <div className="flex items-center justify-center overflow-hidden rounded-xl bg-well px-4 py-6 shadow-[var(--shadow-recessed)]">
               <VolumeInteraction />
             </div>
           </div>
 
-          <div className="flex flex-1 overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
-            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl bg-surface px-4 py-8">
-              <SwipeToLock />
+          <div className="overflow-hidden rounded-2xl bg-module p-4 shadow-[var(--shadow-raised)]">
+            <div className="flex items-center justify-center overflow-hidden rounded-xl bg-well px-4 py-6 shadow-[var(--shadow-recessed)]">
+              <BookingButton />
             </div>
           </div>
         </div>

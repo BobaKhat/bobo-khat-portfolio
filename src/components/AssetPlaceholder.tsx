@@ -17,7 +17,7 @@ export default function AssetPlaceholder({
     <div
       className={`flex min-h-[180px] w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-surface px-6 py-8 text-center shadow-[var(--shadow-recessed)] ${className}`}
     >
-      <span className="text-[10px] uppercase tracking-wider text-text-secondary">
+      <span className="t-eyebrow text-text-secondary">
         Asset needed
       </span>
       <p className="max-w-md text-xs text-text-secondary">{note}</p>
