@@ -62,7 +62,7 @@ const items: GalleryItem[] = [
 
 export default function VisualExperimentsPage() {
   return (
-    <main className="mx-auto w-full max-w-[1800px] flex-1 px-8 pt-[84px]">
+    <main className="mx-auto w-full max-w-[1800px] flex-1 px-5 pt-20 sm:px-8 sm:pt-[84px]">
       <div className="py-8">
         <Link
           href="/#lab"

@@ -288,7 +288,7 @@ export function ProgressBar() {
   const statusBadge = isDone ? "success" : isLoading ? "running" : "idle";
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full min-h-[400px] select-none" style={{ padding: "24px" }}>
+    <div className="flex flex-col items-center justify-start w-full h-full select-none" style={{ padding: "24px" }}>
       <div
         ref={cardRef}
         style={{

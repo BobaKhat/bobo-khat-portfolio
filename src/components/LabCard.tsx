@@ -16,20 +16,21 @@ export default function LabCard({ previews }: { previews: string[] }) {
     >
       <SpotlightOverlay active={arrowHover} />
 
-      <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1 md:p-8">
-        <div className="flex items-start gap-4">
+      <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-5 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1 sm:p-6 md:p-8">
+        <div className="flex items-start gap-3 sm:gap-4">
           <div className="min-w-0">
             <div className="flex items-center gap-2.5">
-              <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-              <span className="t-heading text-3xl text-text-primary">The Lab</span>
+              <span className="h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+              <span className="t-heading text-2xl text-text-primary sm:text-3xl">The Lab</span>
             </div>
             <p className="t-subtitle mt-2 text-sm text-text-secondary">
               Visual Experiments — Graphic design + 3D renders
             </p>
           </div>
-          {/* Gallery label, with the arrow button below it */}
-          <div className="ml-auto flex shrink-0 flex-col items-end gap-3">
-            <span className="text-xs text-text-secondary">See the full gallery</span>
+          {/* Gallery label, with the arrow button below it. min-w-0 so the
+              label wraps on a narrow card instead of pushing the row wider. */}
+          <div className="ml-auto flex min-w-0 flex-col items-end gap-3">
+            <span className="text-right text-xs text-text-secondary">See the full gallery</span>
             <div
               className="relative"
               onMouseEnter={() => setArrowHover(true)}

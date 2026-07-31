@@ -115,7 +115,7 @@ function Switch({ isDark }: { isDark: boolean }) {
       viewBox="0 0 115 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="h-[40px] w-auto"
+      className="h-8 w-auto sm:h-[40px]"
       aria-hidden="true"
     >
       <g filter="url(#filter0_di_78_61)">
@@ -230,11 +230,11 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label="Toggle dark mode"
       aria-pressed={isDark}
-      className="flex items-center gap-3.5 text-text-secondary transition-transform duration-150 active:scale-[0.96]"
+      className="flex items-center gap-2 text-text-secondary transition-transform duration-150 active:scale-[0.96] sm:gap-3.5"
     >
-      <SunIcon className={`h-5 w-5 transition-colors ${isDark ? "" : "text-text-primary"}`} />
+      <SunIcon className={`hidden h-5 w-5 transition-colors sm:block ${isDark ? "" : "text-text-primary"}`} />
       <Switch isDark={isDark} />
-      <MoonIcon className={`h-5 w-5 transition-colors ${isDark ? "text-text-primary" : ""}`} />
+      <MoonIcon className={`hidden h-5 w-5 transition-colors sm:block ${isDark ? "text-text-primary" : ""}`} />
     </button>
   );
 }

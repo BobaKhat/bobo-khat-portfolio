@@ -46,16 +46,16 @@ const visualExperimentsPreview = [
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-[1800px] flex-1 px-8">
+    <main className="mx-auto w-full max-w-[1800px] flex-1 px-5 sm:px-8">
       {/* Design-tool dot grid behind everything (landing page only). */}
       <div aria-hidden="true" className="dot-grid pointer-events-none fixed inset-0 -z-10" />
       {/* HERO — centered intro, no card. First name, memoji, last name in a
           row, with the bio beneath. Sits directly on the surface. */}
-      <section className="flex flex-col items-center pt-36 pb-24 text-center">
-        <h1 className="t-display text-[4rem] text-text-primary">
+      <section className="flex flex-col items-center pt-28 pb-16 text-center sm:pt-32 sm:pb-24 md:pt-36">
+        <h1 className="t-display text-[clamp(2.75rem,11vw,4rem)] text-text-primary">
           Bobo Khat
         </h1>
-        <p className="t-subtitle mt-6 max-w-3xl text-lg text-text-secondary">
+        <p className="t-subtitle mt-5 max-w-3xl text-base text-text-secondary sm:mt-6 sm:text-lg">
           Product Designer prev @ MyShake (4M Users) – UX-First With Motion
           and Visual Experiments – UC Berkeley – B.A. Cognitive Science
         </p>
@@ -63,8 +63,8 @@ export default function Home() {
       </section>
 
       {/* PRIMARY CASE STUDIES + THE LAB — all equal-size cells in one grid */}
-      <section id="work" className="scroll-mt-20 pb-24">
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
+      <section id="work" className="scroll-mt-24 pb-16 sm:pb-24">
+        <div className="grid grid-cols-1 gap-5 sm:gap-7 md:grid-cols-2">
           {primaryProjects.map((p) => (
             <ProjectCard key={p.index} size="large" {...p} />
           ))}
@@ -87,8 +87,8 @@ export default function Home() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="scroll-mt-20 pb-24">
-        <div className="rounded-3xl bg-module p-8 shadow-[var(--shadow-raised)]">
+      <section id="about" className="scroll-mt-24 pb-16 sm:pb-24">
+        <div className="rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] sm:p-8">
           <span className="t-eyebrow text-text-secondary">
             About
           </span>

@@ -127,7 +127,6 @@ export function NetworthChart() {
             border: "0.5px solid #333333",
             position: "relative",
             overflow: "hidden",
-            opacity: 0.9,
           }}
         >
           {/* Ambient glow behind card */}

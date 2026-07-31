@@ -46,12 +46,12 @@ export default function ProjectCard({
     <>
       <SpotlightOverlay active={arrowHover} />
 
-      <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1">
-        <div className="flex items-start gap-4">
+      <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-5 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1 sm:p-6">
+        <div className="flex items-start gap-3 sm:gap-4">
           <div className="min-w-0">
             <h3
               className={`t-heading ${
-                size === "large" ? "text-3xl" : "text-2xl"
+                size === "large" ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
               } text-text-primary`}
             >
               {title}
@@ -60,8 +60,10 @@ export default function ProjectCard({
               {subtitle}
             </p>
           </div>
-          {/* Tag, with the arrow button below it */}
-          <div className="ml-auto flex shrink-0 flex-col items-end gap-3">
+          {/* Tag, with the arrow button below it. min-w-0 (not shrink-0) so on
+              a narrow card the tag wraps instead of forcing the row wider than
+              the card and bleeding out the side. */}
+          <div className="ml-auto flex min-w-0 flex-col items-end gap-3">
             <p className="text-right t-eyebrow text-text-secondary">{tag}</p>
             <div
               className="relative"

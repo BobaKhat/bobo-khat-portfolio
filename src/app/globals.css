@@ -122,6 +122,84 @@ body {
 }
 
 /*
+  "Buried demos" microinteraction. All three demos sit in one stage, tilted
+  30°, overlapping like a hand of cards and sunk into the "ground" (the cell's
+  bottom edge clips them, so only their tops peek up). Pointing at one raises
+  it: it shoots up out of the ground, flips flat to 0°, goes full-size and
+  jumps above the others so it becomes the usable one. The `.is-active` /
+  `.has-active` classes are toggled from React (sticky, so a card stays up
+  while you use it) instead of :hover, which would flicker as a card slides
+  out from under the cursor.
+*/
+.play-stage {
+  position: relative;
+  width: 100%;
+  /* Sized so the stage bottom lands where the case-study card visuals stop,
+     measured from the divider — keeping this card the same height as the
+     Group Canvas card beside it. */
+  height: 414px;
+  /* This stage's own bottom edge is the "ground" the cards sink into. */
+  overflow: hidden;
+}
+.play-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  will-change: transform;
+}
+/* Resting: tilted 30°, fanned across the width, sunk down into the ground so
+   only the top of each card peeks above the ground line. (translateY is
+   centre-first with -50%, then + the sink distance.) */
+.play-item--0 {
+  transform: translate(calc(-50% - 200px), calc(-50% + 205px)) rotate(30deg) scale(0.99);
+  z-index: 1;
+}
+.play-item--1 {
+  transform: translate(-50%, calc(-50% + 205px)) rotate(30deg) scale(0.99);
+  z-index: 2;
+}
+.play-item--2 {
+  transform: translate(calc(-50% + 200px), calc(-50% + 205px)) rotate(30deg) scale(0.99);
+  z-index: 3;
+}
+/* Raised: shoots up out of the ground, flat, full-size, centered. */
+.play-item.is-active {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.05);
+  z-index: 30;
+}
+/* While one card is up, freeze the buried ones so the mouse can use the
+   active card without tripping a neighbour. Leave the stage to reset. */
+.play-stage.has-active .play-item:not(.is-active) {
+  pointer-events: none;
+}
+/* Tighter fan + scale on narrow phones so the cards stay inside the cell. */
+@media (max-width: 520px) {
+  .play-stage {
+    height: 460px;
+  }
+  .play-item--0 {
+    transform: translate(calc(-50% - 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+  }
+  .play-item--1 {
+    transform: translate(-50%, calc(-50% + 212px)) rotate(30deg) scale(0.75);
+  }
+  .play-item--2 {
+    transform: translate(calc(-50% + 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+  }
+  .play-item.is-active {
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.93);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .play-item {
+    transition-duration: 1ms;
+  }
+}
+
+/*
   ─── Type system ───────────────────────────────────────────────
   Semantic roles instead of ad-hoc weights, so hierarchy is
   consistent everywhere. Each role fixes family + weight + tracking

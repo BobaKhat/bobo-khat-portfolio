@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { NetworthChart } from "./NetworthChart";
+import { SkeletonSearch } from "./SkeletonSearch";
 import { ProgressBar } from "./ProgressBar";
 import { AppDock } from "./AppDock";
 import ArrowGlyph from "./ArrowGlyph";
@@ -45,6 +46,51 @@ function MicroArrow({
   );
 }
 
+/*
+  Shared tile so the Net Worth, Search, and Deploy demos read as the same
+  size. Each component keeps its native design and stays fully interactive —
+  it's just `contain`-scaled inside a common footprint, so no distortion.
+  Content is top-aligned (not centered) so all three surface at the same
+  level even though their aspect ratios differ; a shorter demo just leaves
+  its leftover space at the bottom.
+*/
+const TILE_W = 360;
+const TILE_H = 380;
+function DemoTile({
+  contentW,
+  contentH,
+  scale,
+  rounded = false,
+  children,
+}: {
+  contentW: number;
+  contentH: number;
+  scale: number;
+  rounded?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`flex items-start justify-center overflow-hidden ${
+        rounded ? "rounded-[20px]" : ""
+      }`}
+      style={{ width: TILE_W, height: TILE_H }}
+    >
+      <div
+        style={{
+          width: contentW,
+          height: contentH,
+          transform: `scale(${scale})`,
+          transformOrigin: "top center",
+          flexShrink: 0,
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
 // The 3 demos are real components ported from the MoceanVault project. Each
 // microinteraction lives in its own extruded module with its own arrow; the
 // cells stretch to fill the column so the stack sits flush next to Polaris.
@@ -55,6 +101,58 @@ export default function MicroInteractions({
 }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const anyHover = hovered !== null;
+
+  // Which buried demo is currently raised. Sticky state (not CSS :hover) so a
+  // card stays up while you use it — it only drops when you leave the stage.
+  const [playActive, setPlayActive] = useState<number | null>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const activeRef = useRef<number | null>(null);
+  activeRef.current = playActive;
+
+  // Pick the card under the pointer by its horizontal position (the demos are
+  // fanned left→middle→right). This is position-based rather than per-card
+  // hover, so sliding across the fan switches cleanly and a card rising out
+  // from under the cursor never causes a flicker. While the pointer is over
+  // the currently-raised card, keep it — so you can actually use it.
+  function handleStageMove(e: React.MouseEvent<HTMLDivElement>) {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const active = activeRef.current;
+    if (active != null && cardRefs.current[active]?.contains(e.target as Node)) {
+      return;
+    }
+    const r = stage.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const idx = x < 0.37 ? 0 : x < 0.63 ? 1 : 2;
+    if (idx !== active) setPlayActive(idx);
+  }
+  const playDemos = [
+    {
+      id: "networth",
+      node: (
+        <DemoTile contentW={311} contentH={395} scale={0.962}>
+          <NetworthChart />
+        </DemoTile>
+      ),
+    },
+    {
+      id: "deploy",
+      node: (
+        <DemoTile contentW={370} contentH={360} scale={0.973}>
+          <ProgressBar />
+        </DemoTile>
+      ),
+    },
+    {
+      id: "search",
+      node: (
+        <DemoTile contentW={410} contentH={404} scale={0.878}>
+          <SkeletonSearch />
+        </DemoTile>
+      ),
+    },
+  ];
 
   const cellClass =
     "relative rounded-2xl bg-module px-4 py-2.5 transition-shadow duration-300";
@@ -72,14 +170,25 @@ export default function MicroInteractions({
       } ${className}`}
     >
       <SpotlightOverlay active={anyHover} />
-      <div className="relative z-[1] flex h-full flex-col gap-7">
-        {/* Intro header cell */}
-        <div className={cellClass} style={cellStyle}>
-          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
+      <div className="relative z-[1] flex h-full flex-col justify-start gap-7">
+        {/* Play card — the heading + subheading sit at the top, and all three
+            demos are buried in the "ground" (this card's stage bottom) below
+            them, tilted 30° and overlapping. Pointing at one shoots it up,
+            flat and full-size, so it becomes usable. The raised state is
+            sticky JS state (not CSS :hover) so it stays up while you use it,
+            dropping only when you leave the stage. */}
+        <div
+          className="relative flex flex-none flex-col overflow-hidden rounded-3xl bg-module p-5 transition-shadow duration-300 sm:p-6"
+          style={cellStyle}
+        >
+          {/* min-h + items-start so this header matches the taller ProjectCard
+              header (whose arrow sits in a tag+arrow column), keeping the
+              divider level with the case-study cards. */}
+          <div className="flex min-h-[74px] flex-wrap items-start justify-between gap-x-6 gap-y-4">
             <div>
               <div className="flex items-center gap-2.5">
-                <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-                <span className="t-heading text-3xl text-text-primary">
+                <span className="h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                <span className="t-heading text-2xl text-text-primary sm:text-3xl">
                   Microinteractions
                 </span>
               </div>
@@ -87,7 +196,7 @@ export default function MicroInteractions({
                 href={MOCEANVAULT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="t-subtitle mt-2 inline-block text-sm text-text-secondary transition-colors hover:text-accent"
+                className="t-subtitle mt-1 inline-block text-sm text-text-secondary transition-colors hover:text-accent"
               >
                 See all 18 on MoceanVault
               </a>
@@ -99,39 +208,40 @@ export default function MicroInteractions({
               setHovered={setHovered}
             />
           </div>
+
+          {/* Divider between the header and the demos, matching the case-study cards */}
+          <div className="my-5 border-t border-text-secondary/30" />
+
+          <div
+            ref={stageRef}
+            className={`play-stage ${playActive !== null ? "has-active" : ""}`}
+            onMouseMove={handleStageMove}
+            onMouseLeave={() => setPlayActive(null)}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                setPlayActive(null);
+              }
+            }}
+          >
+            {playDemos.map((demo, i) => (
+              <div
+                key={demo.id}
+                ref={(el) => {
+                  cardRefs.current[i] = el;
+                }}
+                className={`play-item play-item--${i} ${
+                  playActive === i ? "is-active" : ""
+                }`}
+                onFocus={() => setPlayActive(i)}
+              >
+                {demo.node}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Demo cells — each with its own arrow */}
         <div
-          className={`flex flex-auto items-center justify-center overflow-hidden ${cellClass}`}
-          style={cellStyle}
-        >
-          <MicroArrow
-            id="networth"
-            label="Net Worth"
-            hovered={hovered}
-            setHovered={setHovered}
-            className="absolute right-4 top-4 z-[2]"
-          />
-          <NetworthChart />
-        </div>
-
-        <div
-          className={`flex flex-auto items-center justify-center overflow-hidden ${cellClass}`}
-          style={cellStyle}
-        >
-          <MicroArrow
-            id="deploy"
-            label="Deploy"
-            hovered={hovered}
-            setHovered={setHovered}
-            className="absolute right-4 top-4 z-[2]"
-          />
-          <ProgressBar />
-        </div>
-
-        <div
-          className={`flex flex-auto items-center justify-center overflow-hidden ${cellClass}`}
+          className={`flex flex-none items-center justify-center overflow-hidden ${cellClass}`}
           style={cellStyle}
         >
           <MicroArrow
@@ -141,7 +251,10 @@ export default function MicroInteractions({
             setHovered={setHovered}
             className="absolute right-4 top-4 z-[2]"
           />
-          <AppDock />
+          {/* Fixed-width dock — scale down on narrow phones to avoid clipping. */}
+          <div className="origin-center max-[460px]:scale-[0.78]">
+            <AppDock />
+          </div>
         </div>
       </div>
     </section>

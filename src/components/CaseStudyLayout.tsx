@@ -28,7 +28,7 @@ export default function CaseStudyLayout({
   children,
 }: CaseStudyLayoutProps) {
   return (
-    <main className="mx-auto w-full max-w-[1000px] flex-1 px-8 pt-[84px]">
+    <main className="mx-auto w-full max-w-[1000px] flex-1 px-5 pt-20 sm:px-8 sm:pt-[84px]">
       <div className="py-8">
         <Link
           href="/"
@@ -72,7 +72,7 @@ export default function CaseStudyLayout({
             loop
             muted
             playsInline
-            className="max-h-[688px] w-auto rounded-xl"
+            className="max-h-[688px] w-auto max-w-full rounded-xl"
             style={
               heroVideoRadius != null
                 ? { borderRadius: `${heroVideoRadius}px` }
