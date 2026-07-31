@@ -47,13 +47,15 @@ const visualExperimentsPreview = [
 export default function Home() {
   return (
     <main className="mx-auto w-full max-w-[1800px] flex-1 px-8">
+      {/* Design-tool dot grid behind everything (landing page only). */}
+      <div aria-hidden="true" className="dot-grid pointer-events-none fixed inset-0 -z-10" />
       {/* HERO — centered intro, no card. First name, memoji, last name in a
           row, with the bio beneath. Sits directly on the surface. */}
       <section className="flex flex-col items-center pt-36 pb-24 text-center">
         <h1 className="t-display text-[4rem] text-text-primary">
           Bobo Khat
         </h1>
-        <p className="t-subtitle mt-6 max-w-2xl text-base text-text-secondary">
+        <p className="t-subtitle mt-6 max-w-3xl text-lg text-text-secondary">
           Product Designer prev @ MyShake (4M Users) – UX-First With Motion
           and Visual Experiments – UC Berkeley – B.A. Cognitive Science
         </p>
