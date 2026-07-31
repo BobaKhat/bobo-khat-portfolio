@@ -86,44 +86,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="scroll-mt-24 pb-16 sm:pb-24">
-        <div className="rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] sm:p-8">
-          <span className="t-eyebrow text-text-secondary">
-            About
-          </span>
-          <p className="t-body mt-4 max-w-2xl text-base text-text-primary">
-            Product designer studying Cognitive Science at UC Berkeley. I&apos;m
-            interested in interfaces that feel intuitive and considered — digital
-            things people can actually feel.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-6 text-xs">
-            <a
-              href="mailto:williambkhat@gmail.com"
-              className="text-text-primary transition-colors hover:text-accent"
-            >
-              Email
-            </a>
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-primary transition-colors hover:text-accent"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-primary transition-colors hover:text-accent"
-            >
-              Resume
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* FOOTER */}
       <footer className="border-t border-border py-8 text-center text-[11px] text-text-secondary">
         © 2026 Bobo Khat · Built with care

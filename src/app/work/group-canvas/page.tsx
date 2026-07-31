@@ -23,7 +23,7 @@ export default function GroupCanvasPage() {
         note-taking experience.
       </p>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Introduction
       </h2>
       <p>
@@ -33,7 +33,7 @@ export default function GroupCanvasPage() {
         messaging apps for coordination — all while trying to maintain
         their personal work.
       </p>
-      <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/group-canvas/introduction-context.png"
@@ -49,7 +49,7 @@ export default function GroupCanvasPage() {
         person or joining remotely during hybrid learning.
       </p>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         The problem
       </h2>
       <p>
@@ -61,17 +61,17 @@ export default function GroupCanvasPage() {
       </p>
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <span className="text-text-primary">iPad – GoodNotes</span> for
+          <span className="font-semibold text-text-primary">iPad – GoodNotes</span> for
           personal notes and work — but that work stays isolated and
           doesn&apos;t integrate with the group, forcing constant switching.
         </li>
         <li>
-          <span className="text-text-primary">Laptop – Google Doc</span> for
+          <span className="font-semibold text-text-primary">Laptop – Google Doc</span> for
           group synthesis and editing — but it gets cluttered fast, with
           unclear ownership and edit collisions.
         </li>
         <li>
-          <span className="text-text-primary">Verbal discussion</span> while
+          <span className="font-semibold text-text-primary">Verbal discussion</span> while
           managing both screens — ideas get lost as focus splits between
           talking and typing.
         </li>
@@ -83,7 +83,7 @@ export default function GroupCanvasPage() {
         students want to participate.
       </p>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">Research</h2>
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">Research</h2>
       <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center shadow-[var(--shadow-raised)] sm:grid-cols-2">
         <div>
           <p className="t-stat text-2xl text-accent">20+</p>
@@ -102,7 +102,7 @@ export default function GroupCanvasPage() {
         I synthesized the survey findings through affinity mapping, which
         surfaced four key insights that shaped everything downstream.
       </p>
-      <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/group-canvas/affinity-mapping.png"
@@ -113,26 +113,26 @@ export default function GroupCanvasPage() {
       </div>
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <span className="text-text-primary">Collaboration is fragmented</span>{" "}
+          <span className="font-semibold text-text-primary">Collaboration is fragmented</span>{" "}
           — students frequently switch between note apps, shared docs, and
           chat tools during a single class session.
         </li>
         <li>
-          <span className="text-text-primary">
+          <span className="font-semibold text-text-primary">
             One shared page doesn&apos;t scale
           </span>{" "}
           — groups larger than 3–4 struggle with clutter, edit collisions,
           and unclear ownership.
         </li>
         <li>
-          <span className="text-text-primary">
+          <span className="font-semibold text-text-primary">
             Independent thinking still matters
           </span>{" "}
           — students prefer to work through ideas privately before
           contributing to shared space.
         </li>
         <li>
-          <span className="text-text-primary">
+          <span className="font-semibold text-text-primary">
             Visibility changes behavior — but adds pressure
           </span>{" "}
           — seeing progress encourages participation, but constant
@@ -154,10 +154,10 @@ export default function GroupCanvasPage() {
         </span>
       </blockquote>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Design process
       </h2>
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         I killed my team&apos;s designathon idea
       </h3>
       <p>
@@ -168,7 +168,7 @@ export default function GroupCanvasPage() {
         identity, not workflow. The real friction was structural: too many
         tools, no shared space, no synthesis path.
       </p>
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Reframing around collaboration mechanics
       </h3>
       <p>
@@ -180,7 +180,7 @@ export default function GroupCanvasPage() {
         structure over enforcement, which kept the concept aligned with
         GoodNotes&apos; canvas-first identity and avoided over-engineering.
       </p>
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         What I chose not to solve
       </h3>
       <p>
@@ -191,7 +191,7 @@ export default function GroupCanvasPage() {
         problems: fragmented tools, unclear contributions, and chaotic
         synthesis.
       </p>
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Feature prioritization
       </h3>
       <p>
@@ -203,7 +203,7 @@ export default function GroupCanvasPage() {
         layer on top.
       </p>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Final solution
       </h2>
       <p>
@@ -212,7 +212,7 @@ export default function GroupCanvasPage() {
         GoodNotes canvas.
       </p>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Land on the shared workspace
       </h3>
       <p>
@@ -220,7 +220,7 @@ export default function GroupCanvasPage() {
         workspace, immediately seeing their group members and the main
         canvas — establishing context from the start.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-land-workspace.mp4"
@@ -228,11 +228,11 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[560px] w-auto rounded-lg"
         />
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Set a timer, assign tasks
       </h3>
       <p>
@@ -241,7 +241,7 @@ export default function GroupCanvasPage() {
         need structure to stay on track — they can set a duration, add
         tasks, assign them to individuals or the group, then start.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-timer-tasks.mp4"
@@ -249,11 +249,11 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[560px] w-auto rounded-lg"
         />
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Work in individual tabs
       </h3>
       <p>
@@ -263,7 +263,7 @@ export default function GroupCanvasPage() {
         working through ideas privately before sharing, while still
         maintaining group awareness.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-individual-tab.mp4"
@@ -271,11 +271,11 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[560px] w-auto rounded-lg"
         />
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Coordinate with contextual comments
       </h3>
       <p>
@@ -285,7 +285,7 @@ export default function GroupCanvasPage() {
         than scattered across chat threads. All members can see and
         resolve comments once they&apos;re addressed.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-comments.mp4"
@@ -293,11 +293,11 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[560px] w-auto rounded-lg"
         />
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Synthesize onto the shared canvas
       </h3>
       <p>
@@ -308,7 +308,7 @@ export default function GroupCanvasPage() {
         people&rdquo; — work stays organized because students synthesize
         intentionally rather than everyone editing simultaneously.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-complete-canvas.mp4"
@@ -316,11 +316,11 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[560px] w-auto rounded-lg"
         />
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Reveal authorship, opt-in
       </h3>
       <p>
@@ -331,7 +331,7 @@ export default function GroupCanvasPage() {
         both needs. Teachers can use it for grading and students can
         verify contributions, without constant social pressure.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-contribution-toggle.mp4"
@@ -339,11 +339,11 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[560px] w-auto rounded-lg"
         />
       </div>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Design decisions
       </h2>
       <p>
@@ -354,23 +354,23 @@ export default function GroupCanvasPage() {
       </p>
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <span className="text-text-primary">Privacy by default</span> —
+          <span className="font-semibold text-text-primary">Privacy by default</span> —
           contribution visibility defaults to off. Students control when
           attribution matters.
         </li>
         <li>
-          <span className="text-text-primary">Flexible structure</span> —
+          <span className="font-semibold text-text-primary">Flexible structure</span> —
           tasks can be assigned individually or to groups. The timer
           provides pacing without enforcement.
         </li>
         <li>
-          <span className="text-text-primary">Selective transparency</span>{" "}
+          <span className="font-semibold text-text-primary">Selective transparency</span>{" "}
           — presence indicators show activity, not surveillance. The
           contribution toggle only activates when needed.
         </li>
       </ul>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Next steps
       </h2>
       <p>
@@ -393,7 +393,7 @@ export default function GroupCanvasPage() {
         </li>
       </ul>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Industry insight
       </h2>
       <p>
@@ -404,7 +404,7 @@ export default function GroupCanvasPage() {
         collaborate in breakout sessions.
       </p>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Reflection
       </h2>
       <p>

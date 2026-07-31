@@ -39,10 +39,12 @@ export default function CaseStudyLayout({
       </div>
 
       <header className="pb-8">
-        <h1 className="t-heading text-3xl text-text-primary md:text-4xl">
+        <h1 className="t-heading text-4xl text-text-primary md:text-5xl">
           {title}
         </h1>
-        <p className="t-subtitle mt-2 text-base text-text-secondary">{subtitle}</p>
+        <p className="t-subtitle mt-3 text-lg text-text-secondary md:text-xl">
+          {subtitle}
+        </p>
 
         <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-6 text-xs sm:grid-cols-3">
           <div>
@@ -97,7 +99,7 @@ export default function CaseStudyLayout({
         </div>
       )}
 
-      <article className="prose-none flex flex-col gap-6 text-base leading-relaxed text-text-primary">
+      <article className="case-study prose-none flex flex-col gap-7 text-[17px] leading-[1.75] text-text-primary">
         {children ?? (
           <p className="text-text-secondary">
             Case study content will be migrated from the existing site.

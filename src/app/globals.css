@@ -256,6 +256,56 @@ body {
   }
 }
 
+/*
+  ─── Case-study prose ──────────────────────────────────────────
+  A numbered section spine for scannability: each top-level <h2>
+  gets an accent "01 / 02 …" kicker above it via a CSS counter, so
+  the case study reads as an ordered set of sections a viewer can
+  skim, not one undifferentiated wall of text. The child combinator
+  numbers only real section headings — captions and labels nested
+  inside figure wrappers are never touched.
+*/
+.case-study {
+  counter-reset: section;
+}
+.case-study > h2::before {
+  counter-increment: section;
+  content: counter(section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+/*
+  ─── Spotify knob ──────────────────────────────────────────────
+  The playback timer is drawn as a collar that fills clockwise
+  around the neomorphic knob. Registering --sp-progress as a typed
+  custom property makes the conic-gradient sweep animatable, so the
+  collar glides between the 1s progress updates instead of stepping.
+*/
+@property --sp-progress {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+.knob-ring {
+  background: conic-gradient(
+    var(--accent) var(--sp-progress),
+    var(--border) var(--sp-progress)
+  );
+  transition: --sp-progress 1000ms linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .knob-ring {
+    transition: none;
+  }
+}
+
 /* Pulse used by the VolumeInteraction hearing-warning icon */
 @keyframes pulse-warn {
   0%, 100% { opacity: 1; transform: scale(1); }

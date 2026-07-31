@@ -17,7 +17,7 @@ export default function MyShakePage() {
       heroVideoRadius={15}
       next={{ label: "Group Canvas", href: "/work/group-canvas" }}
     >
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Introduction
       </h2>
       <p>
@@ -30,7 +30,7 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/introduction.mp4"
@@ -38,7 +38,7 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[440px] w-auto rounded-lg"
         />
       </div>
 
@@ -69,7 +69,7 @@ export default function MyShakePage() {
         </div>
       </div>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">The problem</h2>
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">The problem</h2>
       <p>
         Despite having life-saving technology, MyShake was losing users.
         There was only one access point for setting up an early warning
@@ -78,7 +78,7 @@ export default function MyShakePage() {
         goal was to make MyShake the #1 earthquake app by increasing
         engagement and building trust during emergencies.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/problem.mp4"
@@ -86,11 +86,11 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[440px] w-auto rounded-lg"
         />
       </div>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">Research</h2>
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">Research</h2>
       <p>
         We surveyed 30 users and analyzed two competitors. The key insight:
         users didn&apos;t just want faster access — they wanted to feel like
@@ -109,7 +109,7 @@ export default function MyShakePage() {
         of when the earthquake would hit or how strong the shaking would
         be.
       </p>
-      <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/old-alert-screen.png"
@@ -119,7 +119,7 @@ export default function MyShakePage() {
         />
       </div>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Design process
       </h2>
       <p>
@@ -127,7 +127,7 @@ export default function MyShakePage() {
         features — alerts and earthquake information — in something both
         beautiful and powerful.
       </p>
-      <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-map-profile.png"
@@ -143,10 +143,13 @@ export default function MyShakePage() {
         opposite: users wanted reassurance, not exploration. They wanted to
         know they were safe, and that the people they cared about were
         safe. That reframe changed everything, and it&apos;s where I
-        proposed making MyShake open to a personalized dashboard instead of
-        a map.
+        proposed{" "}
+        <strong className="font-semibold text-text-primary">
+          making MyShake open to a personalized dashboard instead of a map
+        </strong>
+        .
       </p>
-      <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-dashboard-concept.png"
@@ -165,7 +168,7 @@ export default function MyShakePage() {
         touching the app&apos;s underlying structure.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/option-a-refined-landing.png"
@@ -177,7 +180,7 @@ export default function MyShakePage() {
             Option A — safer, familiar, visual improvements only
           </p>
         </div>
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/option-b-dashboard-landing.png"
@@ -199,7 +202,7 @@ export default function MyShakePage() {
         that followed simplified navigation so users could reach any key
         feature within one or two taps, instead of digging through menus.
       </p>
-      <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/information-architecture.png"
@@ -209,10 +212,10 @@ export default function MyShakePage() {
         />
       </div>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Final solution
       </h2>
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         First impressions
       </h3>
       <p>
@@ -220,7 +223,7 @@ export default function MyShakePage() {
         introduces the most important parts of the app through progressive
         disclosure.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-first-impressions.mp4"
@@ -228,19 +231,21 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[440px] w-auto rounded-lg"
         />
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Early warning shortcuts
       </h3>
       <p>
-        New users get two instant access points to enable an early warning.
-        Setup went from five steps to two — swipe right on the map, or tap
-        the banner.
+        New users get two instant access points to enable an early warning.{" "}
+        <strong className="font-semibold text-text-primary">
+          Setup went from five steps to two
+        </strong>{" "}
+        — swipe right on the map, or tap the banner.
       </p>
-      <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-early-warning.mp4"
@@ -248,11 +253,11 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[600px] w-auto rounded-lg"
+          className="max-h-[440px] w-auto rounded-lg"
         />
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Staying connected to what matters
       </h3>
       <p>
@@ -265,7 +270,7 @@ export default function MyShakePage() {
         happened near someone they cared about.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-1.mp4"
@@ -273,10 +278,10 @@ export default function MyShakePage() {
             loop
             muted
             playsInline
-            className="max-h-[500px] w-auto rounded-lg"
+            className="max-h-[400px] w-auto rounded-lg"
           />
         </div>
-        <div className="flex justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-2.mp4"
@@ -284,12 +289,12 @@ export default function MyShakePage() {
             loop
             muted
             playsInline
-            className="max-h-[500px] w-auto rounded-lg"
+            className="max-h-[400px] w-auto rounded-lg"
           />
         </div>
       </div>
 
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Reimagining the critical alert
       </h3>
       <p>
@@ -300,7 +305,7 @@ export default function MyShakePage() {
         clear next steps.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-1.png"
@@ -309,7 +314,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-2.png"
@@ -319,7 +324,7 @@ export default function MyShakePage() {
           />
         </div>
       </div>
-      <h3 className="font-mono text-base text-text-primary">
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
         Interface improvements
       </h3>
       <p>
@@ -328,7 +333,7 @@ export default function MyShakePage() {
         introduced a real sense of ownership and personalization.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-1.png"
@@ -337,7 +342,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-2.png"
@@ -347,7 +352,7 @@ export default function MyShakePage() {
           />
         </div>
       </div>
-      <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/profile-page.png"
@@ -357,7 +362,7 @@ export default function MyShakePage() {
         />
       </div>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">Validation</h2>
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">Validation</h2>
       <p>
         Three of us ran two rounds of usability testing across 16
         participants — young adults and seniors at the Rossmore retirement
@@ -389,7 +394,7 @@ export default function MyShakePage() {
         immediately clear.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-banner.png"
@@ -398,7 +403,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-detail.png"
@@ -409,7 +414,7 @@ export default function MyShakePage() {
         </div>
       </div>
 
-      <h2 className="mt-2 t-heading text-xl text-text-primary">
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         What I learned
       </h2>
       <p>

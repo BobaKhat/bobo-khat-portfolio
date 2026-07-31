@@ -1,61 +1,23 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 const items = [
-  { label: "Work", href: "#work" },
-  { label: "Lab", href: "#lab" },
-  { label: "About", href: "#about" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/bobo-khat" },
+  { label: "Gmail", href: "mailto:willimbkhat@gmail.com" },
+  { label: "Resume", href: "/resume.pdf" },
 ];
 
 export default function Navigation() {
-  const [active, setActive] = useState("work");
-
-  useEffect(() => {
-    const ids = ["work", "lab", "about"];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <nav className="flex items-center gap-0.5 sm:gap-1">
-      {items.map((item) => {
-        const id = item.href.slice(1);
-        const isActive = active === id;
-        return (
-          <a
-            key={item.href}
-            href={item.href}
-            className={`flex items-center gap-1 rounded-full px-2 py-1.5 text-sm font-semibold transition-colors hover:text-accent sm:gap-1.5 sm:px-3 sm:text-base ${
-              isActive ? "text-text-primary" : "text-text-secondary"
-            }`}
-          >
-            {isActive && (
-              <span className="h-1.5 w-1.5 rounded-full bg-accent sm:h-2 sm:w-2" aria-hidden="true" />
-            )}
-            {item.label}
-          </a>
-        );
-      })}
-      <a
-        href="/resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="rounded-full px-2 py-1.5 text-sm font-semibold text-text-secondary transition-colors hover:text-accent sm:px-3 sm:text-base"
-      >
-        Resume
-      </a>
+      {items.map((item) => (
+        <a
+          key={item.href}
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full px-2 py-1.5 text-sm font-semibold text-text-secondary transition-colors hover:text-accent sm:px-3 sm:text-base"
+        >
+          {item.label}
+        </a>
+      ))}
     </nav>
   );
 }
