@@ -36,7 +36,7 @@ function MicroArrow({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${label} — see all 18 on MoceanVault`}
-        className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 hover:bg-accent hover:text-white"
+        className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 hover:bg-accent hover:text-white"
       >
         <ArrowGlyph />
       </a>
@@ -72,14 +72,14 @@ export default function MicroInteractions({
       } ${className}`}
     >
       <SpotlightOverlay active={anyHover} />
-      <div className="relative z-[1] flex h-full flex-col justify-between gap-4">
+      <div className="relative z-[1] flex h-full flex-col gap-7">
         {/* Intro header cell */}
         <div className={cellClass} style={cellStyle}>
           <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
             <div>
-              <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                <span className="t-eyebrow text-text-secondary">
+              <div className="flex items-center gap-2.5">
+                <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+                <span className="t-heading text-3xl text-text-primary">
                   Microinteractions
                 </span>
               </div>
@@ -103,7 +103,7 @@ export default function MicroInteractions({
 
         {/* Demo cells — each with its own arrow */}
         <div
-          className={`flex items-center justify-center overflow-hidden ${cellClass}`}
+          className={`flex flex-auto items-center justify-center overflow-hidden ${cellClass}`}
           style={cellStyle}
         >
           <MicroArrow
@@ -117,7 +117,7 @@ export default function MicroInteractions({
         </div>
 
         <div
-          className={`flex items-center justify-center overflow-hidden ${cellClass}`}
+          className={`flex flex-auto items-center justify-center overflow-hidden ${cellClass}`}
           style={cellStyle}
         >
           <MicroArrow
@@ -131,7 +131,7 @@ export default function MicroInteractions({
         </div>
 
         <div
-          className={`flex items-center justify-center overflow-hidden ${cellClass}`}
+          className={`flex flex-auto items-center justify-center overflow-hidden ${cellClass}`}
           style={cellStyle}
         >
           <MicroArrow

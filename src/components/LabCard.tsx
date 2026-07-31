@@ -19,9 +19,9 @@ export default function LabCard({ previews }: { previews: string[] }) {
       <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1 md:p-8">
         <div className="flex items-start gap-4">
           <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-              <span className="t-eyebrow text-text-secondary">The Lab</span>
+            <div className="flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+              <span className="t-heading text-3xl text-text-primary">The Lab</span>
             </div>
             <p className="t-subtitle mt-2 text-sm text-text-secondary">
               Visual Experiments — Graphic design + 3D renders
@@ -35,7 +35,7 @@ export default function LabCard({ previews }: { previews: string[] }) {
               onMouseEnter={() => setArrowHover(true)}
               onMouseLeave={() => setArrowHover(false)}
             >
-              <span className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+              <span className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
                 <ArrowGlyph />
               </span>
               <SpotlightCaption label="Visual Experiments" active={arrowHover} align="right" />

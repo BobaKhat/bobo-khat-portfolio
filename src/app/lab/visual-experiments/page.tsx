@@ -73,10 +73,10 @@ export default function VisualExperimentsPage() {
       </div>
 
       <header className="pb-8">
-        <h1 className="font-mono text-3xl text-text-primary md:text-4xl">
+        <h1 className="t-heading text-3xl text-text-primary md:text-4xl">
           Visual Experiments
         </h1>
-        <p className="mt-2 text-base text-text-secondary">
+        <p className="t-subtitle mt-2 text-base text-text-secondary">
           Graphic design + 3D renders
         </p>
       </header>

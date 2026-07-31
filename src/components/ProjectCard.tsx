@@ -20,7 +20,6 @@ export type ProjectCardProps = {
 };
 
 export default function ProjectCard({
-  index,
   title,
   subtitle,
   tag,
@@ -50,16 +49,13 @@ export default function ProjectCard({
       <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-6 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1">
         <div className="flex items-start gap-4">
           <div className="min-w-0">
-            <div className="flex items-baseline gap-3">
-              <span className="t-stat text-sm text-accent">{index}</span>
-              <h3
-                className={`t-heading ${
-                  size === "large" ? "text-2xl" : "text-xl"
-                } text-text-primary`}
-              >
-                {title}
-              </h3>
-            </div>
+            <h3
+              className={`t-heading ${
+                size === "large" ? "text-3xl" : "text-2xl"
+              } text-text-primary`}
+            >
+              {title}
+            </h3>
             <p className="t-subtitle mt-1 text-sm text-text-secondary">
               {subtitle}
             </p>
@@ -72,7 +68,7 @@ export default function ProjectCard({
               onMouseEnter={() => setArrowHover(true)}
               onMouseLeave={() => setArrowHover(false)}
             >
-              <span className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+              <span className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-module text-lg text-text-primary shadow-[var(--shadow-raised-sm)] transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
                 <ArrowGlyph />
               </span>
               <SpotlightCaption label={title} active={arrowHover} align="right" />
