@@ -255,3 +255,9 @@ body {
     line-height: 1.7;
   }
 }
+
+/* Pulse used by the VolumeInteraction hearing-warning icon */
+@keyframes pulse-warn {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.12); }
+}

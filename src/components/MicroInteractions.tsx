@@ -5,6 +5,7 @@ import { NetworthChart } from "./NetworthChart";
 import { SkeletonSearch } from "./SkeletonSearch";
 import { ProgressBar } from "./ProgressBar";
 import { AppDock } from "./AppDock";
+import { LiquidBlob } from "./LiquidBlob";
 import ArrowGlyph from "./ArrowGlyph";
 import { SpotlightOverlay, SpotlightCaption } from "./Spotlight";
 
@@ -254,6 +255,37 @@ export default function MicroInteractions({
           {/* Fixed-width dock — scale down on narrow phones to avoid clipping. */}
           <div className="origin-center max-[460px]:scale-[0.78]">
             <AppDock />
+          </div>
+        </div>
+
+        {/* Liquid Blob — a full-bleed canvas interaction on its own dark panel.
+            This cell FLEX-GROWS to fill whatever vertical space is left in the
+            column after the play card + dock. Because it grows rather than
+            forcing a fixed height, the right column stops out-sizing the left
+            (Group Canvas + Polaris), so those relax to their natural heights
+            (closing the gap between them) and the blob ends flush with Polaris.
+            The min-height keeps it presentable when the column stands alone on
+            mobile. The canvas sizes to this box via its ResizeObserver. */}
+        <div
+          className="relative flex flex-1 flex-col rounded-2xl bg-module transition-shadow duration-300"
+          style={{ ...cellStyle, padding: 20, minHeight: 300 }}
+        >
+          <MicroArrow
+            id="blob"
+            label="Neural Network"
+            hovered={hovered}
+            setHovered={setHovered}
+            className="absolute right-4 top-4 z-[2]"
+          />
+          <div
+            className="w-full flex-1 overflow-hidden"
+            style={{
+              minHeight: 0,
+              borderRadius: 20,
+              border: "0.5px solid #313131",
+            }}
+          >
+            <LiquidBlob />
           </div>
         </div>
       </div>
