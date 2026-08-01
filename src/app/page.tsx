@@ -1,25 +1,25 @@
 import ProjectCard from "@/components/ProjectCard";
 import MicroInteractions from "@/components/MicroInteractions";
 import LabCard from "@/components/LabCard";
-import WidgetBar from "@/components/WidgetBar";
+import MeetDesigner from "@/components/MeetDesigner";
 
-// Content per CLAUDE.md build spec. Drift, MyShake, and Group Canvas use
+// Content per CLAUDE.md build spec. Orion, MyShake, and Group Canvas use
 // screen-recorded video on the homepage instead of static screenshots.
 const primaryProjects = [
   {
     index: "01",
-    title: "Drift",
+    title: "Orion",
     subtitle: "Spatial music discovery map",
-    tag: "Product Design · Case Study · Desktop",
-    href: "/work/drift",
-    video: "/videos/drift-homepage.mp4",
+    tag: "Product Design · 0 → 1 · Desktop",
+    href: "/work/orion",
+    video: "/videos/orion-homepage.mp4",
     videoRadius: 22,
   },
   {
     index: "02",
     title: "MyShake",
     subtitle: "Earthquake awareness platform",
-    tag: "Product Design · Case Study · Mobile",
+    tag: "Product Design · Usability Testing · Mobile",
     href: "/work/myshake",
     video: "/videos/myshake.mp4",
     videoScale: 0.9775,
@@ -29,7 +29,7 @@ const primaryProjects = [
     index: "03",
     title: "Group Canvas",
     subtitle: "Real-time collaboration for GoodNotes",
-    tag: "Product Design · Case Study · Tablet",
+    tag: "Product Design · 3rd Place Winner · Tablet",
     href: "/work/group-canvas",
     video: "/videos/group-canvas-homepage.mp4",
     videoScale: 1,
@@ -59,7 +59,6 @@ export default function Home() {
           Product Designer prev @ MyShake (4M Users) – UX-First With Motion
           and Visual Experiments – UC Berkeley – B.A. Cognitive Science
         </p>
-        <WidgetBar />
       </section>
 
       {/* PRIMARY CASE STUDIES + THE LAB — all equal-size cells in one grid */}
@@ -76,13 +75,23 @@ export default function Home() {
             index="04"
             title="Polaris"
             subtitle="Brand identity + landing page"
-            tag="Brand · Landing Page"
             href="https://polaris-landing.vercel.app"
             image="/images/lab/polaris-landing.jpg"
             size="large"
           />
 
           <LabCard previews={visualExperimentsPreview} />
+
+          <ProjectCard
+            index="05"
+            title="Product Advertisement"
+            subtitle="Concept ad campaign"
+            href="/lab/product-advertisement"
+            image="/images/lab/product-ad/phone-1.png"
+            size="large"
+          />
+
+          <MeetDesigner />
         </div>
       </section>
 

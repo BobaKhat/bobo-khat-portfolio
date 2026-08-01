@@ -9,7 +9,7 @@ export type ProjectCardProps = {
   index: string;
   title: string;
   subtitle: string;
-  tag: string;
+  tag?: string;
   href: string;
   image?: string;
   video?: string;
@@ -64,7 +64,9 @@ export default function ProjectCard({
               a narrow card the tag wraps instead of forcing the row wider than
               the card and bleeding out the side. */}
           <div className="ml-auto flex min-w-0 flex-col items-end gap-3">
-            <p className="text-right t-eyebrow text-text-secondary">{tag}</p>
+            {tag && (
+              <p className="text-right t-eyebrow text-text-secondary">{tag}</p>
+            )}
             <div
               className="relative"
               onMouseEnter={() => setArrowHover(true)}

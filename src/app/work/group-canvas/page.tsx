@@ -14,7 +14,7 @@ export default function GroupCanvasPage() {
       tools="Figma, FigJam, Google Forms, Figma Make"
       timeline="UC Berkeley designathon + independent continuation"
       heroVideo="/videos/case-studies/group-canvas/hero.mp4"
-      next={{ label: "Drift", href: "/work/drift" }}
+      next={{ label: "Orion", href: "/work/orion" }}
     >
       <p>
         After placing 3rd at a UC Berkeley designathon sponsored by
