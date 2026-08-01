@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ArrowGlyph from "./ArrowGlyph";
 import { SpotlightOverlay, SpotlightCaption } from "./Spotlight";
 
@@ -13,8 +13,13 @@ export type ProjectCardProps = {
   href: string;
   image?: string;
   video?: string;
+  /** Optional video that fades in and plays only while the card is hovered
+   *  (over the static `image`, which acts as the resting poster). */
+  hoverVideo?: string;
   videoScale?: number;
   videoRadius?: number;
+  /** Clip N px off the top edge of the video (keeps the rounded corners). */
+  videoClipTop?: number;
   size?: "large" | "small";
   id?: string;
 };
@@ -26,13 +31,28 @@ export default function ProjectCard({
   href,
   image,
   video,
+  hoverVideo,
   videoScale,
   videoRadius,
+  videoClipTop,
   size = "large",
   id,
 }: ProjectCardProps) {
   const isExternal = href.startsWith("http");
   const [arrowHover, setArrowHover] = useState(false);
+
+  // Hover-to-play for `hoverVideo`: play on card enter, reset on leave.
+  const hoverVideoRef = useRef<HTMLVideoElement>(null);
+  const playHover = () => {
+    hoverVideoRef.current?.play().catch(() => {});
+  };
+  const stopHover = () => {
+    const v = hoverVideoRef.current;
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  };
 
   // The <a>/<Link> is only a positioning + stacking wrapper — it must NOT
   // carry a transform, or the fixed spotlight overlay below would resolve
@@ -105,16 +125,38 @@ export default function ProjectCard({
               style={{
                 ...(videoScale ? { transform: `scale(${videoScale})` } : {}),
                 ...(videoRadius != null ? { borderRadius: `${videoRadius}px` } : {}),
+                ...(videoClipTop
+                  ? {
+                      clipPath: `inset(${videoClipTop}px 0 0 0 round ${
+                        videoRadius ?? 0
+                      }px)`,
+                    }
+                  : {}),
               }}
             />
           ) : image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={image}
-              alt={`${title} — ${subtitle}`}
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={image}
+                alt={`${title} — ${subtitle}`}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+              {hoverVideo && (
+                // eslint-disable-next-line jsx-a11y/media-has-caption
+                <video
+                  ref={hoverVideoRef}
+                  src={hoverVideo}
+                  poster={image}
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+              )}
+            </>
           ) : (
             <div className="grid h-full w-full place-items-center text-xs text-text-secondary">
               {title} screenshot
@@ -133,6 +175,8 @@ export default function ProjectCard({
         target="_blank"
         rel="noopener noreferrer"
         className={wrapperClassName}
+        onMouseEnter={playHover}
+        onMouseLeave={stopHover}
       >
         {content}
       </a>
@@ -140,7 +184,13 @@ export default function ProjectCard({
   }
 
   return (
-    <Link href={href} id={id} className={wrapperClassName}>
+    <Link
+      href={href}
+      id={id}
+      className={wrapperClassName}
+      onMouseEnter={playHover}
+      onMouseLeave={stopHover}
+    >
       {content}
     </Link>
   );

@@ -28,11 +28,12 @@ export default function ProductAdvertisementPage() {
         <p className="t-subtitle mt-2 text-base text-text-secondary">
           Concept ad campaign
         </p>
+        <p className="t-eyebrow mt-4 text-text-secondary">Made with Illustrator</p>
       </header>
 
       {/* Flush stack — no cards, no gaps; slides sit directly on top of one
           another (0px between). */}
-      <div className="mx-auto max-w-[1100px] pb-16">
+      <div className="mx-auto max-w-[1265px] pb-16">
         {slides.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img

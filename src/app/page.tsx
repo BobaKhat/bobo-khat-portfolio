@@ -13,7 +13,7 @@ const primaryProjects = [
     tag: "Product Design · 0 → 1 · Desktop",
     href: "/work/orion",
     video: "/videos/orion-homepage.mp4",
-    videoRadius: 22,
+    videoRadius: 16,
   },
   {
     index: "02",
@@ -24,6 +24,7 @@ const primaryProjects = [
     video: "/videos/myshake.mp4",
     videoScale: 0.9775,
     videoRadius: 15,
+    videoClipTop: 2,
   },
   {
     index: "03",
@@ -77,6 +78,7 @@ export default function Home() {
             subtitle="Brand identity + landing page"
             href="https://polaris-landing.vercel.app"
             image="/images/lab/polaris-landing.jpg"
+            hoverVideo="/videos/polaris-hover.mp4"
             size="large"
           />
 
