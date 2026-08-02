@@ -21,8 +21,14 @@ export default function MeetDesigner() {
 
       <div className="my-5 border-t border-text-secondary/30" />
 
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
-        <div className="space-y-3 text-sm leading-relaxed text-text-secondary">
+      {/*
+        Side-by-side only from 1200px up (desktop), where each 2-column grid
+        cell is wide enough. Below that — including the whole 768–1199px tablet
+        range, where md:grid-cols-2 makes each cell narrow — it stacks, so the
+        fixed-width portrait can't crush the bio into a ~150px column.
+      */}
+      <div className="flex flex-col gap-6 min-[1200px]:flex-row min-[1200px]:items-center min-[1200px]:gap-8">
+        <div className="min-w-0 space-y-3 text-sm leading-relaxed text-text-secondary">
           <p className="font-semibold text-text-primary">Hi, I&apos;m Bobo!</p>
           <p>
             I&apos;m a first-generation college graduate from UC Berkeley. I was
@@ -44,7 +50,7 @@ export default function MeetDesigner() {
         <img
           src="/images/bobo-portrait.jpg"
           alt="Bobo Khat"
-          className="mx-auto h-48 w-48 shrink-0 rounded-full object-cover object-[50%_18%] shadow-[var(--shadow-raised-sm)] sm:mx-0 sm:h-60 sm:w-60"
+          className="mx-auto h-48 w-48 shrink-0 rounded-full object-cover object-[50%_18%] shadow-[var(--shadow-raised-sm)] min-[1200px]:mx-0 min-[1200px]:h-60 min-[1200px]:w-60"
           loading="lazy"
         />
       </div>

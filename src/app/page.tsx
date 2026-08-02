@@ -64,12 +64,21 @@ export default function Home() {
 
       {/* PRIMARY CASE STUDIES + THE LAB — all equal-size cells in one grid */}
       <section id="work" className="scroll-mt-24 pb-16 sm:pb-24">
-        <div className="grid grid-cols-1 gap-5 sm:gap-7 md:grid-cols-2">
+        {/*
+          grid-flow-dense lets the tablet layout below work: when
+          Microinteractions becomes full-width (col-span-2) at md, dense packing
+          pulls Polaris up into the gap next to Group Canvas. At ≥1200px
+          Microinteractions reverts to its row-span-2 column (no gaps, so dense
+          is a no-op there and the desktop layout is unchanged).
+        */}
+        <div className="grid grid-cols-1 gap-5 sm:gap-7 md:grid-flow-row-dense md:grid-cols-2">
           {primaryProjects.map((p) => (
             <ProjectCard key={p.index} size="large" {...p} />
           ))}
 
-          <MicroInteractions className="md:row-span-2" />
+          {/* Tablet: own full-width row (avoids the row-span white space when
+              the narrow case-study cards are too short). Desktop: row-span-2. */}
+          <MicroInteractions className="md:max-[1199px]:col-span-2 min-[1200px]:row-span-2" />
 
           <ProjectCard
             id="lab"

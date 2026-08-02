@@ -193,6 +193,30 @@ body {
     transform: translate(-50%, -50%) rotate(0deg) scale(0.93);
   }
 }
+/*
+  Same tighter fan, but keyed to the play CARD's width (its container-type is
+  set in MicroInteractions.tsx). The viewport media query above can't catch the
+  tablet case: at 768–1199px the Microinteractions column is narrow (2-col grid)
+  while the viewport is wide, so the fixed-size demos would otherwise stay
+  full-size and blow past the card. This scales them to the actual card width.
+*/
+@container (max-width: 440px) {
+  .play-stage {
+    height: 460px;
+  }
+  .play-item--0 {
+    transform: translate(calc(-50% - 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+  }
+  .play-item--1 {
+    transform: translate(-50%, calc(-50% + 212px)) rotate(30deg) scale(0.75);
+  }
+  .play-item--2 {
+    transform: translate(calc(-50% + 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+  }
+  .play-item.is-active {
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.93);
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .play-item {
     transition-duration: 1ms;

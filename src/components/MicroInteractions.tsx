@@ -180,7 +180,10 @@ export default function MicroInteractions({
             dropping only when you leave the stage. */}
         <div
           className="relative flex flex-none flex-col overflow-hidden rounded-3xl bg-module p-5 transition-shadow duration-300 sm:p-6"
-          style={cellStyle}
+          // container-type lets .play-stage scale to THIS card's width (see
+          // the @container rule in globals.css), fixing the fixed-size demos
+          // overflowing the narrow Microinteractions column at tablet width.
+          style={{ ...cellStyle, containerType: "inline-size" }}
         >
           {/* min-h + items-start so this header matches the taller ProjectCard
               header (whose arrow sits in a tag+arrow column), keeping the
@@ -252,10 +255,9 @@ export default function MicroInteractions({
             setHovered={setHovered}
             className="absolute right-4 top-4 z-[2]"
           />
-          {/* Fixed-width dock — scale down on narrow phones to avoid clipping. */}
-          <div className="origin-center max-[460px]:scale-[0.78]">
-            <AppDock />
-          </div>
+          {/* Fixed-width dock — icons drop out from the end as the screen
+              narrows (see DOCK_HIDE_AT in AppDock) so it never overflows. */}
+          <AppDock />
         </div>
 
         {/* Liquid Blob — a full-bleed canvas interaction on its own dark panel.

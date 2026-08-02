@@ -24,7 +24,10 @@ export default function WidgetBar() {
           <Navigation />
         </div>
         <div className="flex items-center justify-end gap-3 md:gap-4">
-          <div className="hidden w-32 md:block">
+          {/* Hidden below lg: between md and ~980px the centered nav overflows
+              its column and "Resume" collides with the progress rail, so only
+              show it once the bar is wide enough to clear the nav. */}
+          <div className="hidden w-32 lg:block">
             <ScrollProgress />
           </div>
           <ThemeToggle />
