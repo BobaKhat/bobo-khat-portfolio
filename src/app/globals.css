@@ -178,16 +178,16 @@ body {
 /* Tighter fan + scale on narrow phones so the cards stay inside the cell. */
 @media (max-width: 520px) {
   .play-stage {
-    height: 460px;
+    height: 380px;
   }
   .play-item--0 {
-    transform: translate(calc(-50% - 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+    transform: translate(calc(-50% - 138px), calc(-50% + 172px)) rotate(30deg) scale(0.75);
   }
   .play-item--1 {
-    transform: translate(-50%, calc(-50% + 212px)) rotate(30deg) scale(0.75);
+    transform: translate(-50%, calc(-50% + 172px)) rotate(30deg) scale(0.75);
   }
   .play-item--2 {
-    transform: translate(calc(-50% + 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+    transform: translate(calc(-50% + 138px), calc(-50% + 172px)) rotate(30deg) scale(0.75);
   }
   .play-item.is-active {
     transform: translate(-50%, -50%) rotate(0deg) scale(0.93);
@@ -202,16 +202,16 @@ body {
 */
 @container (max-width: 440px) {
   .play-stage {
-    height: 460px;
+    height: 380px;
   }
   .play-item--0 {
-    transform: translate(calc(-50% - 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+    transform: translate(calc(-50% - 138px), calc(-50% + 172px)) rotate(30deg) scale(0.75);
   }
   .play-item--1 {
-    transform: translate(-50%, calc(-50% + 212px)) rotate(30deg) scale(0.75);
+    transform: translate(-50%, calc(-50% + 172px)) rotate(30deg) scale(0.75);
   }
   .play-item--2 {
-    transform: translate(calc(-50% + 138px), calc(-50% + 212px)) rotate(30deg) scale(0.75);
+    transform: translate(calc(-50% + 138px), calc(-50% + 172px)) rotate(30deg) scale(0.75);
   }
   .play-item.is-active {
     transform: translate(-50%, -50%) rotate(0deg) scale(0.93);

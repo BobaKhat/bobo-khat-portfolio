@@ -269,8 +269,8 @@ export default function MicroInteractions({
             The min-height keeps it presentable when the column stands alone on
             mobile. The canvas sizes to this box via its ResizeObserver. */}
         <div
-          className="relative flex flex-1 flex-col rounded-2xl bg-module transition-shadow duration-300"
-          style={{ ...cellStyle, padding: 20, minHeight: 300 }}
+          className="relative flex min-h-[240px] flex-1 flex-col rounded-2xl bg-module transition-shadow duration-300 sm:min-h-[300px]"
+          style={{ ...cellStyle, padding: 20 }}
         >
           <MicroArrow
             id="blob"
