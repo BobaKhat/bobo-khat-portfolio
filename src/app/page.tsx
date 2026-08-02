@@ -102,7 +102,9 @@ export default function Home() {
             size="large"
           />
 
-          <MeetDesigner />
+          {/* Tablet (md–1199): full-width row at the bottom. Desktop: sits
+              beside Product Advertisement (default single cell). */}
+          <MeetDesigner className="md:max-[1199px]:col-span-2" />
         </div>
       </section>
 

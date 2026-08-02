@@ -10,7 +10,7 @@ export default function LabCard({ previews }: { previews: string[] }) {
   return (
     <a
       href="/lab/visual-experiments"
-      className={`group relative block scroll-mt-20 md:col-span-2 ${
+      className={`group relative block scroll-mt-20 min-[1200px]:col-span-2 ${
         arrowHover ? "z-[70]" : ""
       }`}
     >
@@ -47,9 +47,18 @@ export default function LabCard({ previews }: { previews: string[] }) {
         {/* Divider between the header and the work */}
         <div className="my-5 border-t border-text-secondary/30" />
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {previews.map((src) => (
-            <div key={src} className="aspect-[4/3] overflow-hidden rounded-xl">
+        {/* Full 4-up on mobile and desktop. In the tablet range (md–1199) the
+            card is only half-width (side by side with Product Advertisement),
+            so drop to a 2-up and hide the last two previews — otherwise four
+            thumbnails would squeeze into the narrow column. */}
+        <div className="grid grid-cols-2 gap-3 min-[1200px]:grid-cols-4">
+          {previews.map((src, i) => (
+            <div
+              key={src}
+              className={`aspect-[4/3] overflow-hidden rounded-xl ${
+                i >= 2 ? "md:max-[1199px]:hidden" : ""
+              }`}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}

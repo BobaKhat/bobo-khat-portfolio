@@ -82,10 +82,15 @@ export default function ProjectCard({
           </div>
           {/* Tag, with the arrow button below it. min-w-0 (not shrink-0) so on
               a narrow card the tag wraps instead of forcing the row wider than
-              the card and bleeding out the side. */}
+              the card and bleeding out the side. Hidden in the tablet range
+              (md–1199): there the two-up cards are narrow and the tag column
+              squeezes the left column, wrapping the subtitle to 3 lines and
+              making the card out-grow the Lab cards beside it. */}
           <div className="ml-auto flex min-w-0 flex-col items-end gap-3">
             {tag && (
-              <p className="text-right t-eyebrow text-text-secondary">{tag}</p>
+              <p className="text-right t-eyebrow text-text-secondary md:max-[1199px]:hidden">
+                {tag}
+              </p>
             )}
             <div
               className="relative"

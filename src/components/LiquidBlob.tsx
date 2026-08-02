@@ -241,6 +241,14 @@ export function LiquidBlob({ className, style }: { className?: string; style?: C
       <canvas
         ref={canvasRef}
         style={{
+          // Absolutely positioned (not in-flow) so the canvas's intrinsic size
+          // — its width/height attributes are set to rect * dpr — never leaks
+          // into the flex/grid min-content. In-flow, that leak formed a
+          // feedback loop: on each window resize the cell grew, the canvas
+          // remeasured larger, the cell grew again… ratcheting this card taller
+          // until it pushed past Polaris and opened a gap under Group Canvas.
+          position: "absolute",
+          inset: 0,
           width: "100%",
           height: "100%",
           display: "block",
