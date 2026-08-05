@@ -337,7 +337,7 @@ export default function MyShakePage() {
         introduced a real sense of ownership and personalization.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-1.png"
@@ -346,7 +346,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-2.png"
