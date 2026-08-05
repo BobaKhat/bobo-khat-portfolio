@@ -30,7 +30,7 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/introduction.mp4"
@@ -42,7 +42,7 @@ export default function MyShakePage() {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center shadow-[var(--shadow-raised)] sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 rounded-2xl border border-border p-6 text-center sm:grid-cols-4">
         <div>
           <p className="t-stat text-2xl text-accent">4/5</p>
           <p className="mt-1 text-xs text-text-secondary">
@@ -78,7 +78,7 @@ export default function MyShakePage() {
         goal was to make MyShake the #1 earthquake app by increasing
         engagement and building trust during emergencies.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/problem.mp4"
@@ -109,7 +109,7 @@ export default function MyShakePage() {
         of when the earthquake would hit or how strong the shaking would
         be.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/old-alert-screen.png"
@@ -127,7 +127,7 @@ export default function MyShakePage() {
         features — alerts and earthquake information — in something both
         beautiful and powerful.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-map-profile.png"
@@ -149,7 +149,7 @@ export default function MyShakePage() {
         </strong>
         .
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-dashboard-concept.png"
@@ -168,7 +168,7 @@ export default function MyShakePage() {
         touching the app&apos;s underlying structure.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl border border-border p-4">
           <div className="flex flex-1 items-center justify-center overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -182,7 +182,7 @@ export default function MyShakePage() {
             Option A — safer, familiar, visual improvements only
           </p>
         </div>
-        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl border border-border p-4">
           <div className="flex flex-1 items-center justify-center overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -206,7 +206,7 @@ export default function MyShakePage() {
         that followed simplified navigation so users could reach any key
         feature within one or two taps, instead of digging through menus.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/information-architecture.png"
@@ -227,7 +227,7 @@ export default function MyShakePage() {
         introduces the most important parts of the app through progressive
         disclosure.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-first-impressions.mp4"
@@ -249,7 +249,7 @@ export default function MyShakePage() {
         </strong>{" "}
         — swipe right on the map, or tap the banner.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-early-warning.mp4"
@@ -274,7 +274,7 @@ export default function MyShakePage() {
         happened near someone they cared about.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-1.mp4"
@@ -285,7 +285,7 @@ export default function MyShakePage() {
             className="max-h-full max-w-full w-auto rounded-lg object-contain"
           />
         </div>
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-2.mp4"
@@ -309,7 +309,7 @@ export default function MyShakePage() {
         clear next steps.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-1.png"
@@ -318,7 +318,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-2.png"
@@ -337,7 +337,7 @@ export default function MyShakePage() {
         introduced a real sense of ownership and personalization.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-1.png"
@@ -346,7 +346,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-2.png"
@@ -356,7 +356,7 @@ export default function MyShakePage() {
           />
         </div>
       </div>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/profile-page.png"
@@ -398,7 +398,7 @@ export default function MyShakePage() {
         immediately clear.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-banner.png"
@@ -407,7 +407,7 @@ export default function MyShakePage() {
             loading="lazy"
           />
         </div>
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl border border-border p-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-detail.png"
