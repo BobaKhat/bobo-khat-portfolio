@@ -356,15 +356,6 @@ export default function MyShakePage() {
           />
         </div>
       </div>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/case-studies/myshake/profile-page.png"
-          alt="Settings reframed as a personal profile page"
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
-          loading="lazy"
-        />
-      </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">Validation</h2>
       <p>
