@@ -30,7 +30,7 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/introduction.mp4"
@@ -38,7 +38,7 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[440px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -78,7 +78,7 @@ export default function MyShakePage() {
         goal was to make MyShake the #1 earthquake app by increasing
         engagement and building trust during emergencies.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/problem.mp4"
@@ -86,7 +86,7 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[440px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -109,12 +109,12 @@ export default function MyShakePage() {
         of when the earthquake would hit or how strong the shaking would
         be.
       </p>
-      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/old-alert-screen.png"
           alt="The previous MyShake earthquake alert screen"
-          className="w-full"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
           loading="lazy"
         />
       </div>
@@ -127,12 +127,12 @@ export default function MyShakePage() {
         features — alerts and earthquake information — in something both
         beautiful and powerful.
       </p>
-      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-map-profile.png"
           alt="Team sketches exploring map and profile screens"
-          className="w-full"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
           loading="lazy"
         />
       </div>
@@ -149,12 +149,12 @@ export default function MyShakePage() {
         </strong>
         .
       </p>
-      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/sketch-dashboard-concept.png"
           alt="Early sketch exploring a widget-based dashboard homepage"
-          className="w-full"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
           loading="lazy"
         />
       </div>
@@ -168,27 +168,31 @@ export default function MyShakePage() {
         touching the app&apos;s underlying structure.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/case-studies/myshake/option-a-refined-landing.png"
-            alt="Option A — the team's refined, map-first landing page"
-            className="w-full rounded-lg"
-            loading="lazy"
-          />
-          <p className="p-3 text-xs text-text-secondary">
+        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/myshake/option-a-refined-landing.png"
+              alt="Option A — the team's refined, map-first landing page"
+              className="max-h-full max-w-full w-auto rounded-lg object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
             Option A — safer, familiar, visual improvements only
           </p>
         </div>
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/case-studies/myshake/option-b-dashboard-landing.png"
-            alt="Option B — the proposed dashboard landing page"
-            className="w-full rounded-lg"
-            loading="lazy"
-          />
-          <p className="p-3 text-xs text-text-secondary">
+        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/myshake/option-b-dashboard-landing.png"
+              alt="Option B — the proposed dashboard landing page"
+              className="max-h-full max-w-full w-auto rounded-lg object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
             Option B — innovative, personal, unprecedented for earthquake apps
           </p>
         </div>
@@ -202,12 +206,12 @@ export default function MyShakePage() {
         that followed simplified navigation so users could reach any key
         feature within one or two taps, instead of digging through menus.
       </p>
-      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/information-architecture.png"
           alt="The simplified information architecture diagram"
-          className="w-full"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
           loading="lazy"
         />
       </div>
@@ -223,7 +227,7 @@ export default function MyShakePage() {
         introduces the most important parts of the app through progressive
         disclosure.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-first-impressions.mp4"
@@ -231,7 +235,7 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[440px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -245,7 +249,7 @@ export default function MyShakePage() {
         </strong>{" "}
         — swipe right on the map, or tap the banner.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/myshake/final-solution-early-warning.mp4"
@@ -253,7 +257,7 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-[440px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -270,7 +274,7 @@ export default function MyShakePage() {
         happened near someone they cared about.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-1.mp4"
@@ -278,10 +282,10 @@ export default function MyShakePage() {
             loop
             muted
             playsInline
-            className="max-h-[400px] w-auto rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
           />
         </div>
-        <div className="flex justify-center mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             src="/videos/case-studies/myshake/final-solution-staying-connected-2.mp4"
@@ -289,7 +293,7 @@ export default function MyShakePage() {
             loop
             muted
             playsInline
-            className="max-h-[400px] w-auto rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
           />
         </div>
       </div>
@@ -305,21 +309,21 @@ export default function MyShakePage() {
         clear next steps.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-1.png"
             alt="Redesigned pre-earthquake warning alert"
-            className="w-full rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
             loading="lazy"
           />
         </div>
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/critical-alert-2.png"
             alt="Redesigned post-earthquake follow-up alert"
-            className="w-full rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
             loading="lazy"
           />
         </div>
@@ -333,31 +337,31 @@ export default function MyShakePage() {
         introduced a real sense of ownership and personalization.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-1.png"
             alt="New, more intuitive navigation"
-            className="w-full rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
             loading="lazy"
           />
         </div>
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/new-navigation-2.png"
             alt="New navigation, alternate view"
-            className="w-full rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
             loading="lazy"
           />
         </div>
       </div>
-      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/myshake/profile-page.png"
           alt="Settings reframed as a personal profile page"
-          className="w-full"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
           loading="lazy"
         />
       </div>
@@ -394,21 +398,21 @@ export default function MyShakePage() {
         immediately clear.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-banner.png"
             alt="Elevated pinned locations banner card"
-            className="w-full rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
             loading="lazy"
           />
         </div>
-        <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/case-studies/myshake/pinned-locations-detail.png"
             alt="Pinned locations detail view"
-            className="w-full rounded-lg"
+            className="max-h-full max-w-full w-auto rounded-lg object-contain"
             loading="lazy"
           />
         </div>

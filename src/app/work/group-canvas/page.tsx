@@ -33,12 +33,12 @@ export default function GroupCanvasPage() {
         messaging apps for coordination — all while trying to maintain
         their personal work.
       </p>
-      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/group-canvas/introduction-context.png"
           alt="GoodNotes, the individual note-taking app this concept extends"
-          className="w-full rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
           loading="lazy"
         />
       </div>
@@ -102,12 +102,12 @@ export default function GroupCanvasPage() {
         I synthesized the survey findings through affinity mapping, which
         surfaced four key insights that shaped everything downstream.
       </p>
-      <div className="mx-auto w-full max-w-[680px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/case-studies/group-canvas/affinity-mapping.png"
           alt="Affinity mapping synthesis of student and educator survey findings"
-          className="w-full rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
           loading="lazy"
         />
       </div>
@@ -220,7 +220,7 @@ export default function GroupCanvasPage() {
         workspace, immediately seeing their group members and the main
         canvas — establishing context from the start.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-land-workspace.mp4"
@@ -228,7 +228,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[560px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -241,7 +241,7 @@ export default function GroupCanvasPage() {
         need structure to stay on track — they can set a duration, add
         tasks, assign them to individuals or the group, then start.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-timer-tasks.mp4"
@@ -249,7 +249,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[560px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -263,7 +263,7 @@ export default function GroupCanvasPage() {
         working through ideas privately before sharing, while still
         maintaining group awareness.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-individual-tab.mp4"
@@ -271,7 +271,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[560px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -285,7 +285,7 @@ export default function GroupCanvasPage() {
         than scattered across chat threads. All members can see and
         resolve comments once they&apos;re addressed.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-comments.mp4"
@@ -293,7 +293,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[560px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -308,7 +308,7 @@ export default function GroupCanvasPage() {
         people&rdquo; — work stays organized because students synthesize
         intentionally rather than everyone editing simultaneously.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-complete-canvas.mp4"
@@ -316,7 +316,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[560px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
@@ -331,7 +331,7 @@ export default function GroupCanvasPage() {
         both needs. Teachers can use it for grading and students can
         verify contributions, without constant social pressure.
       </p>
-      <div className="flex justify-center mx-auto w-full max-w-[900px] overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
+      <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4 shadow-[var(--shadow-raised)]">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           src="/videos/case-studies/group-canvas/final-solution-contribution-toggle.mp4"
@@ -339,7 +339,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-[560px] w-auto rounded-lg"
+          className="max-h-full max-w-full w-auto rounded-lg object-contain"
         />
       </div>
 
