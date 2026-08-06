@@ -53,13 +53,15 @@ export default function Home() {
       {/* HERO — centered intro, no card. First name, memoji, last name in a
           row, with the bio beneath. Sits directly on the surface. */}
       <section className="flex flex-col items-center pt-28 pb-16 text-center sm:pt-32 sm:pb-24 md:pt-36">
-        <h1 className="t-display text-[clamp(2.75rem,11vw,4rem)] text-text-primary">
-          Bobo Khat
+        <h1 className="t-display max-w-[14ch] text-[clamp(2.5rem,11vw,4rem)] text-text-primary">
+          Bobo Khat is a Product Designer
         </h1>
-        <p className="t-subtitle mt-5 max-w-3xl text-base text-text-secondary sm:mt-6 sm:text-lg">
-          Product Designer prev @ MyShake (4M Users) – UX-First With Motion
-          and Visual Experiments – UC Berkeley – B.A. Cognitive Science
-        </p>
+        <div className="mt-5 max-w-3xl sm:mt-6">
+          <p className="t-subtitle text-base text-text-secondary sm:text-lg">
+            prev @ MyShake (4M Users) – UX-First With Motion and Visual
+            Experiments – UC Berkeley – B.A. Cognitive Science
+          </p>
+        </div>
       </section>
 
       {/* PRIMARY CASE STUDIES + THE LAB — all equal-size cells in one grid */}

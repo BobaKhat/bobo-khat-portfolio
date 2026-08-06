@@ -3,7 +3,7 @@ import "./globals.css";
 import WidgetBar from "@/components/WidgetBar";
 
 export const metadata: Metadata = {
-  title: "Bobo Khat — Product Designer",
+  title: "Bobo Khat is a Product Designer",
   description: "I design digital things people can feel.",
 };
 
