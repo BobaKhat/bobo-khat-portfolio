@@ -1,4 +1,5 @@
 import CaseStudyLayout from "@/components/CaseStudyLayout";
+import MyShakeAlert from "@/components/MyShakeAlert";
 
 export const metadata = {
   title: "MyShake — Bobo Khat",
@@ -30,17 +31,7 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video
-          src="/videos/case-studies/myshake/introduction.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
-        />
-      </div>
+      <MyShakeAlert />
 
       <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center sm:grid-cols-4">
         <div>

@@ -335,3 +335,36 @@ body {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.55; transform: scale(1.12); }
 }
+
+/* MyShakeAlert (MyShake case study) — Critical Alert interactive prototype */
+@keyframes msa-cardShake {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  10% { transform: translate(-1px, 1px) rotate(-0.5deg); }
+  20% { transform: translate(2px, -1px) rotate(0.5deg); }
+  30% { transform: translate(-1px, 2px) rotate(-0.5deg); }
+  40% { transform: translate(1px, -1px) rotate(0.5deg); }
+  50% { transform: translate(-2px, 1px) rotate(0); }
+  60% { transform: translate(1px, -2px) rotate(-0.3deg); }
+  70% { transform: translate(-1px, 1px) rotate(0.3deg); }
+  80% { transform: translate(1px, 0) rotate(0); }
+}
+.msa-shake { animation: msa-cardShake 0.3s linear infinite; }
+@keyframes msa-textVibrate {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, -2px); }
+  50% { transform: translate(2px, 2px); }
+  75% { transform: translate(-1px, 1px); }
+}
+@keyframes msa-popLeft {
+  0% { transform: translate(-100px, -50px) scale(0.5) rotateY(90deg); opacity: 0; }
+  100% { transform: translate(-220px, -50px) scale(1) rotateZ(-10deg); opacity: 1; }
+}
+@keyframes msa-popRight {
+  0% { transform: translate(100px, 200px) scale(0.5) rotateY(-90deg); opacity: 0; }
+  100% { transform: translate(220px, 200px) scale(1) rotateZ(10deg); opacity: 1; }
+}
+.msa-warn-left { animation: msa-popLeft 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) forwards; }
+.msa-warn-right { animation: msa-popRight 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) forwards; }
+.msa-warn-text { animation: msa-textVibrate 0.2s linear infinite; }
+.msa-ring circle.msa-ring-progress { transition: stroke-dashoffset 1s linear; }
+.msa-ring.msa-ring-reset circle.msa-ring-progress { transition: none; }
