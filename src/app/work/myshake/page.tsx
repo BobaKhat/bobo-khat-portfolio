@@ -31,7 +31,9 @@ export default function MyShakePage() {
         manager, conceptualizing the new architecture and co-leading
         usability testing.
       </p>
-      <MyShakeAlert />
+      <div className="w-full overflow-hidden rounded-xl bg-module p-4">
+        <MyShakeAlert />
+      </div>
 
       <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center sm:grid-cols-4">
         <div>
