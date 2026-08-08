@@ -18,23 +18,6 @@ export default function MyShakePage() {
       heroVideoRadius={15}
       next={{ label: "Group Canvas", href: "/work/group-canvas" }}
     >
-      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
-        Introduction
-      </h2>
-      <p>
-        MyShake is built in partnership with USGS and UC Berkeley&apos;s
-        Seismology Lab, delivering earthquake alerts seconds before shaking
-        begins across California, Oregon, and Washington. With 4.4 million
-        users, it&apos;s the only earthquake app that offers early warning —
-        alongside post-quake reporting and preparedness tools. I led a
-        dashboard redesign alongside four other designers and a project
-        manager, conceptualizing the new architecture and co-leading
-        usability testing.
-      </p>
-      <div className="w-full overflow-hidden rounded-xl bg-module p-4">
-        <MyShakeAlert />
-      </div>
-
       <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center sm:grid-cols-4">
         <div>
           <p className="t-stat text-2xl text-accent">4/5</p>
@@ -60,6 +43,23 @@ export default function MyShakePage() {
             Shipping — I&apos;m now sole designer on responsive + sensor work
           </p>
         </div>
+      </div>
+
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
+        Introduction
+      </h2>
+      <p>
+        MyShake is built in partnership with USGS and UC Berkeley&apos;s
+        Seismology Lab, delivering earthquake alerts seconds before shaking
+        begins across California, Oregon, and Washington. With 4.4 million
+        users, it&apos;s the only earthquake app that offers early warning —
+        alongside post-quake reporting and preparedness tools. I led a
+        dashboard redesign alongside four other designers and a project
+        manager, conceptualizing the new architecture and co-leading
+        usability testing.
+      </p>
+      <div className="w-full overflow-hidden rounded-xl bg-module p-4">
+        <MyShakeAlert />
       </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">The problem</h2>
