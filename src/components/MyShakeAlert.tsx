@@ -20,6 +20,8 @@ const RADIUS = 68;
 const CIRC = 2 * Math.PI * RADIUS;
 const PHONE_W = 393;
 const PHONE_H = 780;
+const PAD = 40; // vertical breathing room around the scaled phone
+const MAX_STAGE_H = 620; // cap the widget height so it isn't oversized
 
 const ASSET = "/images/case-studies/myshake/alert";
 
@@ -138,7 +140,9 @@ export default function MyShakeAlert() {
     const measure = () => {
       const el = stageRef.current;
       if (!el) return;
-      const next = Math.min(1, Math.max(0.55, (el.clientWidth - 16) / PHONE_W));
+      const widthScale = (el.clientWidth - 16) / PHONE_W;
+      const heightScale = (MAX_STAGE_H - PAD) / PHONE_H;
+      const next = Math.min(1, Math.max(0.5, Math.min(widthScale, heightScale)));
       setScale((prev) => (Math.abs(prev - next) > 0.005 ? next : prev));
     };
     measure();
@@ -149,8 +153,8 @@ export default function MyShakeAlert() {
   return (
     <div
       ref={stageRef}
-      className={`${poppins.variable} ${jakarta.variable} ${inter.variable} flex w-full items-center justify-center overflow-hidden rounded-xl`}
-      style={{ background: "#101010", height: Math.round(PHONE_H * scale + 48) }}
+      className={`${poppins.variable} ${jakarta.variable} ${inter.variable} flex w-full items-center justify-center overflow-hidden`}
+      style={{ height: Math.round(PHONE_H * scale + PAD) }}
     >
       <div className="relative flex items-center justify-center" style={{ transform: `scale(${scale})`, transformOrigin: "center" }}>
         {isShaking && (
