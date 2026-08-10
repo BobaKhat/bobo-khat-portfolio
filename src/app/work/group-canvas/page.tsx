@@ -26,7 +26,7 @@ export default function GroupCanvasPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Introduction
       </h2>
-      <p>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
         GoodNotes excels at individual note-taking, but when students need
         to collaborate during class, they&apos;re forced to leave their
         notes and switch to separate tools — Google Docs for synthesis,
@@ -52,6 +52,10 @@ export default function GroupCanvasPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         The problem
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        The result: too many context switches, personal work disconnected
+        from the group, and no way to see individual contributions.
+      </p>
       <p>
         In-class group work asks students to think independently,
         coordinate with peers, contribute visibly, and synthesize ideas
@@ -77,13 +81,15 @@ export default function GroupCanvasPage() {
         </li>
       </ul>
       <p>
-        The result: too many context switches, personal work disconnected
-        from the group, and no way to see individual contributions.
         Collaboration ends up feeling uneven and inefficient, even when
         students want to participate.
       </p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">Research</h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        I synthesized the survey findings through affinity mapping, which
+        surfaced four key insights that shaped everything downstream.
+      </p>
       <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center sm:grid-cols-2">
         <div>
           <p className="t-stat text-2xl text-accent">20+</p>
@@ -98,10 +104,6 @@ export default function GroupCanvasPage() {
           </p>
         </div>
       </div>
-      <p>
-        I synthesized the survey findings through affinity mapping, which
-        surfaced four key insights that shaped everything downstream.
-      </p>
       <div className="flex h-[520px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -206,7 +208,7 @@ export default function GroupCanvasPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Final solution
       </h2>
-      <p>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
         Group Canvas is a live, in-class collaborative note experience
         designed around presence, structure, and synthesis, all within the
         GoodNotes canvas.
@@ -346,7 +348,7 @@ export default function GroupCanvasPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Design decisions
       </h2>
-      <p>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
         Intentional choices were made to balance collaboration
         effectiveness with user comfort — prioritizing user agency over
         behavioral enforcement, reflecting the research finding that
@@ -373,7 +375,7 @@ export default function GroupCanvasPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Next steps
       </h2>
-      <p>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
         If taken further, I&apos;d validate this concept through classroom
         testing with 10–15 students completing real group assignments,
         including a few open questions I&apos;d want to answer:
@@ -396,7 +398,7 @@ export default function GroupCanvasPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Industry insight
       </h2>
-      <p>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
         A user researcher at GoodNotes drew a direct comparison between
         Group Canvas and their education product: their product uses a
         teacher-hierarchy model, while Group Canvas takes a peer-to-peer
@@ -407,17 +409,19 @@ export default function GroupCanvasPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Reflection
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        Moving from &ldquo;how do we get students to contribute?&rdquo; to
+        &ldquo;how do we support independent thinking within group
+        work?&rdquo; changed everything — and it taught me to design for
+        how people actually collaborate, not how I think they should.
+      </p>
       <p>
         This project reinforced that collaboration isn&apos;t just about
         connecting people — it&apos;s about designing how they work
         together. Early iterations focused on encouraging participation
         through gamification and visibility, but research revealed
         students didn&apos;t need motivation; they needed structure that
-        respected how they actually think and work. Moving from
-        &ldquo;how do we get students to contribute?&rdquo; to &ldquo;how
-        do we support independent thinking within group work?&rdquo;
-        changed everything — and it taught me to design for how people
-        actually collaborate, not how I think they should.
+        respected how they actually think and work.
       </p>
     </CaseStudyLayout>
   );

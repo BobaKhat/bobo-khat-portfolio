@@ -40,6 +40,10 @@ export default function OrionPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Quantifying vibe
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        That single translation is what makes the map feel like taste
+        instead of data.
+      </p>
       <p>
         The obvious data source was Spotify&apos;s audio features API. It no
         longer exists — Spotify deprecated it, and capped new developer
@@ -59,13 +63,16 @@ export default function OrionPage() {
       </p>
       <AssetPlaceholder note="GRAPHIC — semantic vocabulary table as a designed visual, not a screenshot: Energy → Chill / Intense · Mood → Dark / Bright · BPM → Slow / Fast · Danceability → Mellow / Groovy · Acousticness → Electronic / Acoustic" />
       <p>
-        The axes read as vibes, not measurements. That single translation
-        is what makes the map feel like taste instead of data.
+        The axes read as vibes, not measurements.
       </p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         The overplotting problem
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        The map has one non-negotiable rule: songs always occupy their true
+        positions.
+      </p>
       <p>
         The map has one non-negotiable rule:{" "}
         <strong>songs always occupy their true positions.</strong> If the
@@ -133,6 +140,12 @@ export default function OrionPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Sets as routes, not playlists
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        You wire songs together node-to-node, and the set becomes a literal
+        route across vibe space — songs are places, the chain is the path,
+        and you can see at a glance whether your set climbs steadily into
+        intensity or whiplashes across quadrants.
+      </p>
       <p>
         Exploration alone wasn&apos;t the product. DJs don&apos;t just find
         songs — they sequence them, and a sequence has a shape: where it
@@ -141,11 +154,8 @@ export default function OrionPage() {
         moment you commit a song to a list.
       </p>
       <p>
-        So set building happens <em>on the map</em>. You wire songs
-        together node-to-node, and the set becomes a literal route across
-        vibe space — songs are places, the chain is the path, and you can
-        see at a glance whether your set climbs steadily into intensity or
-        whiplashes across quadrants. Google Maps for a DJ set.
+        So set building happens <em>on the map</em>. Google Maps for a DJ
+        set.
       </p>
       <AssetPlaceholder note="VIDEO — 12s: dragging a wire from a socket, the dashed wire flashing compatibility color on target hover, latching, then two more connections forming a visible route across the map." />
       <p>
@@ -170,6 +180,10 @@ export default function OrionPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Seeing the journey
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        Build mode informs the next decision; Flow mode shows you what you
+        made.
+      </p>
       <p>
         Build mode is about decisions — every wire wears its compatibility
         color, every candidate song glows. But once a set exists, all that
@@ -185,14 +199,16 @@ export default function OrionPage() {
         moving through the map of your taste.
       </p>
       <p>
-        Two modes, two jobs. Build mode informs the next decision; Flow
-        mode shows you what you made.
+        Two modes, two jobs.
       </p>
       <AssetPlaceholder note="VIDEO — 12s: toggling Flow on, the map dimming, the strobe pulse traveling head-to-tail along the chain. This is the most cinematic capture in the case study — worth extra takes." />
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Informing, not alarming
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        The scoring wasn&apos;t wrong — the communication was.
+      </p>
       <p>
         Compatibility scoring produced my favorite failure. I implemented
         the real DJ-standard formula — Camelot wheel key relationships plus
@@ -204,9 +220,8 @@ export default function OrionPage() {
       <p>
         The tempting fix was loosening the thresholds until the map looked
         friendlier. But then &ldquo;musically accurate compatibility&rdquo;
-        would be a claim I couldn&apos;t stand behind. The scoring
-        wasn&apos;t wrong — the <em>communication</em> was. Red means
-        danger, and a weak key transition isn&apos;t danger; it&apos;s a
+        would be a claim I couldn&apos;t stand behind. Red means danger,
+        and a weak key transition isn&apos;t danger; it&apos;s a
         characteristic. DJs make distinct key changes on purpose.
       </p>
       <p>
@@ -222,6 +237,11 @@ export default function OrionPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         From eye candy to identity
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        Every song in Orion has a visual fingerprint derived from its
+        actual sound — play two songs and you&apos;re looking at two
+        different objects, not one animation with the colors swapped.
+      </p>
       <p>
         The Deck View&apos;s particle visualizer started as decoration — a
         Three.js flourish to make the playback panel feel alive. It
@@ -238,10 +258,7 @@ export default function OrionPage() {
         energy drives amplitude, mood shifts color.
       </p>
       <p>
-        The decoration became identity. Every song in Orion has a visual
-        fingerprint derived from its actual sound — play two songs and
-        you&apos;re looking at two different objects, not one animation
-        with the colors swapped.
+        The decoration became identity.
       </p>
       <AssetPlaceholder note="VIDEO — 10s: the particle field forming a pattern as a song plays." />
       <AssetPlaceholder note="IMAGE — 2×3 grid: six different songs' Chladni patterns, side by side. This is the money shot — it proves &quot;fingerprint&quot; instantly." />
@@ -249,6 +266,11 @@ export default function OrionPage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Reflection
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        The through-line is translation: valence becomes Dark/Bright,
+        uncertainty becomes jitter, a setlist becomes a route, a
+        song&apos;s audio becomes a resonance pattern.
+      </p>
       <p>
         Almost none of these problems had existing solutions to reference.
         Overplotting under a truthfulness constraint, non-destructive
@@ -257,11 +279,8 @@ export default function OrionPage() {
         be identified before they could be solved.
       </p>
       <p>
-        The through-line is translation: valence becomes Dark/Bright,
-        uncertainty becomes jitter, a setlist becomes a route, a
-        song&apos;s audio becomes a resonance pattern. Turning abstract
-        qualities into things you can see and touch is the design work I
-        want to keep doing.
+        Turning abstract qualities into things you can see and touch is
+        the design work I want to keep doing.
       </p>
     </CaseStudyLayout>
   );

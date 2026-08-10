@@ -48,12 +48,15 @@ export default function MyShakePage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Introduction
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        With 4.4 million users, it&apos;s the only earthquake app that offers
+        early warning — alongside post-quake reporting and preparedness
+        tools.
+      </p>
       <p>
         MyShake is built in partnership with USGS and UC Berkeley&apos;s
         Seismology Lab, delivering earthquake alerts seconds before shaking
-        begins across California, Oregon, and Washington. With 4.4 million
-        users, it&apos;s the only earthquake app that offers early warning —
-        alongside post-quake reporting and preparedness tools. I led a
+        begins across California, Oregon, and Washington. I led a
         dashboard redesign alongside four other designers and a project
         manager, conceptualizing the new architecture and co-leading
         usability testing.
@@ -63,6 +66,9 @@ export default function MyShakePage() {
       </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">The problem</h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        Despite having life-saving technology, MyShake was losing users.
+      </p>
       <p>
         Despite having life-saving technology, MyShake was losing users.
         There was only one access point for setting up an early warning
@@ -84,12 +90,15 @@ export default function MyShakePage() {
       </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">Research</h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        The key insight: users didn&apos;t just want faster access — they
+        wanted to feel like the app was looking out for them.
+      </p>
       <p>
-        We surveyed 30 users and analyzed two competitors. The key insight:
-        users didn&apos;t just want faster access — they wanted to feel like
-        the app was looking out for them. The competitive gap was stark,
-        too: other earthquake apps had more users and higher reviews, even
-        though MyShake was the only one offering early warning.
+        We surveyed 30 users and analyzed two competitors. The competitive
+        gap was stark, too: other earthquake apps had more users and higher
+        reviews, even though MyShake was the only one offering early
+        warning.
       </p>
       <p>
         Three needs came out of that research clearly. Users wanted alerts
@@ -115,6 +124,11 @@ export default function MyShakePage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Design process
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        I made the case that a dashboard would solve two pain points at
+        once — faster access and standing out from competitors — and the
+        team agreed to take the risk.
+      </p>
       <p>
         The team started with lo-fi sketches, exploring ways to surface key
         features — alerts and earthquake information — in something both
@@ -191,13 +205,11 @@ export default function MyShakePage() {
         </div>
       </div>
       <p>
-        I made the case that a dashboard would solve two pain points at
-        once — faster access and standing out from competitors — and the
-        team agreed to take the risk. Done right, it would transform
-        MyShake from a flat safety app into something that actually felt
-        like it cared about its users. The new information architecture
-        that followed simplified navigation so users could reach any key
-        feature within one or two taps, instead of digging through menus.
+        Done right, it would transform MyShake from a flat safety app into
+        something that actually felt like it cared about its users. The new
+        information architecture that followed simplified navigation so
+        users could reach any key feature within one or two taps, instead
+        of digging through menus.
       </p>
       <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -351,6 +363,11 @@ export default function MyShakePage() {
       </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">Validation</h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        Task success for pinned locations jumped to 100%, up from frequent
+        failures in round one, and ease of use improved to about 4.0 —
+        matching the seniors&apos; round-one ratings.
+      </p>
       <p>
         Three of us ran two rounds of usability testing across 16
         participants — young adults and seniors at the Rossmore retirement
@@ -365,10 +382,7 @@ export default function MyShakePage() {
       <p>
         For round two, with 4 young-adult participants, I added visibility
         for pinned locations on the profile screen and improved the pinned
-        location flow. Task success for pinned locations jumped to 100%, up
-        from frequent failures in round one, and ease of use improved to
-        about 4.0 — matching the seniors&apos; round-one ratings. One senior
-        participant put it simply:
+        location flow. One senior participant put it simply:
       </p>
       <blockquote className="border-l-2 border-accent pl-4 italic text-text-secondary">
         &ldquo;It is giving me immediate choices.&rdquo;
@@ -405,6 +419,10 @@ export default function MyShakePage() {
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         What I learned
       </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        The hardest part of this project wasn&apos;t designing the
+        dashboard — it was convincing the team to take the risk on it.
+      </p>
       <p>
         The hardest part of this project wasn&apos;t designing the
         dashboard — it was convincing the team to take the risk on it. I

@@ -234,6 +234,7 @@ body {
     .t-heading   section / card titles — semibold mono
     .t-stat      big accent numbers — bold mono
     .t-subtitle  supporting line under a title — medium mono
+    .t-lead      bold standout sentence under a case-study heading — bold mono
     .t-eyebrow   uppercase kicker / tag label — semibold, tracked
     .t-label     small UI text that needs a touch of weight — medium
     .t-body      running prose — regular, relaxed leading
@@ -260,6 +261,12 @@ body {
     font-family: var(--font-mono);
     font-weight: 500;
     line-height: 1.45;
+  }
+  .t-lead {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
   }
   .t-eyebrow {
     font-family: var(--font-mono);
