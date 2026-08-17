@@ -264,6 +264,41 @@ export default function OrionPage() {
       <AssetPlaceholder note="IMAGE — 2×3 grid: six different songs' Chladni patterns, side by side. This is the money shot — it proves &quot;fingerprint&quot; instantly." />
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
+        Shipping to friends first
+      </h2>
+      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
+        I built one more feature after the beta, and it wasn&apos;t on my
+        roadmap.
+      </p>
+      <p>
+        Before launching publicly I put Orion in front of friends who listen
+        to a lot of music. Flow mode landed the way I&apos;d hoped — people
+        watched the pulse travel their set and said some version of
+        &ldquo;oh, that&apos;s the shape.&rdquo; But when I asked what the
+        shape actually was, they couldn&apos;t say it. They could see the arc
+        and not describe it.
+      </p>
+      <p>
+        That gap became Journey: a short written summary of a set&apos;s
+        trajectory, generated from the same feature data the map is built on.
+        No language model — the sentences are assembled deterministically
+        from the set&apos;s energy runs, reversals, and vibe clusters, so the
+        same chain always produces the same description. A set might come back
+        as &ldquo;opens deep and atmospheric, climbs hard through the middle,
+        and lands euphoric.&rdquo; It sits as a HUD pill on the map and updates
+        the instant you rewire anything.
+      </p>
+      <p>
+        Writing it was mostly subtraction. The first version sounded like a
+        weather report — &ldquo;moderate energy, balanced mood&rdquo; —
+        accurate and completely dead. I ended up with a list of banned words
+        and a rule that every sentence had to sound like a person describing a
+        set out loud. The feature&apos;s real output isn&apos;t the text;
+        it&apos;s giving people language for something they could already feel.
+      </p>
+      <AssetPlaceholder note="IMAGE — the Journey pill open on the map with a summary visible, set chain wired behind it." />
+
+      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Reflection
       </h2>
       <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
