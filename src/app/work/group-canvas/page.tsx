@@ -230,7 +230,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto object-contain"
         />
       </div>
 
@@ -251,7 +251,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto object-contain"
         />
       </div>
 
@@ -273,7 +273,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto object-contain"
         />
       </div>
 
@@ -295,7 +295,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto object-contain"
         />
       </div>
 
@@ -318,7 +318,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto object-contain"
         />
       </div>
 
@@ -341,7 +341,7 @@ export default function GroupCanvasPage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto object-contain"
         />
       </div>
 

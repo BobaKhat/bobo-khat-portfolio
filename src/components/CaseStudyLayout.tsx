@@ -12,6 +12,12 @@ export type CaseStudyLayoutProps = {
   heroVideo?: string;
   /** Corner radius (px) for the hero video. Defaults to the standard rounded-xl (12px). */
   heroVideoRadius?: number;
+  /**
+   * Optional clip-path for the hero video, e.g. to crop out baked-in artifacts
+   * (device-frame corners, edge hairlines) from a source recording without
+   * physically cropping the file. Takes priority over heroVideoRadius when set.
+   */
+  heroVideoClipPath?: string;
   children?: React.ReactNode;
 };
 
@@ -25,10 +31,11 @@ export default function CaseStudyLayout({
   heroImage,
   heroVideo,
   heroVideoRadius,
+  heroVideoClipPath,
   children,
 }: CaseStudyLayoutProps) {
   return (
-    <main className="mx-auto w-full max-w-[1000px] flex-1 px-5 pt-20 sm:px-8 sm:pt-[84px]">
+    <main className="mx-auto w-full max-w-[1000px] flex-1 px-5 pt-10 sm:px-8 sm:pt-12">
       <div className="py-8">
         <Link
           href="/"
@@ -76,9 +83,11 @@ export default function CaseStudyLayout({
             playsInline
             className="max-h-[688px] w-auto max-w-full rounded-xl"
             style={
-              heroVideoRadius != null
-                ? { borderRadius: `${heroVideoRadius}px` }
-                : undefined
+              heroVideoClipPath != null
+                ? { clipPath: heroVideoClipPath }
+                : heroVideoRadius != null
+                  ? { borderRadius: `${heroVideoRadius}px` }
+                  : undefined
             }
           />
         </div>

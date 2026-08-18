@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import WidgetBar from "@/components/WidgetBar";
+import ConditionalWidgetBar from "@/components/ConditionalWidgetBar";
 
 export const metadata: Metadata = {
   title: "Bobo Khat is a Product Designer",
@@ -31,7 +31,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
-        <WidgetBar />
+        <ConditionalWidgetBar />
         {children}
       </body>
     </html>

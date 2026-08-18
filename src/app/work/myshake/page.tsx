@@ -15,7 +15,7 @@ export default function MyShakePage() {
       tools="Figma"
       timeline="Jan 2024 – Dec 2024"
       heroVideo="/videos/myshake.mp4"
-      heroVideoRadius={15}
+      heroVideoClipPath="inset(3px round 12px)"
       next={{ label: "Group Canvas", href: "/work/group-canvas" }}
     >
       <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center sm:grid-cols-4">
@@ -85,7 +85,7 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto rounded-xl object-contain"
         />
       </div>
 
@@ -116,7 +116,7 @@ export default function MyShakePage() {
         <img
           src="/images/case-studies/myshake/old-alert-screen.png"
           alt="The previous MyShake earthquake alert screen"
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto rounded-xl object-contain"
           loading="lazy"
         />
       </div>
@@ -139,7 +139,7 @@ export default function MyShakePage() {
         <img
           src="/images/case-studies/myshake/sketch-map-profile.png"
           alt="Team sketches exploring map and profile screens"
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto rounded-xl object-contain"
           loading="lazy"
         />
       </div>
@@ -161,7 +161,7 @@ export default function MyShakePage() {
         <img
           src="/images/case-studies/myshake/sketch-dashboard-concept.png"
           alt="Early sketch exploring a widget-based dashboard homepage"
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto rounded-xl object-contain"
           loading="lazy"
         />
       </div>
@@ -181,7 +181,7 @@ export default function MyShakePage() {
             <img
               src="/images/case-studies/myshake/option-a-refined-landing.png"
               alt="Option A — the team's refined, map-first landing page"
-              className="max-h-full max-w-full w-auto rounded-lg object-contain"
+              className="max-h-full max-w-full w-auto rounded-xl object-contain"
               loading="lazy"
             />
           </div>
@@ -195,7 +195,7 @@ export default function MyShakePage() {
             <img
               src="/images/case-studies/myshake/option-b-dashboard-landing.png"
               alt="Option B — the proposed dashboard landing page"
-              className="max-h-full max-w-full w-auto rounded-lg object-contain"
+              className="max-h-full max-w-full w-auto rounded-xl object-contain"
               loading="lazy"
             />
           </div>
@@ -216,7 +216,7 @@ export default function MyShakePage() {
         <img
           src="/images/case-studies/myshake/information-architecture.png"
           alt="The simplified information architecture diagram"
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto rounded-xl object-contain"
           loading="lazy"
         />
       </div>
@@ -240,7 +240,7 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto rounded-xl object-contain"
         />
       </div>
 
@@ -262,7 +262,8 @@ export default function MyShakePage() {
           loop
           muted
           playsInline
-          className="max-h-full max-w-full w-auto rounded-lg object-contain"
+          className="max-h-full max-w-full w-auto object-contain"
+          style={{ clipPath: "inset(0 0 0 3px round 24px)" }}
         />
       </div>
 
@@ -287,7 +288,7 @@ export default function MyShakePage() {
             loop
             muted
             playsInline
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
           />
         </div>
         <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
@@ -298,7 +299,7 @@ export default function MyShakePage() {
             loop
             muted
             playsInline
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
           />
         </div>
       </div>
@@ -319,7 +320,7 @@ export default function MyShakePage() {
           <img
             src="/images/case-studies/myshake/critical-alert-1.png"
             alt="Redesigned pre-earthquake warning alert"
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
             loading="lazy"
           />
         </div>
@@ -328,7 +329,7 @@ export default function MyShakePage() {
           <img
             src="/images/case-studies/myshake/critical-alert-2.png"
             alt="Redesigned post-earthquake follow-up alert"
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
             loading="lazy"
           />
         </div>
@@ -347,7 +348,7 @@ export default function MyShakePage() {
           <img
             src="/images/case-studies/myshake/new-navigation-1.png"
             alt="New, more intuitive navigation"
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
             loading="lazy"
           />
         </div>
@@ -356,7 +357,7 @@ export default function MyShakePage() {
           <img
             src="/images/case-studies/myshake/new-navigation-2.png"
             alt="New navigation, alternate view"
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
             loading="lazy"
           />
         </div>
@@ -401,7 +402,7 @@ export default function MyShakePage() {
           <img
             src="/images/case-studies/myshake/pinned-locations-banner.png"
             alt="Elevated pinned locations banner card"
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
             loading="lazy"
           />
         </div>
@@ -410,7 +411,7 @@ export default function MyShakePage() {
           <img
             src="/images/case-studies/myshake/pinned-locations-detail.png"
             alt="Pinned locations detail view"
-            className="max-h-full max-w-full w-auto rounded-lg object-contain"
+            className="max-h-full max-w-full w-auto rounded-xl object-contain"
             loading="lazy"
           />
         </div>
