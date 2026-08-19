@@ -65,6 +65,27 @@ export default function OrionPage() {
       <p>
         The axes read as vibes, not measurements.
       </p>
+      <p>
+        Name-based search doesn&apos;t resolve everything. On a 200-song
+        import, roughly forty tracks come back with no match — remixes,
+        very recent releases, anything with messy metadata. The honest
+        option was to plot them at a guessed position; I didn&apos;t.
+        Unresolved tracks route to their own panel and a count sits at the
+        map&apos;s edge telling you how many songs aren&apos;t shown. A
+        song is either where it belongs or it isn&apos;t on the map.
+      </p>
+      <p>
+        The deeper limit is that a model&apos;s read on a song is not the
+        last word. You will disagree with a placement — a track it calls
+        dark that you hear as bright. That disagreement doesn&apos;t break
+        the map, because every song was measured by the same model, so
+        its bias is consistent across your whole library. A track sits
+        darker than its neighbors by the same yardstick even if the
+        yardstick itself reads a few degrees off. The map isn&apos;t
+        claiming your song is objectively dark; it&apos;s claiming
+        it&apos;s darker than the ones beside it, and that relationship is
+        the thing you actually navigate by.
+      </p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         The overplotting problem
@@ -74,9 +95,8 @@ export default function OrionPage() {
         positions.
       </p>
       <p>
-        The map has one non-negotiable rule:{" "}
-        <strong>songs always occupy their true positions.</strong> If the
-        map lies about where a song lives, the entire thesis collapses.
+        If the map lies about where a song lives, the entire thesis
+        collapses.
       </p>
       <p>
         Then I loaded 150 house tracks and watched the map collapse anyway
@@ -95,7 +115,7 @@ export default function OrionPage() {
         legibility without adding fiction.
       </p>
       <p>
-        What shipped is a three-layer system, and every layer is truthful:
+        What shipped is a four-layer system, and every layer is truthful:
       </p>
       <p>
         <strong>Density-based axis scaling.</strong> Each half-axis is
@@ -120,21 +140,23 @@ export default function OrionPage() {
         features — grouped honestly, never hidden, expandable via popover.
       </p>
       <p>
-        The result on the 150-song house library: zero order violations,
-        minimum separation up from 0px to 3.8px, and no song ever
-        displaced from where it truly belongs.
-      </p>
-      <AssetPlaceholder note="IMAGE — before/after: the clustered house-library blob vs. the equalized map. Side by side." />
-      <p>
-        The final layer is interaction. Zooming in doesn&apos;t grow the
-        songs — they counter-scale, holding constant screen size while the
-        canvas spreads beneath them. Zoom becomes a control for{" "}
+        Counter-scaling on zoom. Zooming in doesn&apos;t grow the songs —
+        they hold constant screen size while the canvas spreads beneath
+        them. Without this, zoom magnifies the crowding along with
+        everything else and the separation gained at one level collapses
+        at the next. Instead zoom becomes a control for{" "}
         <em>separation</em> rather than magnification: pinch in and songs
         gain breathing room while keeping their exact positions, the same
         technique map tools use for POI markers. I found it by accident,
         testing the app at 175% browser zoom and noticing the spacing
         suddenly felt right.
       </p>
+      <p>
+        The result on the 150-song house library: zero order violations,
+        minimum separation up from 0px to 3.8px, and no song ever
+        displaced from where it truly belongs.
+      </p>
+      <AssetPlaceholder note="IMAGE — before/after: the clustered house-library blob vs. the equalized map. Side by side." />
       <AssetPlaceholder note="VIDEO — 10s: zooming into the dense cluster, nodes counter-scaling, space opening up between them, then a node morphing circle → pill → card." />
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
@@ -246,6 +268,13 @@ export default function OrionPage() {
         The Deck View&apos;s particle visualizer started as decoration — a
         Three.js flourish to make the playback panel feel alive. It
         bothered me that it meant nothing.
+      </p>
+      <p>
+        The first rebuild was a ferrofluid simulation — magnetic blobs
+        reacting to the track. It was closer, but the architecture had a
+        ceiling: peer blobs merging by proximity can only ever resolve
+        into rounder blobs. No amount of tuning was going to produce
+        structure.
       </p>
       <p>
         The answer came from physics. Chladni patterns are the geometric
