@@ -1,10 +1,52 @@
 import CaseStudyLayout from "@/components/CaseStudyLayout";
-import AssetPlaceholder from "@/components/AssetPlaceholder";
 
 export const metadata = {
   title: "Orion — Bobo Khat",
   description: "Spatial music discovery map",
 };
+
+const semanticPoles = [
+  { feature: "Energy", left: "Chill", right: "Intense" },
+  { feature: "Mood", left: "Dark", right: "Bright" },
+  { feature: "BPM", left: "Slow", right: "Fast" },
+  { feature: "Danceability", left: "Mellow", right: "Groovy" },
+  { feature: "Acousticness", left: "Electronic", right: "Acoustic" },
+];
+
+/**
+ * Each row reads as a spectrum — the feature name is the quiet API label,
+ * the two poles are the emphasis (that's the whole point: users see the
+ * poles, never the API term). Poles stay visually opposed even when they
+ * stack on narrow screens, via opposite text alignment.
+ */
+function SemanticVocabulary() {
+  return (
+    <div className="flex w-full flex-col gap-7 py-2">
+      {semanticPoles.map(({ feature, left, right }) => (
+        <div
+          key={feature}
+          className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6"
+        >
+          <span className="t-eyebrow shrink-0 text-text-secondary sm:w-40">
+            {feature}
+          </span>
+          <div className="flex flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+            <span className="t-heading text-lg text-text-primary sm:text-xl">
+              {left}
+            </span>
+            <span
+              className="hidden h-px flex-1 bg-border sm:block"
+              aria-hidden="true"
+            />
+            <span className="t-heading text-right text-lg text-text-primary sm:text-xl">
+              {right}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function OrionPage() {
   return (
@@ -61,7 +103,7 @@ export default function OrionPage() {
         &ldquo;high valence.&rdquo; So the interface never shows a single
         API term. Every feature is expressed as a pair of semantic poles:
       </p>
-      <AssetPlaceholder note="GRAPHIC — semantic vocabulary table as a designed visual, not a screenshot: Energy → Chill / Intense · Mood → Dark / Bright · BPM → Slow / Fast · Danceability → Mellow / Groovy · Acousticness → Electronic / Acoustic" />
+      <SemanticVocabulary />
       <p>
         The axes read as vibes, not measurements.
       </p>
@@ -118,27 +160,69 @@ export default function OrionPage() {
         What shipped is a four-layer system, and every layer is truthful:
       </p>
       <p>
-        <strong>Density-based axis scaling.</strong> Each half-axis is
-        histogram-equalized, so concentrated value ranges get more canvas.
-        The transformation is monotonic — order is always preserved — and
-        pinned at the quadrant boundary so the four vibe zones hold. For
-        the house library, this stretched the crowded energy 65–85 band
-        from ~1,080px to ~1,900px.
+        <strong>Density-based axis scaling.</strong> Eighty of 150 house
+        tracks had energy between 65 and 85 — a huge share of the library
+        crammed into a narrow slice of canvas, while nearly empty ranges
+        got the same space. Histogram equalization gives crowded ranges
+        more room and sparse ranges less, stretching the axis where songs
+        actually compete for space. The order never changes — a 76 is
+        still above a 75 — and the scaling is pinned at the quadrant
+        boundary so the four vibe zones hold.
       </p>
       <p>
-        <strong>Jitter as measurement uncertainty.</strong> SoundNet&apos;s
-        integer rounding hides real sub-integer differences between songs.
-        So each song gets a deterministic offset within ±0.5 — inside its
-        own integer cell, seeded by a hash of its features, identical
-        across reloads. This isn&apos;t fake positioning; it&apos;s
-        visualizing the uncertainty the data source introduced. Secondary
-        features (danceability, acousticness, BPM) blend into the offset,
-        so the separation within a cell is itself meaningful.
+        <strong>Deterministic jitter.</strong> SoundNet rounds every
+        feature to a whole number, so two songs with slightly different
+        energy both get 75 and land on the same pixel. Each song gets a
+        small offset within that rounding window — never enough to cross
+        into the next value, but enough to separate songs that would
+        otherwise stack. The offset is seeded by the song&apos;s other
+        features (danceability, BPM, acousticness), so the separation
+        within a shared value is itself meaningful, and it&apos;s
+        identical on every reload.
       </p>
       <p>
         <strong>Stack badges</strong> for songs with genuinely identical
         features — grouped honestly, never hidden, expandable via popover.
       </p>
+      <div className="flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/case-studies/orion/stack-badge.png"
+          alt="A stack badge grouping songs with identical features on the map"
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+          loading="lazy"
+        />
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/orion/stack-badge-overlap-before.png"
+              alt="Before: overlapping song cards with no grouping"
+              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
+            Before — identical songs overlap with no indication of the stack
+          </p>
+        </div>
+        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/orion/stack-badge-grouped-after.png"
+              alt="After: overlapping songs grouped into stack badges"
+              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
+            After — grouped into a stack badge, expandable via popover
+          </p>
+        </div>
+      </div>
       <p>
         Counter-scaling on zoom. Zooming in doesn&apos;t grow the songs —
         they hold constant screen size while the canvas spreads beneath
@@ -156,8 +240,47 @@ export default function OrionPage() {
         minimum separation up from 0px to 3.8px, and no song ever
         displaced from where it truly belongs.
       </p>
-      <AssetPlaceholder note="IMAGE — before/after: the clustered house-library blob vs. the equalized map. Side by side." />
-      <AssetPlaceholder note="VIDEO — 10s: zooming into the dense cluster, nodes counter-scaling, space opening up between them, then a node morphing circle → pill → card." />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/orion/overplotting-before-clustered.png"
+              alt="Before: songs clustered into a dense blob before axis equalization"
+              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
+            Before — the house library collapsed into a dense blob
+          </p>
+        </div>
+        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/orion/overplotting-after-equalized.png"
+              alt="After: songs spread legibly across the map following axis equalization"
+              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
+            After — density-based axis scaling spreads the crowded band
+          </p>
+        </div>
+      </div>
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/orion/counter-scaling-zoom.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+        />
+      </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Sets as routes, not playlists
@@ -179,7 +302,17 @@ export default function OrionPage() {
         So set building happens <em>on the map</em>. Google Maps for a DJ
         set.
       </p>
-      <AssetPlaceholder note="VIDEO — 12s: dragging a wire from a socket, the dashed wire flashing compatibility color on target hover, latching, then two more connections forming a visible route across the map." />
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/orion/wire-routing.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+        />
+      </div>
       <p>
         Wires created a design problem playlists never face: what happens
         when you cut one? A destructive delete punishes exploration — cut
@@ -223,7 +356,17 @@ export default function OrionPage() {
       <p>
         Two modes, two jobs.
       </p>
-      <AssetPlaceholder note="VIDEO — 12s: toggling Flow on, the map dimming, the strobe pulse traveling head-to-tail along the chain. This is the most cinematic capture in the case study — worth extra takes." />
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/orion/flow-toggle.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+        />
+      </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Informing, not alarming
@@ -254,7 +397,36 @@ export default function OrionPage() {
         change.&rdquo; The map went from alarming to informative without a
         single dishonest number.
       </p>
-      <AssetPlaceholder note="IMAGE — side-by-side: the same set with red wires vs. coral, plus a close-up of the compatibility card." />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="flex h-[340px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/orion/wire-color-red.png"
+              alt="A distant-key connection rendered in alarming red"
+              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
+            Red — reads as an error, not information
+          </p>
+        </div>
+        <div className="flex h-[340px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/orion/wire-color-coral.png"
+              alt="The same distant-key connection rendered in coral"
+              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">
+            Coral — same information, without the alarm
+          </p>
+        </div>
+      </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         From eye candy to identity
@@ -289,8 +461,28 @@ export default function OrionPage() {
       <p>
         The decoration became identity.
       </p>
-      <AssetPlaceholder note="VIDEO — 10s: the particle field forming a pattern as a song plays." />
-      <AssetPlaceholder note="IMAGE — 2×3 grid: six different songs' Chladni patterns, side by side. This is the money shot — it proves &quot;fingerprint&quot; instantly." />
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/orion/chladni-visualizer-intro.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+        />
+      </div>
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/orion/chladni-fingerprints.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+        />
+      </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Shipping to friends first
@@ -325,7 +517,15 @@ export default function OrionPage() {
         set out loud. The feature&apos;s real output isn&apos;t the text;
         it&apos;s giving people language for something they could already feel.
       </p>
-      <AssetPlaceholder note="IMAGE — the Journey pill open on the map with a summary visible, set chain wired behind it." />
+      <div className="flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/case-studies/orion/journey-pill.png"
+          alt="The Journey pill open with a summary of the set's emotional arc"
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+          loading="lazy"
+        />
+      </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Reflection
