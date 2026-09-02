@@ -1,5 +1,4 @@
 import CaseStudyLayout from "@/components/CaseStudyLayout";
-import AssetPlaceholder from "@/components/AssetPlaceholder";
 
 export const metadata = {
   title: "Orion — Bobo Khat",
@@ -98,7 +97,6 @@ export default function OrionPage() {
       </p>
       <SemanticVocabulary />
       <p>The axes read as vibes, not measurements.</p>
-      <AssetPlaceholder note='FIGMA FRAME — early map layout design. Caption: "Early Figma design for the map layer"' />
       <p>
         Name-based search doesn&apos;t resolve everything. On a 200-song
         import roughly forty tracks come back with no match — remixes,
@@ -216,6 +214,20 @@ export default function OrionPage() {
         with an inverse image shrink, and I adapted the idea to a 2D
         canvas.
       </p>
+      <div className="flex h-[420px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/node-zoom-states.png"
+            alt="The three node zoom states — dot, pill, and card — from the Figma spec"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
+        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          The three node states, specified before they were built.
+        </p>
+      </div>
       <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
@@ -263,7 +275,17 @@ export default function OrionPage() {
         Disconnected panel. Even deleting the head just orphans the chain
         and offers song #2 as the new anchor.
       </p>
-      <AssetPlaceholder note='VIDEO — NEW CAPTURE, ~6s. Caption: "Cutting a wire orphans the chain instead of deleting it"' />
+      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="/videos/case-studies/orion/wire-orphan.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+        />
+      </div>
       <p>
         There isn&apos;t a confirmation modal anywhere in the app, because
         no action can lose your work. The same instinct kept Deck View as
@@ -365,20 +387,35 @@ export default function OrionPage() {
         longer it sat there.
       </p>
       <p>
-        I spent a weekend rebuilding it as a ferrofluid simulation before
-        admitting it had a ceiling. Blobs merging by proximity can only
-        ever resolve into rounder blobs, and no amount of tuning was going
-        to get structure out of that.
+        I spent a weekend building it as a ferrofluid simulation. It
+        looked good in stills, but it never moved like a fluid — the
+        tendrils popped in and out like an urchin instead of flowing, and
+        it barely responded to the track underneath it.
       </p>
-      <AssetPlaceholder note='FERROFLUID — if footage exists. Caption: "Closer, but blobs only ever become rounder blobs"' />
+      <div className="flex h-[420px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/ferrofluid.webp"
+            alt="The ferrofluid visualizer, spiky tendrils rather than flowing fluid"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
+        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          It looked good in stills, but never moved like a fluid
+        </p>
+      </div>
       <p>
-        The answer came from physics. Chladni patterns are the geometric
-        figures that appear when a surface vibrates at a resonant
-        frequency, and they&apos;re different for every frequency. I
-        rebuilt the visualizer as a Chladni simulation driven by each
-        song&apos;s cached features, so every track settles into its own
-        figure. BPM drives motion, energy drives amplitude, mood shifts
-        color.
+        The fix came from a different physical system. Chladni patterns
+        are the figures that form when sand sits on a vibrating plate:
+        change the frequency, get a different figure. That&apos;s a
+        system where the sound genuinely produces the form, rather than
+        one where I&apos;m pushing shapes around and hoping they feel
+        musical. I rebuilt the visualizer as a Chladni simulation driven
+        by each song&apos;s cached features, so every track settles into
+        its own figure. BPM drives motion, energy drives amplitude, mood
+        shifts color.
       </p>
       <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
