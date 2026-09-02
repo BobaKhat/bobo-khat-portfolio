@@ -1,4 +1,5 @@
 import CaseStudyLayout from "@/components/CaseStudyLayout";
+import AssetPlaceholder from "@/components/AssetPlaceholder";
 
 export const metadata = {
   title: "Orion — Bobo Khat",
@@ -55,28 +56,23 @@ export default function OrionPage() {
       subtitle="Spatial music discovery map"
       role="Product Design · Interaction"
       tools="Figma, React, React Flow, Three.js, Claude Code"
-      timeline="2025"
+      timeline="2026"
       heroVideo="/videos/orion-homepage.mp4"
       heroVideoRadius={22}
       next={{ label: "MyShake", href: "/work/myshake" }}
     >
       <p>
-        Music tools organize by metadata — title, artist, date added. But
-        that&apos;s not how we experience music. We experience it as
-        feeling: this song is dark and driving, that one is bright and
-        weightless. As an EDM listener, I kept wanting to answer questions
-        my library couldn&apos;t:{" "}
-        <em>
-          what does my taste actually look like? Which songs live near each
-          other in vibe, not in a folder?
-        </em>
+        Music tools organize by metadata. Title, artist, date added. But
+        that&apos;s not how we experience music — we experience it as
+        feeling. This song is dark and driving, that one is bright and
+        weightless. As an EDM listener I kept wanting to answer a question
+        my library couldn&apos;t: what does my taste actually look like?
       </p>
       <p>
-        Orion maps a music library spatially. Every song is plotted on a 2D
-        canvas by its audio features — energy, mood, BPM, key — so
-        proximity means similarity. You explore your library by feeling,
-        then build DJ sets by wiring songs together into a route across
-        that space.
+        Orion maps a music library spatially. Every song sits on a 2D
+        canvas positioned by its audio features, so proximity means
+        similarity. You explore by feeling, then build DJ sets by wiring
+        songs into a route across that space.
       </p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
@@ -87,189 +83,139 @@ export default function OrionPage() {
         instead of data.
       </p>
       <p>
-        The obvious data source was Spotify&apos;s audio features API. It no
-        longer exists — Spotify deprecated it, and capped new developer
-        apps at five users, killing any public product built on their data.
-        I found a replacement in SoundNet, a name-based audio analysis API,
-        and built a caching layer so every track is analyzed exactly once.
-        A reconciliation pipeline handles the messiness of name-based
-        search: retry cascades, duration cross-checks, corroboration
-        against a second source.
+        I started building against Spotify&apos;s audio features API and
+        found out it no longer exists. Deprecated, and new developer apps
+        are capped at five users, which kills any public product built on
+        their data. I moved to SoundNet, a name-based analysis API, and
+        cached every result so a track is only ever analyzed once.
       </p>
       <p>
-        But the more important decision was one of language. SoundNet
-        returns terms like <em>valence</em> and <em>danceability</em> — API
-        vocabulary, not human vocabulary. Nobody hears a song and thinks
-        &ldquo;high valence.&rdquo; So the interface never shows a single
-        API term. Every feature is expressed as a pair of semantic poles:
+        The more interesting decision was language. SoundNet hands back
+        terms like <em>valence</em> and <em>danceability</em>, which are
+        API words, not human words. Nobody hears a song and thinks
+        &ldquo;high valence,&rdquo; so I made a rule that the interface
+        would never show a single API term.
       </p>
       <SemanticVocabulary />
-      <p>
-        The axes read as vibes, not measurements.
-      </p>
+      <p>The axes read as vibes, not measurements.</p>
+      <AssetPlaceholder note='FIGMA FRAME — early map layout design. Caption: "Early Figma design for the map layer"' />
       <p>
         Name-based search doesn&apos;t resolve everything. On a 200-song
-        import, roughly forty tracks come back with no match — remixes,
-        very recent releases, anything with messy metadata. The honest
-        option was to plot them at a guessed position; I didn&apos;t.
-        Unresolved tracks route to their own panel and a count sits at the
-        map&apos;s edge telling you how many songs aren&apos;t shown. A
-        song is either where it belongs or it isn&apos;t on the map.
-      </p>
-      <p>
-        The deeper limit is that a model&apos;s read on a song is not the
-        last word. You will disagree with a placement — a track it calls
-        dark that you hear as bright. That disagreement doesn&apos;t break
-        the map, because every song was measured by the same model, so
-        its bias is consistent across your whole library. A track sits
-        darker than its neighbors by the same yardstick even if the
-        yardstick itself reads a few degrees off. The map isn&apos;t
-        claiming your song is objectively dark; it&apos;s claiming
-        it&apos;s darker than the ones beside it, and that relationship is
-        the thing you actually navigate by.
+        import roughly forty tracks come back with no match — remixes,
+        recent releases, messy metadata. I could have plotted those at a
+        best guess and nobody would ever have caught it, but that&apos;s
+        the one thing this product can&apos;t do. They route to their own
+        panel with a count at the map&apos;s edge. A song is either where
+        it belongs or it isn&apos;t on the map.
       </p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
-        The overplotting problem
+        Making the map legible
       </h2>
       <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        The map has one non-negotiable rule: songs always occupy their true
-        positions.
+        Songs always occupy their true positions. If the map lies about
+        where a song lives, the thesis collapses.
       </p>
       <p>
-        If the map lies about where a song lives, the entire thesis
-        collapses.
+        Then I loaded 150 house tracks, expecting to finally see the shape
+        of my taste, and got a smudge.
       </p>
+      <div className="flex h-[420px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/overplotting-before-clustered.png"
+            alt="150 house tracks collapsed into a dense blob"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
+        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          150 house tracks, collapsed
+        </p>
+      </div>
       <p>
-        Then I loaded 150 house tracks and watched the map collapse anyway
-        — into a single dense blob. House music clusters: energy, mood,
-        BPM, and danceability all sit in narrow ranges, and SoundNet rounds
-        every feature to an integer, so songs with energy 75 and 76 sat
+        House music clusters by nature — energy, mood, BPM and
+        danceability all sit in narrow ranges. SoundNet also rounds every
+        feature to an integer, so two songs at 75 and 76 energy ended up
         60px apart on a 6,000px canvas with nothing to break the tie.
       </p>
       <p>
-        The standard fix is a force-directed layout — let songs push each
-        other apart until everything is legible. I rejected it
-        immediately. Force-directed layouts displace points from their
-        true positions, which is exactly the lie the product can&apos;t
-        tell. Random spread was rejected for the same reason. This
-        constraint made the problem genuinely hard: I had to add
-        legibility without adding fiction.
+        The standard fix is a force-directed layout: let the songs push
+        each other apart until everything is readable. I couldn&apos;t use
+        it. Force-directed layouts move points off their true positions,
+        which is exactly the lie the map isn&apos;t allowed to tell.
+        Random spread fails for the same reason. What I needed was
+        legibility without fiction, in three layers.
       </p>
+
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
+        Stretch the crowded ranges
+      </h3>
       <p>
-        What shipped is a four-layer system, and every layer is truthful:
+        Eighty of the 150 tracks had energy between 65 and 85, so more
+        than half the library was fighting over a fifth of the canvas
+        while empty ranges got the same space. Histogram equalization
+        gives crowded ranges more room and sparse ranges less. Order never
+        changes, and the scaling is pinned at the quadrant boundary so the
+        four vibe zones stay put.
       </p>
-      <p>
-        <strong>Density-based axis scaling.</strong> Eighty of 150 house
-        tracks had energy between 65 and 85 — a huge share of the library
-        crammed into a narrow slice of canvas, while nearly empty ranges
-        got the same space. Histogram equalization gives crowded ranges
-        more room and sparse ranges less, stretching the axis where songs
-        actually compete for space. The order never changes — a 76 is
-        still above a 75 — and the scaling is pinned at the quadrant
-        boundary so the four vibe zones hold.
-      </p>
-      <p>
-        <strong>Deterministic jitter.</strong> SoundNet rounds every
-        feature to a whole number, so two songs with slightly different
-        energy both get 75 and land on the same pixel. Each song gets a
-        small offset within that rounding window — never enough to cross
-        into the next value, but enough to separate songs that would
-        otherwise stack. The offset is seeded by the song&apos;s other
-        features (danceability, BPM, acousticness), so the separation
-        within a shared value is itself meaningful, and it&apos;s
-        identical on every reload.
-      </p>
-      <p>
-        <strong>Stack badges</strong> for songs with genuinely identical
-        features — grouped honestly, never hidden, expandable via popover.
-      </p>
-      <div className="flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/case-studies/orion/stack-badge.png"
-          alt="A stack badge grouping songs with identical features on the map"
-          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-          loading="lazy"
-        />
+      <div className="flex h-[420px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/overplotting-after-equalized.png"
+            alt="The same house library with the crowded energy band stretched"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
+        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          The same library, crowded band stretched
+        </p>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
-          <div className="flex flex-1 items-center justify-center overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/case-studies/orion/stack-badge-overlap-before.png"
-              alt="Before: overlapping song cards with no grouping"
-              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-              loading="lazy"
-            />
-          </div>
-          <p className="pt-3 text-xs text-text-secondary">
-            Before — identical songs overlap with no indication of the stack
-          </p>
-        </div>
-        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
-          <div className="flex flex-1 items-center justify-center overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/case-studies/orion/stack-badge-grouped-after.png"
-              alt="After: overlapping songs grouped into stack badges"
-              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-              loading="lazy"
-            />
-          </div>
-          <p className="pt-3 text-xs text-text-secondary">
-            After — grouped into a stack badge, expandable via popover
-          </p>
-        </div>
-      </div>
+
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
+        Separate the ties
+      </h3>
       <p>
-        Counter-scaling on zoom. Zooming in doesn&apos;t grow the songs —
-        they hold constant screen size while the canvas spreads beneath
-        them. Without this, zoom magnifies the crowding along with
-        everything else and the separation gained at one level collapses
-        at the next. Instead zoom becomes a control for{" "}
-        <em>separation</em> rather than magnification: pinch in and songs
-        gain breathing room while keeping their exact positions, the same
-        technique map tools use for POI markers. I found it by accident,
-        testing the app at 175% browser zoom and noticing the spacing
-        suddenly felt right.
+        Rounding means two genuinely different songs both land on 75, and
+        on the same pixel. Each one gets a small offset inside its
+        rounding window, never enough to cross into the next value, seeded
+        by its <em>other</em> features. Even the nudge carries
+        information, and it&apos;s identical on every reload.
       </p>
       <p>
-        The result on the 150-song house library: zero order violations,
-        minimum separation up from 0px to 3.8px, and no song ever
-        displaced from where it truly belongs.
+        Songs whose features really are identical don&apos;t get separated
+        at all. Those group into a stack badge: counted, expandable, never
+        hidden.
       </p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
-          <div className="flex flex-1 items-center justify-center overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/case-studies/orion/overplotting-before-clustered.png"
-              alt="Before: songs clustered into a dense blob before axis equalization"
-              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-              loading="lazy"
-            />
-          </div>
-          <p className="pt-3 text-xs text-text-secondary">
-            Before — the house library collapsed into a dense blob
-          </p>
+      <div className="flex h-[420px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/stack-badge.png"
+            alt="Identical songs grouped into a stack badge instead of overlapping"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
         </div>
-        <div className="flex h-[300px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
-          <div className="flex flex-1 items-center justify-center overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/case-studies/orion/overplotting-after-equalized.png"
-              alt="After: songs spread legibly across the map following axis equalization"
-              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-              loading="lazy"
-            />
-          </div>
-          <p className="pt-3 text-xs text-text-secondary">
-            After — density-based axis scaling spreads the crowded band
-          </p>
-        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          Identical songs group rather than overlap
+        </p>
       </div>
+
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
+        Make zoom a control for separation
+      </h3>
+      <p>
+        Zooming in doesn&apos;t grow the songs. They hold a constant screen
+        size while the canvas spreads beneath them, so pinching adds
+        breathing room instead of magnifying the crowding along with
+        everything else. Overtone solved this in 3D by pairing camera zoom
+        with an inverse image shrink, and I adapted the idea to a 2D
+        canvas.
+      </p>
       <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
@@ -281,25 +227,21 @@ export default function OrionPage() {
           className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
         />
       </div>
+      <p>Every song still sits exactly where its features put it.</p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
-        Sets as routes, not playlists
+        Sets as routes
       </h2>
       <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        You wire songs together node-to-node, and the set becomes a literal
-        route across vibe space — songs are places, the chain is the path,
-        and you can see at a glance whether your set climbs steadily into
-        intensity or whiplashes across quadrants.
+        Songs are places, the chain is the path, and you can see at a
+        glance whether your set climbs steadily or whiplashes across
+        quadrants.
       </p>
       <p>
-        Exploration alone wasn&apos;t the product. DJs don&apos;t just find
-        songs — they sequence them, and a sequence has a shape: where it
-        starts, how it builds, where it peaks. A playlist UI (search, add,
-        reorder rows) throws all of that spatial information away the
-        moment you commit a song to a list.
-      </p>
-      <p>
-        So set building happens <em>on the map</em>. Google Maps for a DJ
+        Exploring wasn&apos;t enough on its own. DJs don&apos;t just find
+        songs, they sequence them, and a sequence has a shape — which a
+        playlist UI throws away the moment you commit a song to a list. So
+        I moved set building onto the map itself. Google Maps for a DJ
         set.
       </p>
       <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
@@ -314,47 +256,33 @@ export default function OrionPage() {
         />
       </div>
       <p>
-        Wires created a design problem playlists never face: what happens
-        when you cut one? A destructive delete punishes exploration — cut
-        one connection mid-experiment and downstream work vanishes.
-        Instead, cutting is non-destructive: downstream songs orphan as a
-        group, dimmed with dashed borders, their internal wires intact,
-        collected in a Disconnected panel. Re-wire them back anytime. Even
-        deleting the head song just orphans the whole chain and offers
-        song #2 as the new anchor, one tap to recover. No confirmation
-        modals anywhere, because no action can lose work.
+        Wires immediately created a problem playlists never face. What
+        happens when you cut one? Deleting everything downstream punishes
+        people for experimenting, so cutting a wire orphans those songs
+        instead: dimmed, dashed, internal wires intact, collected in a
+        Disconnected panel. Even deleting the head just orphans the chain
+        and offers song #2 as the new anchor.
       </p>
+      <AssetPlaceholder note='VIDEO — NEW CAPTURE, ~6s. Caption: "Cutting a wire orphans the chain instead of deleting it"' />
       <p>
-        The same principle — never leave spatial context — shaped the Deck
-        View. I explored a dedicated playback page and killed it:
-        navigating away breaks the mental model of{" "}
-        <em>being somewhere</em> in your library. Deck View is a side
-        panel; the map stays under your feet.
+        There isn&apos;t a confirmation modal anywhere in the app, because
+        no action can lose your work. The same instinct kept Deck View as
+        a side panel rather than its own page.
       </p>
 
-      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
-        Seeing the journey
-      </h2>
-      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        Build mode informs the next decision; Flow mode shows you what you
-        made.
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
+        Two modes, two jobs
+      </h3>
+      <p>
+        Build mode is about decisions. Every wire wears its compatibility
+        color and every candidate glows. But once the set exists, all of
+        that decision-support turns into noise — you don&apos;t want to
+        evaluate the set anymore, you want to see it.
       </p>
       <p>
-        Build mode is about decisions — every wire wears its compatibility
-        color, every candidate song glows. But once a set exists, all that
-        decision-support becomes noise. You don&apos;t want to evaluate the
-        set; you want to <em>see</em> it.
-      </p>
-      <p>
-        Flow mode strips everything back. Non-chain songs fade away, wires
-        turn to dark physical cable, and a single pulse of light travels
-        from the head of the set through every song to the tail, tracing
-        the journey in order across vibe space. It&apos;s the payoff moment
-        of the whole product: the shape of your set, drawn as light,
-        moving through the map of your taste.
-      </p>
-      <p>
-        Two modes, two jobs.
+        Flow mode strips it back. Non-chain songs fade out, wires turn
+        into dark physical cable, and a single pulse of light travels head
+        to tail, tracing the journey in order across vibe space.
       </p>
       <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -369,97 +297,88 @@ export default function OrionPage() {
       </div>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
-        Informing, not alarming
+        Making it speak
       </h2>
       <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        The scoring wasn&apos;t wrong — the communication was.
+        Three times, Orion knew something true about a song and said it
+        badly.
       </p>
+
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
+        Red became coral
+      </h3>
       <p>
-        Compatibility scoring produced my favorite failure. I implemented
-        the real DJ-standard formula — Camelot wheel key relationships plus
-        BPM deltas, weakest-link rule — and wired the tiers to green,
-        amber, and red. Then I built a set and watched the map turn
-        overwhelmingly red. Accurate harmonic mixing rules are strict; most
-        song pairs genuinely are weak matches.
+        I implemented the real DJ compatibility formula — Camelot key
+        relationships plus BPM deltas, weakest-link rule — wired the tiers
+        to green, amber and red, then built my first set and looked at a
+        map that was almost entirely red.
       </p>
-      <p>
-        The tempting fix was loosening the thresholds until the map looked
-        friendlier. But then &ldquo;musically accurate compatibility&rdquo;
-        would be a claim I couldn&apos;t stand behind. Red means danger,
-        and a weak key transition isn&apos;t danger; it&apos;s a
-        characteristic. DJs make distinct key changes on purpose.
-      </p>
-      <p>
-        So the formula stayed strict and the visual language softened. Red
-        became a muted coral. The compatibility card frames each tier as a
-        description rather than a grade: a strong pair is a &ldquo;smooth
-        harmonic blend,&rdquo; a weak one a &ldquo;distinct key
-        change.&rdquo; The map went from alarming to informative without a
-        single dishonest number.
-      </p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[340px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
-          <div className="flex flex-1 items-center justify-center overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/case-studies/orion/wire-color-red.png"
-              alt="A distant-key connection rendered in alarming red"
-              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-              loading="lazy"
-            />
-          </div>
-          <p className="pt-3 text-xs text-text-secondary">
-            Red — reads as an error, not information
-          </p>
+      <div className="flex h-[340px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/wire-color-red.png"
+            alt="An early set almost entirely red under the real compatibility formula"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
         </div>
-        <div className="flex h-[340px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
-          <div className="flex flex-1 items-center justify-center overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/case-studies/orion/wire-color-coral.png"
-              alt="The same distant-key connection rendered in coral"
-              className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-              loading="lazy"
-            />
-          </div>
-          <p className="pt-3 text-xs text-text-secondary">
-            Coral — same information, without the alarm
-          </p>
+        <p className="pt-3 text-xs text-text-secondary">
+          Accurate scoring, alarming output
+        </p>
+      </div>
+      <p>
+        The scoring was right. The color was telling people they&apos;d
+        made a mistake. Red means danger, and a weak key transition
+        isn&apos;t danger, it&apos;s a characteristic — DJs make distinct
+        key changes on purpose all the time.
+      </p>
+      <p>
+        So the formula stayed exactly as strict and the visual language
+        softened instead. Red became a muted coral, and the compatibility
+        card started describing rather than grading: a strong pair is a
+        &ldquo;smooth harmonic blend,&rdquo; a weak one a &ldquo;distinct
+        key change.&rdquo;
+      </p>
+      <div className="flex h-[340px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/wire-color-coral.png"
+            alt="The same connection rendered in coral instead of red"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
         </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          Same information, without the alarm
+        </p>
       </div>
 
-      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
-        From eye candy to identity
-      </h2>
-      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        Every song in Orion has a visual fingerprint derived from its
-        actual sound — play two songs and you&apos;re looking at two
-        different objects, not one animation with the colors swapped.
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
+        The visualizer meant nothing
+      </h3>
+      <p>
+        The particle visualizer in Deck View started as decoration. Play
+        two completely different songs and you&apos;d get the same
+        animation with the colors swapped, which bothered me more the
+        longer it sat there.
       </p>
       <p>
-        The Deck View&apos;s particle visualizer started as decoration — a
-        Three.js flourish to make the playback panel feel alive. It
-        bothered me that it meant nothing.
+        I spent a weekend rebuilding it as a ferrofluid simulation before
+        admitting it had a ceiling. Blobs merging by proximity can only
+        ever resolve into rounder blobs, and no amount of tuning was going
+        to get structure out of that.
       </p>
-      <p>
-        The first rebuild was a ferrofluid simulation — magnetic blobs
-        reacting to the track. It was closer, but the architecture had a
-        ceiling: peer blobs merging by proximity can only ever resolve
-        into rounder blobs. No amount of tuning was going to produce
-        structure.
-      </p>
+      <AssetPlaceholder note='FERROFLUID — if footage exists. Caption: "Closer, but blobs only ever become rounder blobs"' />
       <p>
         The answer came from physics. Chladni patterns are the geometric
-        figures that form when a surface vibrates at a resonant frequency
-        — different frequencies, different figures. I rebuilt the
-        visualizer as a Chladni simulation driven by each song&apos;s
-        cached audio features: the features set the pattern&apos;s
-        complexity, and a hash of the track selects its specific mode, so
-        every song resolves into its own stable figure. BPM drives motion,
-        energy drives amplitude, mood shifts color.
-      </p>
-      <p>
-        The decoration became identity.
+        figures that appear when a surface vibrates at a resonant
+        frequency, and they&apos;re different for every frequency. I
+        rebuilt the visualizer as a Chladni simulation driven by each
+        song&apos;s cached features, so every track settles into its own
+        figure. BPM drives motion, energy drives amplitude, mood shifts
+        color.
       </p>
       <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -483,68 +402,63 @@ export default function OrionPage() {
           className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
         />
       </div>
+      <p>The decoration became identity.</p>
 
-      <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
-        Shipping to friends first
-      </h2>
-      <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        I built one more feature after the beta, and it wasn&apos;t on my
-        roadmap.
+      <h3 className="mt-4 t-heading text-xl text-text-primary">
+        Naming the shape
+      </h3>
+      <p>
+        I put Orion in front of friends before launching it. Flow mode
+        landed — people watched the pulse travel their set and said some
+        version of &ldquo;oh, that&apos;s the shape.&rdquo; Then I&apos;d
+        ask what the shape was, and they couldn&apos;t tell me.
       </p>
       <p>
-        Before launching publicly I put Orion in front of friends who listen
-        to a lot of music. Flow mode landed the way I&apos;d hoped — people
-        watched the pulse travel their set and said some version of
-        &ldquo;oh, that&apos;s the shape.&rdquo; But when I asked what the
-        shape actually was, they couldn&apos;t say it. They could see the arc
-        and not describe it.
+        That gap became Journey, a short written summary of a set&apos;s
+        trajectory assembled from the same feature data the map already
+        runs on. No language model involved, so the same chain always
+        produces the same sentence.
       </p>
-      <p>
-        That gap became Journey: a short written summary of a set&apos;s
-        trajectory, generated from the same feature data the map is built on.
-        No language model — the sentences are assembled deterministically
-        from the set&apos;s energy runs, reversals, and vibe clusters, so the
-        same chain always produces the same description. A set might come back
-        as &ldquo;opens deep and atmospheric, climbs hard through the middle,
-        and lands euphoric.&rdquo; It sits as a HUD pill on the map and updates
-        the instant you rewire anything.
-      </p>
-      <p>
-        Writing it was mostly subtraction. The first version sounded like a
-        weather report — &ldquo;moderate energy, balanced mood&rdquo; —
-        accurate and completely dead. I ended up with a list of banned words
-        and a rule that every sentence had to sound like a person describing a
-        set out loud. The feature&apos;s real output isn&apos;t the text;
-        it&apos;s giving people language for something they could already feel.
-      </p>
-      <div className="flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/case-studies/orion/journey-pill.png"
-          alt="The Journey pill open with a summary of the set's emotional arc"
-          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-          loading="lazy"
-        />
+      <div className="flex h-[420px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/case-studies/orion/journey-pill.png"
+            alt="The Journey pill open with a written summary of the set's arc"
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+            loading="lazy"
+          />
+        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          The set&apos;s arc, in words
+        </p>
       </div>
+      <p>
+        Writing it was mostly subtraction. My first version sounded like a
+        weather report — &ldquo;moderate energy, balanced mood&rdquo; —
+        accurate and completely dead. It took a list of banned words and
+        one rule: every sentence has to sound like a person describing a
+        set out loud.
+      </p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         Reflection
       </h2>
       <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        The through-line is translation: valence becomes Dark/Bright,
-        uncertainty becomes jitter, a setlist becomes a route, a
+        The through-line is translation. Valence becomes Dark and Bright,
+        a rounding error becomes jitter, a setlist becomes a route, a
         song&apos;s audio becomes a resonance pattern.
       </p>
       <p>
-        Almost none of these problems had existing solutions to reference.
+        Almost none of these problems had a solution I could look up.
         Overplotting under a truthfulness constraint, non-destructive
-        graph editing, honest scoring with humane communication — they
-        only exist because Orion treats music as space, and they had to
-        be identified before they could be solved.
+        graph editing, honest scoring that doesn&apos;t alarm anyone —
+        they only exist because Orion treats music as space, and each one
+        had to be found before it could be solved.
       </p>
       <p>
         Turning abstract qualities into things you can see and touch is
-        the design work I want to keep doing.
+        the work I want to keep doing.
       </p>
     </CaseStudyLayout>
   );
