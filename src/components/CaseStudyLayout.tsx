@@ -7,6 +7,9 @@ export type CaseStudyLayoutProps = {
   tools: string;
   timeline: string;
   next: { label: string; href: string };
+  /** Optional live product link, rendered under the Role/Tools/Timeline block. */
+  liveUrl?: string;
+  liveLabel?: string;
   heroImage?: string;
   /** Optional hero video path in /public. Takes priority over heroImage when set. */
   heroVideo?: string;
@@ -28,6 +31,8 @@ export default function CaseStudyLayout({
   tools,
   timeline,
   next,
+  liveUrl,
+  liveLabel,
   heroImage,
   heroVideo,
   heroVideoRadius,
@@ -49,9 +54,21 @@ export default function CaseStudyLayout({
         <h1 className="t-heading text-4xl text-text-primary md:text-5xl">
           {title}
         </h1>
-        <p className="t-subtitle mt-3 text-lg text-text-secondary md:text-xl">
-          {subtitle}
-        </p>
+        <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+          <p className="t-subtitle text-lg text-text-secondary md:text-xl">
+            {subtitle}
+          </p>
+          {liveUrl && (
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-text-primary transition-colors hover:text-accent"
+            >
+              {liveLabel ?? "Try it live →"}
+            </a>
+          )}
+        </div>
 
         <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-6 text-xs sm:grid-cols-3">
           <div>

@@ -58,6 +58,8 @@ export default function OrionPage() {
       timeline="2026"
       heroVideo="/videos/orion-homepage.mp4"
       heroVideoRadius={22}
+      liveUrl="https://orion.bobokhat.com/"
+      liveLabel="Try Orion — live demo, no account needed →"
       next={{ label: "MyShake", href: "/work/myshake" }}
     >
       <p>
@@ -417,27 +419,37 @@ export default function OrionPage() {
         its own figure. BPM drives motion, energy drives amplitude, mood
         shifts color.
       </p>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video
-          src="/videos/case-studies/orion/chladni-visualizer-intro.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-        />
+      <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            src="/videos/case-studies/orion/chladni-visualizer-intro.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+          />
+        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          A single track&apos;s pattern forming
+        </p>
       </div>
-      <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video
-          src="/videos/case-studies/orion/chladni-fingerprints.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
-        />
+      <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+        <div className="flex flex-1 items-center justify-center overflow-hidden">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            src="/videos/case-studies/orion/chladni-fingerprints.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="max-h-full max-w-full w-auto rounded-[22px] object-contain"
+          />
+        </div>
+        <p className="pt-3 text-xs text-text-secondary">
+          Different songs, different figures
+        </p>
       </div>
       <p>The decoration became identity.</p>
 
