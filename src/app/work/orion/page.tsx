@@ -56,7 +56,7 @@ export default function OrionPage() {
       role="Product Design · Interaction"
       tools="Figma, React, React Flow, Three.js, Claude Code"
       timeline="2026"
-      heroVideo="/videos/orion-homepage.mp4"
+      heroVideo="/videos/orion-hero-v2.mp4"
       heroVideoRadius={22}
       liveUrl="https://orion.bobokhat.com/"
       liveLabel="Try Orion — live demo, no account needed →"

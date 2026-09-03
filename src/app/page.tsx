@@ -12,8 +12,8 @@ const primaryProjects = [
     subtitle: "Spatial music discovery map",
     tag: "Product Design · 0 → 1 · Desktop",
     href: "/work/orion",
-    video: "/videos/orion-homepage.mp4",
-    videoRadius: 16,
+    video: "/videos/orion-hero-v2.mp4",
+    videoRadius: 22,
   },
   {
     index: "02",
