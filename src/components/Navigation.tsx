@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const external = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/bobo-khat" },
-  { label: "Gmail", href: "mailto:willimbkhat@gmail.com" },
+  { label: "Gmail", href: "mailto:williambkhat@gmail.com" },
   { label: "Resume", href: "/resume.pdf" },
 ];
 

@@ -13,16 +13,16 @@ export default function MyShakePage() {
       subtitle="From buried menus to one glanceable screen"
       role="Product Designer"
       tools="Figma"
-      timeline="Jan 2024 – Dec 2024"
+      timeline="Jan 2024 – June 2026"
       heroVideo="/videos/myshake.mp4"
       heroVideoClipPath="inset(3px round 12px)"
       next={{ label: "Group Canvas", href: "/work/group-canvas" }}
     >
       <div className="grid grid-cols-2 gap-4 rounded-2xl bg-module p-6 text-center sm:grid-cols-4">
         <div>
-          <p className="t-stat text-2xl text-accent">4/5</p>
+          <p className="t-stat text-2xl text-accent">2.0 → 4.75</p>
           <p className="mt-1 text-xs text-text-secondary">
-            Usability, tested with 16 users (up from a 2.8 App Store rating)
+            Ease of use, old design vs new — same participants, same tasks
           </p>
         </div>
         <div>
@@ -38,9 +38,9 @@ export default function MyShakePage() {
           </p>
         </div>
         <div>
-          <p className="t-stat text-2xl text-accent">2026</p>
+          <p className="t-stat text-2xl text-accent">2.5 yrs</p>
           <p className="mt-1 text-xs text-text-secondary">
-            Shipping — I&apos;m now sole designer on responsive + sensor work
+            Sole designer on responsive + sensor work through June 2026
           </p>
         </div>
       </div>
@@ -204,6 +204,16 @@ export default function MyShakePage() {
           </p>
         </div>
       </div>
+      <p>
+        Round three finally settled the argument. I asked participants
+        directly whether they&apos;d prefer a dashboard or a map-first
+        landing page, and three of four chose the dashboard. Their
+        reasoning was about hierarchy and orientation — one said the map
+        didn&apos;t tell him what he was looking at, another said
+        map-first &ldquo;doesn&apos;t highlight importance on
+        anything.&rdquo; The one who preferred map-first found the
+        dashboard had too much information.
+      </p>
       <p>
         Done right, it would transform MyShake from a flat safety app into
         something that actually felt like it cared about its users. The new
@@ -370,20 +380,22 @@ export default function MyShakePage() {
         matching the seniors&apos; round-one ratings.
       </p>
       <p>
-        Three of us ran two rounds of usability testing across 16
-        participants — young adults and seniors at the Rossmore retirement
+        Three of us ran three rounds of usability testing across 20
+        participants — young adults and seniors at the Rossmoor retirement
         community — without the tutorial, and with tasks phrased to
-        genuinely challenge users&apos; thinking. In round one, with 12
-        participants split evenly between seniors and young adults, young
-        adults averaged roughly 3.3 out of 5 for ease of use and seniors
-        averaged around 4.0. Users struggled to create pinned locations,
-        buttons were hard to see in some flows, and icons like layers and
-        filters weren&apos;t intuitive.
+        genuinely challenge users&apos; thinking. Round one, in November
+        2024, had 12 participants split evenly between seniors and young
+        adults; I co-led it with the team. Young adults averaged roughly
+        3.3 out of 5 for ease of use and seniors averaged around 4.0.
+        Users struggled to create pinned locations, buttons were hard to
+        see in some flows, and icons like layers and filters weren&apos;t
+        intuitive.
       </p>
       <p>
-        For round two, with 4 young-adult participants, I added visibility
-        for pinned locations on the profile screen and improved the pinned
-        location flow. One senior participant put it simply:
+        Round two, in December 2024, brought in 4 young-adult participants;
+        I co-led this one too. I added visibility for pinned locations on
+        the profile screen and improved the pinned location flow. One
+        senior participant put it simply:
       </p>
       <blockquote className="border-l-2 border-accent pl-4 italic text-text-secondary">
         &ldquo;It is giving me immediate choices.&rdquo;
@@ -416,6 +428,16 @@ export default function MyShakePage() {
           />
         </div>
       </div>
+      <p>
+        For a third round, I tested alone: 4 young adults, the same two
+        tasks, but this time head to head — each participant ran both the
+        old design and the new one, timed, back to back. Ease of use went
+        from 2.0 to 4.75. Overall experience went from 2.25 to 4.25. And
+        the key task — setting up an early warning — dropped from 2:47 to
+        1:38, a 41% improvement. Rounds one and two only ever tested the
+        new design on its own; round three was the first time I could say
+        the redesign was faster and preferred, not just usable.
+      </p>
 
       <h2 className="mt-8 t-heading text-2xl text-text-primary md:text-3xl">
         What I learned
@@ -427,10 +449,10 @@ export default function MyShakePage() {
       <p>
         The hardest part of this project wasn&apos;t designing the
         dashboard — it was convincing the team to take the risk on it. I
-        made the case with research, and that shifted the conversation. I&apos;m
-        currently the sole product designer on MyShake, continuing this work
-        by expanding responsive design and building new features that make
-        earthquake preparedness more accessible to everyone.
+        made the case with research, and that shifted the conversation. I
+        went on to become the sole product designer on MyShake, continuing
+        that work by expanding responsive design and building new features
+        that made earthquake preparedness more accessible to everyone.
       </p>
     </CaseStudyLayout>
   );
