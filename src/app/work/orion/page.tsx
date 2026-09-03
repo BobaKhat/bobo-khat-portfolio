@@ -494,20 +494,21 @@ export default function OrionPage() {
         Reflection
       </h2>
       <p className="t-lead text-[28px] md:text-[32px] text-text-primary">
-        The through-line is translation. Valence becomes Dark and Bright,
-        a rounding error becomes jitter, a setlist becomes a route, a
-        song&apos;s audio becomes a resonance pattern.
+        Know what the product is for, and let that decide everything else.
       </p>
       <p>
-        Almost none of these problems had a solution I could look up.
-        Overplotting under a truthfulness constraint, non-destructive
-        graph editing, honest scoring that doesn&apos;t alarm anyone —
-        they only exist because Orion treats music as space, and each one
-        had to be found before it could be solved.
+        I wanted full playback. Then a mixing feature with BPM and key
+        deltas. Then a full-page Deck View. I cut all three — not to save
+        time, but because Orion is for seeing how your songs relate to
+        each other, not for listening to them and not for mixing them.
+        Thirty seconds is plenty to recognize a track and decide where it
+        sits. Mixing belongs in Rekordbox. And the map is the product, so
+        Deck View became a side panel that keeps it under your feet.
       </p>
       <p>
-        Turning abstract qualities into things you can see and touch is
-        the work I want to keep doing.
+        Deciding what Orion wasn&apos;t for made all three calls easy.
+        Without that, every one of them would have been a reasonable
+        thing to build.
       </p>
     </CaseStudyLayout>
   );
