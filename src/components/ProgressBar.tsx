@@ -144,18 +144,6 @@ export function ProgressBar() {
     }
   }, []);
 
-  const updateGlow = useCallback((rawT: number) => {
-    const fill = fillRef.current;
-    const track = trackRef.current;
-    if (!fill || !track) return;
-    const gi = 0.15 + rawT * 0.6;
-    const gs = 8 + rawT * 25;
-    const gs2 = 20 + rawT * 40;
-    fill.style.boxShadow = `0 0 ${gs}px rgba(255,255,255,${gi}), 0 0 ${gs2}px rgba(255,255,255,${gi * 0.4}), 0 0 ${gs2 * 1.5}px rgba(255,255,255,${gi * 0.1})`;
-    const tg = 0.03 + rawT * 0.08;
-    track.style.boxShadow = `0 0 ${12 + rawT * 20}px rgba(255,255,255,${tg})`;
-  }, []);
-
   const reset = useCallback(() => {
     if (animIdRef.current) cancelAnimationFrame(animIdRef.current);
     startTimeRef.current = null;
@@ -172,11 +160,11 @@ export function ProgressBar() {
     if (fill) {
       fill.style.width = "0%";
       fill.style.transition = "none";
-      fill.style.boxShadow = "0 0 8px rgba(255,255,255,0.4), 0 0 20px rgba(255,255,255,0.15)";
+      fill.style.boxShadow = "none";
     }
-    if (track) { track.style.transition = "none"; track.style.boxShadow = "0 0 12px rgba(255,255,255,0.04)"; }
+    if (track) { track.style.transition = "none"; track.style.boxShadow = "none"; }
     if (card) {
-      card.style.boxShadow = "0 0 30px rgba(255,255,255,0.03), inset 0 0 30px rgba(255,255,255,0.01)";
+      card.style.boxShadow = "none";
       card.style.borderColor = "rgba(255,255,255,0.08)";
     }
     if (canvas) { const ctx = canvas.getContext("2d"); if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height); }
@@ -204,7 +192,6 @@ export function ProgressBar() {
       if (fill) fill.style.width = easedT * 100 + "%";
       setPercent(Math.round(easedT * 100));
       setElapsed(Math.min(elapsedMs, DURATION));
-      updateGlow(rawT);
       updateStatus(rawT);
 
       const speed = customEaseDeriv(rawT);
@@ -242,21 +229,8 @@ export function ProgressBar() {
       }
 
       const card = cardRef.current;
-      const track = trackRef.current;
-      if (fill) {
-        fill.style.transition = "none";
-        fill.style.boxShadow = `0 0 60px rgba(255,255,255,1), 0 0 100px rgba(255,255,255,0.7), 0 0 160px rgba(255,255,255,0.35), 0 0 240px rgba(255,255,255,0.12)`;
-      }
-      if (track) track.style.boxShadow = "0 0 70px rgba(255,255,255,0.3)";
-      if (card) {
-        card.style.boxShadow = "0 0 100px rgba(255,255,255,0.1), inset 0 0 50px rgba(255,255,255,0.04)";
-        card.style.borderColor = "rgba(255,255,255,0.35)";
-      }
-
-      setTimeout(() => {
-        if (fill) { fill.style.transition = "box-shadow 2s ease"; fill.style.boxShadow = `0 0 20px rgba(255,255,255,0.6), 0 0 45px rgba(255,255,255,0.2), 0 0 80px rgba(255,255,255,0.08)`; }
-        if (track) { track.style.transition = "box-shadow 2s ease"; track.style.boxShadow = "0 0 30px rgba(255,255,255,0.1)"; }
-      }, 600);
+      if (fill) fill.style.transition = "none";
+      if (card) card.style.borderColor = "rgba(255,255,255,0.35)";
 
       const postLoop = () => {
         if (ctx && canvas) {
@@ -268,7 +242,7 @@ export function ProgressBar() {
       };
       postLoop();
     },
-    [emitSparks, updateGlow, updateStatus]
+    [emitSparks, updateStatus]
   );
 
   const handleRun = () => {
@@ -301,8 +275,7 @@ export function ProgressBar() {
           flexDirection: "column",
           position: "relative",
           border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 0 30px rgba(255,255,255,0.03), inset 0 0 30px rgba(255,255,255,0.01)",
-          transition: "box-shadow 0.6s ease, border-color 0.6s ease",
+          transition: "border-color 0.6s ease",
           fontFamily: "'DM Sans', 'Inter', -apple-system, sans-serif",
           overflow: "hidden",
         }}
@@ -397,8 +370,6 @@ export function ProgressBar() {
                 background: "rgba(255,255,255,0.04)", borderRadius: 5,
                 overflow: "hidden", position: "relative",
                 border: "1px solid rgba(255,255,255,0.06)",
-                boxShadow: "0 0 12px rgba(255,255,255,0.04)",
-                transition: "box-shadow 0.3s ease",
               }}
             >
               <div
@@ -407,7 +378,6 @@ export function ProgressBar() {
                   height: "100%", borderRadius: 4,
                   background: isDone ? "rgba(52,211,153,0.9)" : "#fff",
                   width: "0%",
-                  boxShadow: "0 0 8px rgba(255,255,255,0.4), 0 0 20px rgba(255,255,255,0.15)",
                   position: "relative",
                   transition: isDone ? "background 0.6s ease" : "none",
                 }}
@@ -497,7 +467,6 @@ export function ProgressBar() {
               background: isDone ? "rgba(52,211,153,0.12)" : "#fff",
               color: isDone ? "rgba(52,211,153,0.9)" : "#000",
               border: isDone ? "1px solid rgba(52,211,153,0.2)" : "none",
-              boxShadow: isDone ? "none" : "0 0 15px rgba(255,255,255,0.08)",
               transition: "all 0.3s ease",
             }}
           >
