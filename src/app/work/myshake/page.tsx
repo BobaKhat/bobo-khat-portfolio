@@ -353,23 +353,29 @@ export default function MyShakePage() {
         introduced a real sense of ownership and personalization.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/case-studies/myshake/new-navigation-1.png"
-            alt="New, more intuitive navigation"
-            className="max-h-full max-w-full w-auto rounded-xl object-contain"
-            loading="lazy"
-          />
+        <div className="flex h-[184px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/myshake/new-navigation-1.png"
+              alt="The old navigation, before the redesign"
+              className="max-h-full max-w-full w-auto rounded-xl object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">Before</p>
         </div>
-        <div className="flex h-[160px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/case-studies/myshake/new-navigation-2.png"
-            alt="New navigation, alternate view"
-            className="max-h-full max-w-full w-auto rounded-xl object-contain"
-            loading="lazy"
-          />
+        <div className="flex h-[184px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/myshake/new-navigation-2.png"
+              alt="The new navigation, after the redesign"
+              className="max-h-full max-w-full w-auto rounded-xl object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">After</p>
         </div>
       </div>
 
@@ -409,23 +415,29 @@ export default function MyShakePage() {
         immediately clear.
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/case-studies/myshake/pinned-locations-banner.png"
-            alt="Elevated pinned locations banner card"
-            className="max-h-full max-w-full w-auto rounded-xl object-contain"
-            loading="lazy"
-          />
+        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/myshake/pinned-locations-banner.png"
+              alt="Elevated pinned locations banner card"
+              className="max-h-full max-w-full w-auto rounded-xl object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">Before</p>
         </div>
-        <div className="flex h-[560px] w-full items-center justify-center overflow-hidden rounded-xl bg-module p-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/case-studies/myshake/pinned-locations-detail.png"
-            alt="Pinned locations detail view"
-            className="max-h-full max-w-full w-auto rounded-xl object-contain"
-            loading="lazy"
-          />
+        <div className="flex h-[560px] w-full flex-col overflow-hidden rounded-xl bg-module p-4">
+          <div className="flex flex-1 items-center justify-center overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/case-studies/myshake/pinned-locations-detail.png"
+              alt="Pinned locations detail view"
+              className="max-h-full max-w-full w-auto rounded-xl object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p className="pt-3 text-xs text-text-secondary">After</p>
         </div>
       </div>
       <p>
