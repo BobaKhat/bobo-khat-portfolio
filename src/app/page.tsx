@@ -2,6 +2,7 @@ import ProjectCard from "@/components/ProjectCard";
 import MicroInteractions from "@/components/MicroInteractions";
 import LabCard from "@/components/LabCard";
 import MeetDesigner from "@/components/MeetDesigner";
+import ChladniSection from "@/components/ChladniSection";
 
 // Content per CLAUDE.md build spec. Orion, MyShake, and Group Canvas use
 // screen-recorded video on the homepage instead of static screenshots.
@@ -81,6 +82,10 @@ export default function Home() {
           {/* Tablet: own full-width row (avoids the row-span white space when
               the narrow case-study cards are too short). Desktop: row-span-2. */}
           <MicroInteractions className="md:max-[1199px]:col-span-2 min-[1200px]:row-span-2" />
+
+          {/* Directly above the Lab cluster. Its own grid row (col-span-2
+              from md up); hidden entirely on phones, see ChladniSection. */}
+          <ChladniSection />
 
           <ProjectCard
             id="lab"

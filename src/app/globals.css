@@ -375,3 +375,87 @@ body {
 .msa-warn-text { animation: msa-textVibrate 0.2s linear infinite; }
 .msa-ring circle.msa-ring-progress { transition: stroke-dashoffset 1s linear; }
 .msa-ring.msa-ring-reset circle.msa-ring-progress { transition: none; }
+
+/*
+  ─── Chladni plate (vendored, src/vendor/chladni/) ──────────────────────
+  Rendered with `unstyled`, so every control is styled from scratch here
+  using the site's own tokens/buttons rather than the vendor's default
+  monochrome pills. The engine/canvas itself is untouched — this only
+  covers .chladni-controls / -row / -tone / -mute / -math and their
+  [aria-pressed] / :disabled state, same hooks the vendor's own default
+  stylesheet targets.
+
+  The hide rule below must mirror HIDE_QUERY in ChladniSection.tsx
+  EXACTLY — that's the JS-side gate that stops the chladni/three chunk
+  from ever being requested on a phone; this is the CSS-side guarantee
+  that the section (heading + copy included) never paints there either,
+  even before/without JS.
+*/
+@media (max-width: 599px), (max-height: 599px) and (pointer: coarse) {
+  .chladni-section {
+    display: none;
+  }
+}
+
+.chladni-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.chladni-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  pointer-events: none;
+}
+.chladni-tone,
+.chladni-mute,
+.chladni-math {
+  pointer-events: auto;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--module) 85%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-raised-sm);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.chladni-tone:hover,
+.chladni-mute:hover,
+.chladni-math:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.chladni-tone[aria-pressed="true"],
+.chladni-mute[aria-pressed="true"],
+.chladni-math[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.chladni-tone:disabled,
+.chladni-mute:disabled,
+.chladni-math:disabled {
+  color: var(--text-secondary);
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--module) 60%, transparent);
+  cursor: not-allowed;
+  opacity: 0.55;
+  box-shadow: none;
+}
