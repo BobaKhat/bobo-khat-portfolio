@@ -1,4 +1,4 @@
-// GENERATED from chladni@8a67cc5 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 // —— ChladniSim: the GPGPU simulation + render pipeline (extracted verbatim from ChladniVisualizer's
 // pipeline useEffect). The whole frame loop and the WebGL teardown live here; the React wrapper owns
 // the rAF loop, the keyboard, the HUD callback, the (music) driver, ?debug/?forcefail and the 2D
@@ -516,6 +516,9 @@ export class ChladniSim {
     // them (no allocation — just .set), so a theme toggle is live. Reused references, like the fog vecs above.
     const hostBgVec = new THREE.Vector3()
     const hostInkVec = new THREE.Vector3()
+    // Host matte colours as a SIM PROPERTY (not per-frame look data), so the wrapper applies them to each
+    // (re)built sim once, up front — see setColors. null ⇒ the default look. Music never calls setColors.
+    let hostColors = null
     const FOG_CENTER_VEC = srgbVec(FOG_CENTER)
     const FOG_EDGE_VEC = srgbVec(FOG_EDGE)
     const INK_VEC = srgbVec(INK)
@@ -923,7 +926,9 @@ export class ChladniSim {
       // switches between two uniform sets: PLAIN (white fog, black ink, no haze/atmos/wisps/veil — the
       // original CSS-invert look) and ARRIVAL (the tuned fog colours + the live haze/atmos/wisp/veil knobs).
       const arrival = look.arrival
-      const colors = look.colors   // { bg:[r,g,b], ink:[r,g,b] } raw sRGB 0..1, or undefined for the default look
+      const colors = hostColors   // { bg:[r,g,b], ink:[r,g,b] } raw sRGB 0..1, or null for the default look.
+                                  // Held on the sim (setColors), NOT read from look, so it is applied the moment
+                                  // a (re)built sim is handed its props — the first rendered frame already has it.
       inkPass.uniforms.uTime.value = st.time
       if (colors) {
         // —— HOST-COLOURED MATTE. Same plain composite, but the fog is a FLAT host bg (no gradient/vignette,
@@ -1098,6 +1103,11 @@ export class ChladniSim {
       st.overlay = v
       st.overlayModeIdx = -1
     }
+
+    // Host matte colours (render only): { bg:[r,g,b], ink:[r,g,b] } raw sRGB 0..1, or null for the default
+    // look. The wrapper applies the CURRENT value to each newly-built sim (and on live change), so every mount
+    // fully colours its own sim — the render never depends on a later frame to pick the colours up.
+    this.setColors = (c) => { hostColors = c || null }
 
     // Asymmetric music-mode smoothing (K toggle; H/J tuning). Physics only — the wrapper owns the keys and
     // the live value; these just write st, which the smoothing loop reads. No effect in tone/ink mode.

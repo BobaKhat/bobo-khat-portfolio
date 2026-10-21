@@ -1,5 +1,5 @@
-// GENERATED from chladni@8a67cc5 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
-import { useCallback, useEffect, useRef, useState } from 'react'
+// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ChladniSim } from '../sim/ChladniSim.js'
 import { toneDriver } from '../sim/drivers/tone.js'
 import { createToneAudio } from '../sim/toneAudio.js'
@@ -116,13 +116,13 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
   spreadGainRef.current = spreadGain ?? DEFAULT_SPREAD_GAIN
   const dissolveDurRef = useRef(dissolveDur ?? DEFAULT_DISSOLVE_DUR)
   dissolveDurRef.current = dissolveDur ?? DEFAULT_DISSOLVE_DUR
-  // Host matte colours: parse the { bg, ink } prop to raw sRGB and mirror into a ref the frame loop reads each
-  // frame (null ⇒ the default look). Re-parse ONLY when the actual strings change — so a theme toggle is live
-  // (no remount / re-sprinkle / sim reset) but there is no per-frame parsing cost.
-  const colorsRef = useRef(null)
-  const colorsKey = colors ? `${colors.bg}|${colors.ink}` : ''
-  const colorsKeyRef = useRef(null)
-  if (colorsKeyRef.current !== colorsKey) { colorsKeyRef.current = colorsKey; colorsRef.current = parseColors(colors) }
+  // Host matte colours: parse the { bg, ink } prop to raw sRGB (null ⇒ default look). useMemo keyed on the
+  // actual strings re-parses only on a real change; mirroring into a ref (every render, idempotent) lets the
+  // mount-once build effect read the CURRENT value without a render-phase stale-check — concurrent/StrictMode
+  // safe. The sim is handed these via setColors (on build AND on change), never via per-frame look data.
+  const parsedColors = useMemo(() => parseColors(colors), [colors?.bg, colors?.ink])
+  const colorsRef = useRef(parsedColors)
+  colorsRef.current = parsedColors
   // Turn-off transition state. null when idle/driving; else a live clock the frame loop advances through its
   // phases (ring-down → spread → handoff → dissolve, per mode). `cmd` is the per-frame driver command the tick
   // computes; `look.dissolve*` for the render-only cross-fade is set alongside it. See runTransition() below.
@@ -144,12 +144,20 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
     }
     if (sim.failed) return   // onFailure already fired inside the constructor; nothing usable to keep
     simRef.current = sim
+    // Fully apply the CURRENT props to THIS sim instance, up front — so every (re)mount's sim renders correctly
+    // from its first frame, never depending on a later frame to pick up the host colours or overlay state.
+    sim.setColors(colorsRef.current)
     sim.setOverlay(mathOnRef.current)   // re-apply the "Show the math" state across a (StrictMode) rebuild
     return () => {
       simRef.current = null
       sim.dispose()
     }
   }, [])
+
+  // —— Live host-colour updates (e.g. a theme toggle) without a remount: push the new colours to the current
+  // sim. Render only — no re-sprinkle, no sim reset. On a (re)mount this also runs, but the build effect above
+  // has already applied the colours, so this is a harmless no-op re-apply then.
+  useEffect(() => { simRef.current?.setColors(parsedColors) }, [parsedColors])
 
   // —— The tone oscillator (standalone AudioContext, created lazily on the first click — never on mount). Built
   // once per mount and disposed on unmount (closes the context). Re-apply the mute state across a rebuild.
@@ -215,7 +223,7 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
 
     // A mutable per-instance look: same reference every frame (stable identity), with the render-only shimmer
     // and dissolve fields updated below. Built from the plain LOOK template so the ink/arrival settings stay.
-    const look = { ...LOOK, shimmerAmp: 0, shimmerSpeed: 0, shimmerEnv: 0, dissolveOn: 0, dissolveProgress: 0, dissolveJitter: 0, colors: null }
+    const look = { ...LOOK, shimmerAmp: 0, shimmerSpeed: 0, shimmerEnv: 0, dissolveOn: 0, dissolveProgress: 0, dissolveJitter: 0 }
     let shimmerEnv = 0   // 0..1 fade envelope: ramps toward 1 once fully idle, toward 0 otherwise
 
     // —— Advance an in-flight turn-off transition by dt: pick the phase, write tr.cmd (the driver applies it)
@@ -286,8 +294,7 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
       look.shimmerAmp = reduce ? 0 : shimmerAmpRef.current
       look.shimmerSpeed = shimmerSpeedRef.current
       look.shimmerEnv = shimmerEnv
-      look.colors = colorsRef.current   // host matte colours (null ⇒ default look); live on theme toggle
-      s.step(dt, { driver, look })
+      s.step(dt, { driver, look })   // host colours are a sim property (setColors), not per-frame look data
     }
     const startLoop = () => {
       if (raf) return

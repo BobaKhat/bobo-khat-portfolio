@@ -1,4 +1,4 @@
-// GENERATED from chladni@8a67cc5 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 // —— GPU shaders + render/look constants (extracted from ChladniVisualizer.jsx, verbatim). All the
 // GLSL for the GPGPU simulation (field, velocity, position, density), the lit-grain render, the ink
 // composite and the wisp passes, plus the constants those shaders bake in or use as uniform defaults.
