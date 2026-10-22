@@ -40,6 +40,12 @@
   --shadow-recessed: inset 5px 5px 11px rgba(0, 0, 0, 0.22),
     inset -4px -4px 8px rgba(255, 255, 255, 0.9),
     inset 1.5px 1.5px 2px rgba(0, 0, 0, 0.09);
+  /* Faint all-around inner rim, layered on top of --shadow-recessed on the
+     Chladni well only — the directional highlight/shadow above is a single
+     top-left light source (correct, matches every other module on the
+     site), so the far edge is deliberately muted; this just keeps that far
+     edge legible as an edge instead of reading flat. */
+  --well-rim: rgba(255, 255, 255, 0.35);
   /* Small-scale variants, sized down for compact widgets/buttons. */
   --shadow-raised-sm: 3px 3px 6px rgba(0, 0, 0, 0.22),
     8px 8px 15px rgba(0, 0, 0, 0.07),
@@ -79,6 +85,7 @@
   --shadow-recessed: inset 4px 4px 9px rgba(0, 0, 0, 0.5),
     inset -3px -3px 7px rgba(255, 255, 255, 0.03),
     inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+  --well-rim: rgba(255, 255, 255, 0.07);
   /* Small-scale variants, sized down for compact widgets/buttons. */
   --shadow-raised-sm: 3px 3px 7px rgba(0, 0, 0, 0.55),
     -2px -2px 5px rgba(255, 255, 255, 0.035),
@@ -397,24 +404,77 @@ body {
   }
 }
 
+/*
+  The sunken well inside the raised 15px frame (see ChladniSection.tsx):
+  same surface color + dot-grid pattern as the page background (.dot-grid),
+  not the card's bg-module — the frame reads as a window cut into the
+  surface. background-attachment:fixed pins the dot pattern to the
+  viewport, the same basis .dot-grid's own fixed full-viewport box uses for
+  its background-position:center, so the grid tiles in lockstep with the
+  real page grid behind every other module — no seam at the well's edge.
+*/
+.chladni-well {
+  background-color: var(--surface);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+  background-position: center;
+  /* --shadow-recessed's dark/light split is a single top-left light source
+     (correct — matches every other module), so the far edge is deliberately
+     muted. The extra inset 0 0 0 1px layer is a faint rim on ALL sides,
+     keeping that far edge legible instead of flat without fighting the
+     directional cue. */
+  box-shadow: var(--shadow-recessed), inset 0 0 0 1px var(--well-rim);
+}
+
+/*
+  Controls below the plate, not over it. The vendor root (.chladni-fill,
+  rendered with `unstyled`) is one div holding two children: an absolutely
+  positioned canvas host (inset: 0, no class) and .chladni-controls in normal
+  flow. Left alone, the host's inset:0 stretches it to the root's full box
+  and the controls — out-of-flow siblings aside — paint at the root's top
+  edge, on top of the canvas.
+
+  Fix, CSS-only (root/host markup is vendor, untouched):
+  - .chladni-fill gets height:auto so it's free to grow taller than its
+    square parent instead of being pinned to 100% of it.
+  - the host (first child) keeps inset:0's top/left/right stretch but swaps
+    bottom:0 for aspect-ratio:1, so the rendered plate itself stays exactly
+    square no matter how tall the root grows.
+  - .chladni-controls gets margin-top:100%. Percentage margin-top resolves
+    against the CONTAINING BLOCK'S WIDTH (the old padding-bottom aspect-ratio
+    hack) — since the root's width is the plate's width, 100% is exactly the
+    square's height, so this reserves the plate's footprint and pushes
+    controls to sit right below it. The root's overflow:hidden (vendor-set)
+    creates a new block formatting context, so that margin is counted
+    towards the root's own auto height instead of collapsing away.
+*/
+.chladni-fill {
+  height: auto !important;
+}
+.chladni-fill > div:first-child {
+  bottom: auto !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
 .chladni-controls {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 16px;
-  z-index: 2;
+  position: static;
+  margin-top: 100%;
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  pointer-events: none;
+  /* Visual-only shift: transform doesn't participate in layout, so this
+     moves the buttons up without changing .chladni-well's auto height —
+     the bottom frame/section stays exactly where it was. */
+  transform: translateY(-15px);
 }
 .chladni-row {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
-  pointer-events: none;
 }
 .chladni-tone,
 .chladni-mute,
@@ -425,36 +485,30 @@ body {
   font-size: 0.8125rem;
   line-height: 1;
   color: var(--text-primary);
-  background: color-mix(in srgb, var(--module) 85%, transparent);
-  border: 1px solid var(--border);
+  background: var(--module);
   border-radius: 999px;
   padding: 8px 14px;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   box-shadow: var(--shadow-raised-sm);
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 .chladni-tone:hover,
 .chladni-mute:hover,
 .chladni-math:hover:not(:disabled) {
   background: var(--accent);
   color: #fff;
-  border-color: var(--accent);
 }
 .chladni-tone[aria-pressed="true"],
 .chladni-mute[aria-pressed="true"],
 .chladni-math[aria-pressed="true"] {
   background: var(--accent);
   color: #fff;
-  border-color: var(--accent);
 }
 .chladni-tone:disabled,
 .chladni-mute:disabled,
 .chladni-math:disabled {
   color: var(--text-secondary);
-  border-color: var(--border);
-  background: color-mix(in srgb, var(--module) 60%, transparent);
+  background: var(--module);
   cursor: not-allowed;
   opacity: 0.55;
   box-shadow: none;

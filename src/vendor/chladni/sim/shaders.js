@@ -1,4 +1,4 @@
-// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@edc09cf (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 // —— GPU shaders + render/look constants (extracted from ChladniVisualizer.jsx, verbatim). All the
 // GLSL for the GPGPU simulation (field, velocity, position, density), the lit-grain render, the ink
 // composite and the wisp passes, plus the constants those shaders bake in or use as uniform defaults.
@@ -140,6 +140,12 @@ const InkShader = {
     uVeilAmt:   { value: VEIL_AMT },         // max coverage of the front fog veil (see FOG VEIL); , and . step it
     uVeilOn:    { value: 0 },                // 0/1 — V toggle; 0 makes the veil term vanish exactly
     uAtmosOn:   { value: 0 },                // 0/1 — Arrival (L) gate for the bottom-darken; 0 keeps plain fog flat
+    uTransparent: { value: 0 },              // 0/1 — TRUE-TRANSPARENT mode: output premultiplied uInk with alpha =
+                                             // coverage (sand+bloom) × a radial edge mask, so the host surface shows through
+    uGlowFloor: { value: 0 },                // transparent only: subtract this from coverage (cuts the bloom's wide
+                                             // low-level tail to EXACTLY 0 in empty space so the glow hugs the sand)
+    uGlowGamma: { value: 1 },                // transparent only: falloff power on the floored coverage (>1 tightens)
+    uSand: { value: null },                  // transparent only: pre-bloom scene (set per-sim); a dummy otherwise
   },
   vertexShader: /* glsl */`
     varying vec2 vUv;
@@ -152,7 +158,12 @@ const InkShader = {
     precision highp float;
     varying vec2 vUv;
     uniform sampler2D tDiffuse;
-    uniform float uAspect, uTime, uInkGain, uInkGamma, uHazeAmp, uWispOpacity, uWispOn, uVeilAmt, uVeilOn, uAtmos, uAtmosOn;
+    uniform sampler2D uSand;    // transparent only: the PRE-BLOOM scene (grains, linear), so the aura (bloom) can be
+                               // separated from the sand's own coverage and shaped alone. Dummy when not transparent.
+    uniform float uAspect, uTime, uInkGain, uInkGamma, uHazeAmp, uWispOpacity, uWispOn, uVeilAmt, uVeilOn, uAtmos, uAtmosOn, uTransparent, uGlowFloor, uGlowGamma;
+
+    // Linear → sRGB (so the pre-bloom linear sand lands in the same encoded domain as tDiffuse's combined coverage).
+    float lin2srgb(float c) { return c <= 0.0031308 ? c * 12.92 : 1.055 * pow(c, 1.0 / 2.4) - 0.055; }
     uniform vec3 uFogCenter, uFogEdge, uInk;
     uniform vec2 uLightPos;
     uniform sampler2D uWisp;
@@ -237,6 +248,33 @@ const InkShader = {
       vec2 veilDrift = vec2(-0.03, 0.04) * uTime;                    // ~2× the haze speed, different direction
       float veil = uVeilAmt * uVeilOn * smoothstep(0.35, 0.85, fbm(vp + veilDrift));
       vec3 outColor = mix(inkResult, fog, veil);
+
+      if (uTransparent > 0.5) {
+        // —— TRUE-TRANSPARENT output. No fog: the alpha IS the ink coverage (sand + bloom/aura), so the host
+        // surface shows through everywhere the sand isn't. A radial edge mask (aspect-corrected, normalised to
+        // the NEAREST border so it holds for any canvas aspect) fades alpha to EXACTLY 0 before the border — the
+        // whole frame, glow included, so there is never a hard rectangular edge. Premultiplied (rgb = ink·α).
+        // SAND vs AURA. ink is the COMBINED coverage (sand + bloom). The pre-bloom sand (uSand, linear) gives the
+        // sand's OWN coverage — untouched. The glow floor/gamma shape ONLY the aura (combined − sand = the bloom),
+        // cutting its wide low tail to EXACTLY 0 in empty space without thinning real sand or weakening the glow:
+        //   alpha = clamp(sandCoverage + shapedAura).
+        float combined = clamp(ink, 0.0, 1.0);
+        // The pre-bloom sand luma is a clean "is there real sand here" signal: high on the figure, 0 in the
+        // bloom-only space (the aura is added after). A mask off it splits the combined coverage into the sand's
+        // own coverage (kept whole — matte-like, incl. its on-sand bloom) and the off-sand aura (floor-shaped).
+        float sandRaw = lin2srgb(clamp(dot(texture2D(uSand, vUv).rgb, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0));
+        float sandMask = smoothstep(0.06, 0.25, sandRaw);
+        float sandCov = combined * sandMask;                     // untouched
+        float aura = combined * (1.0 - sandMask);                // bloom where there is no sand
+        float shapedAura = pow(max(0.0, aura - uGlowFloor) / max(1e-4, 1.0 - uGlowFloor), uGlowGamma);
+
+        vec2 p = (vUv - 0.5) * 2.0 * vec2(uAspect, 1.0);         // half-height units; |p|=1 at the top/bottom border
+        float r = length(p) / min(uAspect, 1.0);                 // ⇒ r ≥ 1 at the nearest border, any aspect
+        float edge = 1.0 - smoothstep(0.90, 0.98, r);            // safety net; 0 at the border (glow fix already cuts the tail)
+        float a = clamp(sandCov + shapedAura, 0.0, 1.0) * edge;
+        gl_FragColor = vec4(uInk * a, a);
+        return;
+      }
 
       gl_FragColor = vec4(outColor, 1.0);
     }

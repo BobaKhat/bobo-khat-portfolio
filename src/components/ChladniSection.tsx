@@ -32,17 +32,15 @@ const ChladniTones = dynamic(
 );
 
 type Status = "pending" | "ready" | "unsupported" | "failed";
-type PlateColors = { bg: string; ink: string };
+type PlateColors = { ink: string };
 
-// Read the exact resolved values of the two tokens the plate needs to match
-// its host card: --module (the card surface it sits on) and --text-primary
-// (ink). Both live on :root / :root[data-theme="dark"] — reading them here
-// rather than hardcoding the hex values means this never drifts from
-// globals.css, in light or dark.
+// Read the exact resolved value of --text-primary (ink). No bg is read or
+// passed — colors={{ ink }} with bg omitted selects the vendor's
+// TRUE-TRANSPARENT mode, so the plate composites straight onto the card
+// surface behind it instead of painting its own background.
 function readPlateColors(): PlateColors {
   const style = getComputedStyle(document.documentElement);
   return {
-    bg: style.getPropertyValue("--module").trim(),
     ink: style.getPropertyValue("--text-primary").trim(),
   };
 }
@@ -125,32 +123,37 @@ export default function ChladniSection() {
   return (
     <section
       ref={sectionRef}
-      className="chladni-section relative flex flex-col overflow-hidden rounded-3xl bg-module p-5 shadow-[var(--shadow-raised)] sm:p-6 md:col-span-2"
+      className="chladni-section relative overflow-hidden rounded-3xl bg-module p-[45px] shadow-[var(--shadow-raised)] md:col-span-2"
     >
-      <div className="flex items-center gap-2.5">
-        <span
-          className="h-2 w-2 shrink-0 rounded-full bg-accent"
-          aria-hidden="true"
-        />
-        <span className="t-heading text-2xl text-text-primary sm:text-3xl">
-          Chladni Plate
-        </span>
-      </div>
-      <p className="t-subtitle mt-2 text-sm text-text-secondary">
-        Sound finding its shape — the same physics behind Orion&apos;s
-        track visualizer. Tap a tone.
-      </p>
+      {/* Raised 15px frame (above) around a sunken well showing the page's
+          own surface + dot-grid texture, not the card color — a deliberate
+          one-off: nothing else on the site is framed this way. */}
+      <div className="chladni-well relative flex flex-col overflow-hidden rounded-2xl p-5 sm:p-6">
+        <div className="flex items-center gap-2.5">
+          <span
+            className="h-2 w-2 shrink-0 rounded-full bg-accent"
+            aria-hidden="true"
+          />
+          <span className="t-heading text-2xl text-text-primary sm:text-3xl">
+            Chladni Plate
+          </span>
+        </div>
+        <p className="t-subtitle mt-2 text-sm text-text-secondary">
+          Sound finding its shape — the same physics behind Orion&apos;s
+          track visualizer. Tap a tone.
+        </p>
 
-      <div className="mx-auto mt-5 aspect-square w-full max-w-[640px]">
-        <div className="h-full w-full overflow-hidden rounded-2xl">
-          {status === "ready" && (
-            <ChladniTones
-              unstyled
-              className="chladni-fill"
-              colors={colors ?? undefined}
-              onFailure={() => setStatus("failed")}
-            />
-          )}
+        <div className="mx-auto mt-5 w-full max-w-[640px]">
+          <div className="w-full overflow-hidden rounded-2xl">
+            {status === "ready" && (
+              <ChladniTones
+                unstyled
+                className="chladni-fill"
+                colors={colors ?? undefined}
+                onFailure={() => setStatus("failed")}
+              />
+            )}
+          </div>
         </div>
       </div>
     </section>

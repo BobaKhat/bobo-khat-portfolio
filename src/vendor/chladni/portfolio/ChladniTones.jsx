@@ -1,4 +1,4 @@
-// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@edc09cf (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ChladniSim } from '../sim/ChladniSim.js'
 import { toneDriver } from '../sim/drivers/tone.js'
@@ -25,6 +25,15 @@ export const DEFAULT_SHIMMER_AMP = 0.006    // LOCKED
 export const DEFAULT_SHIMMER_SPEED = 0.8    // LOCKED
 const SHIMMER_FADE_IN = 0.5    // seconds, 0→1 on entering idle
 const SHIMMER_FADE_OUT = 0.3   // seconds, 1→0 when a tone starts
+
+// —— GLOW_REACH (transparent mode only). The bloom leaves a wide low-level coverage tail that, as alpha, reads
+// as a lit disc. GLOW_REACH ∈ [0,1] shapes it: the composite subtracts a floor and applies a falloff power so
+// empty space goes to EXACTLY 0 and the glow hugs the sand. 0 = tightest (glow clings to the sand); 1 = the raw
+// bloom (no cut). The default cuts the measured tail to 0 while keeping the bright near-arm glow. The floor/
+// gamma are derived here and fed to the shader. ?portfolio-preview tunes GLOW_REACH live (keys 3 / 4).
+export const DEFAULT_GLOW_REACH = 0.45   // the HIGHEST value (most glow) where empty space is still exactly 0
+const glowFloorFor = (reach) => (1 - reach) * 0.45    // reach 0.45 → floor 0.2475
+const glowGammaFor = (reach) => 1 + (1 - reach) * 1.3 // reach 0.45 → gamma 1.715
 
 // —— TONE-OFF TRANSITION. Three modes cycled on the preview page (D); default HYBRID.
 //
@@ -69,18 +78,21 @@ function cssToSRGB(str) {
   return [d[0] / 255, d[1] / 255, d[2] / 255]
 }
 
-// Parse a { bg, ink } colours prop into { bg:[r,g,b], ink:[r,g,b] } (raw sRGB) for the engine, or null (default
-// look) when the prop is absent or unparseable. Called only when the prop changes — cheap.
+// Parse a colours prop into { bg:[r,g,b]|null, ink:[r,g,b] } raw sRGB for the engine, or null (default look).
+// ink is required; bg is OPTIONAL — a missing bg (colors={{ ink }}) selects TRUE-TRANSPARENT mode (bg null), so
+// the plate composites onto the host surface; bg present keeps the MATTE mode. Called only when the prop changes.
 function parseColors(colors) {
-  if (!colors || !colors.bg || !colors.ink) return null
-  const bg = cssToSRGB(colors.bg), ink = cssToSRGB(colors.ink)
-  return bg && ink ? { bg, ink } : null
+  if (!colors || !colors.ink) return null
+  const ink = cssToSRGB(colors.ink)
+  if (!ink) return null
+  const bg = colors.bg ? cssToSRGB(colors.bg) : null
+  return { bg, ink }
 }
 
 // WebGL availability probe, re-exported so a parent can branch before mounting (rule 8).
 export { canRunChladni } from '../sim/ChladniSim.js'
 
-export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turnoffMode = 'hybrid', spreadDur, spreadGain, dissolveDur, unstyled = false, className, colors }) {
+export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turnoffMode = 'hybrid', spreadDur, spreadGain, dissolveDur, unstyled = false, className, colors, glowReach }) {
   const hostRef = useRef(null)
   const simRef = useRef(null)
   const audioRef = useRef(null)
@@ -108,6 +120,8 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
   shimmerAmpRef.current = shimmerAmp ?? DEFAULT_SHIMMER_AMP
   const shimmerSpeedRef = useRef(shimmerSpeed ?? DEFAULT_SHIMMER_SPEED)
   shimmerSpeedRef.current = shimmerSpeed ?? DEFAULT_SHIMMER_SPEED
+  const glowReachRef = useRef(glowReach ?? DEFAULT_GLOW_REACH)
+  glowReachRef.current = glowReach ?? DEFAULT_GLOW_REACH
   const turnoffModeRef = useRef(turnoffMode)
   turnoffModeRef.current = turnoffMode
   const spreadDurRef = useRef(spreadDur ?? DEFAULT_SPREAD_DUR)
@@ -123,6 +137,10 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
   const parsedColors = useMemo(() => parseColors(colors), [colors?.bg, colors?.ink])
   const colorsRef = useRef(parsedColors)
   colorsRef.current = parsedColors
+  // TRUE-TRANSPARENT when colours are given with ink but no bg. This picks the renderer's alpha mode, so it is a
+  // CONSTRUCTION choice — the build effect keys on it and rebuilds the sim when it flips (a mode switch, not an
+  // ink change). An ink change WITHIN a mode never rebuilds (it is a setColors). null/matte ⇒ false.
+  const transparent = !!(parsedColors && !parsedColors.bg)
   // Turn-off transition state. null when idle/driving; else a live clock the frame loop advances through its
   // phases (ring-down → spread → handoff → dissolve, per mode). `cmd` is the per-frame driver command the tick
   // computes; `look.dissolve*` for the render-only cross-fade is set alongside it. See runTransition() below.
@@ -131,12 +149,14 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
   // —— Build the engine once per mount. ChladniSim owns its own canvas, ResizeObserver and WebGL teardown; a
   // construction failure (renderer create / shader compile / context loss) is reported via its onFailure, which
   // we forward to the prop so the parent can show a fallback. A hard synchronous throw is caught here too.
+  // Keyed on `transparent`: a mode switch (matte/default ⇄ transparent) needs a NEW renderer (alpha true/false),
+  // so the sim is rebuilt then — a mode switch, not an ink change. Within a mode, ink changes never land here.
   useEffect(() => {
     const host = hostRef.current
     if (!host) return
     let sim
     try {
-      sim = new ChladniSim(host, { onFailure: (fl) => onFailureRef.current?.(fl) })
+      sim = new ChladniSim(host, { onFailure: (fl) => onFailureRef.current?.(fl), transparent })
     } catch (e) {
       console.error('[ChladniTones] ChladniSim construction threw:', e)
       onFailureRef.current?.({ reason: 'construct-throw', detail: String(e?.message || e) })
@@ -152,7 +172,7 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
       simRef.current = null
       sim.dispose()
     }
-  }, [])
+  }, [transparent])
 
   // —— Live host-colour updates (e.g. a theme toggle) without a remount: push the new colours to the current
   // sim. Render only — no re-sprinkle, no sim reset. On a (re)mount this also runs, but the build effect above
@@ -294,6 +314,9 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
       look.shimmerAmp = reduce ? 0 : shimmerAmpRef.current
       look.shimmerSpeed = shimmerSpeedRef.current
       look.shimmerEnv = shimmerEnv
+      const reach = glowReachRef.current           // transparent-mode glow shaping (ignored by other modes)
+      look.glowFloor = glowFloorFor(reach)
+      look.glowGamma = glowGammaFor(reach)
       s.step(dt, { driver, look })   // host colours are a sim property (setColors), not per-frame look data
     }
     const startLoop = () => {
@@ -414,7 +437,7 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
   }, [])
 
   return (
-    <div className={className} style={ROOT_STYLE}>
+    <div className={className} style={transparent ? ROOT_STYLE_TRANSPARENT : ROOT_STYLE}>
       {/* Default control styling: ONE low-specificity :where() block (see CONTROL_CSS). Omitted entirely when
           `unstyled`, so a host styles the stable class names from scratch. It is global by class name — that is
           the point: hosts target .chladni-controls / -tone / -mute / -math and the [aria-pressed] / :disabled
@@ -472,6 +495,9 @@ export default function ChladniTones({ onFailure, shimmerAmp, shimmerSpeed, turn
 // —— Root + canvas-host layout. This is sim/layout, NOT controls, so it stays inline (the component is a
 // drop-in that fills its parent; the white backdrop is the plate's). Control styling lives in CONTROL_CSS.
 const ROOT_STYLE = { position: 'relative', width: '100%', height: '100%', background: '#fff', overflow: 'hidden' }
+// TRUE-TRANSPARENT: no background on the root (nor on the host div / canvas — see HOST_STYLE / ChladniSim),
+// so the host surface shows straight through the premultiplied-alpha canvas with no visible box.
+const ROOT_STYLE_TRANSPARENT = { position: 'relative', width: '100%', height: '100%', background: 'transparent', overflow: 'hidden' }
 const HOST_STYLE = { position: 'absolute', inset: 0 }
 
 // —— DEFAULT CONTROL STYLING (one plain CSS block, injected via <style> unless `unstyled`). Every selector is

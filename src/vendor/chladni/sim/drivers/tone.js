@@ -1,4 +1,4 @@
-// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@edc09cf (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 // —— TONE DRIVER (extracted verbatim from the tone branch of ChladniVisualizer's frame loop). When a
 // tone button is active (black-and-white mode only), each mode is weighted by the steady-state forced
 // response of a damped oscillator at its eigenfrequency (TONE_Q), normalised to sum 1, and fed straight

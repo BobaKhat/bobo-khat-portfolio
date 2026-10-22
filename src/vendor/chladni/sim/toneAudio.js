@@ -1,4 +1,4 @@
-// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@edc09cf (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 // —— Tone-button sine audio, standalone (owns its own AudioContext). This mirrors the behaviour of the
 // tone oscillator in App.jsx — a quiet sine (gain TONE_VOL) through a gain node the mute toggle controls,
 // with the AudioContext created/resumed only from a user gesture — extracted so ChladniTones can ring the

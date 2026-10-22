@@ -1,4 +1,4 @@
-// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@edc09cf (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 // —— ChladniSim: the GPGPU simulation + render pipeline (extracted verbatim from ChladniVisualizer's
 // pipeline useEffect). The whole frame loop and the WebGL teardown live here; the React wrapper owns
 // the rAF loop, the keyboard, the HUD callback, the (music) driver, ?debug/?forcefail and the 2D
@@ -13,6 +13,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
+import { SavePass } from 'three/addons/postprocessing/SavePass.js'
 import {
   TEX, PARTICLE_COUNT, SPAWN_R, DENSITY_TEX, FIELD_R, MODES, MODE_COUNT,
   SMOOTH_TAU, RELEASE_TAU, RELEASE_ON, DRIVE_TAU, DIST_FLOOR, besselJ, besselI, nodalLineSegments,
@@ -83,12 +84,16 @@ export function canRunChladni() {
 export { probeWebGL }
 
 export class ChladniSim {
-  constructor(host, { onFailure, stats = false } = {}) {
+  constructor(host, { onFailure, stats = false, transparent = false } = {}) {
     let renderer
     try {
       renderer = new THREE.WebGLRenderer({
         antialias: true,
-        alpha: false,
+        // alpha:true ONLY in true-transparent mode (the host surface shows through); premultipliedAlpha is
+        // three's default and what the transparent composite outputs. Default/matte/music keep alpha:false,
+        // so their drawing buffer is opaque and byte-identical to before.
+        alpha: transparent,
+        premultipliedAlpha: true,
         // 'default' (not 'high-performance'): on dual-GPU MacBooks high-performance forces the discrete
         // GPU, whose layer can render black on the actual screen with some macOS/driver/browser combos (and
         // which OS screen-capture also tends to miss). Integrated-GPU output is more reliable on both counts.
@@ -113,7 +118,7 @@ export class ChladniSim {
     // pull every grain in the catalogue down (a 0.78 grain lands near 0.6, and the sand reads muddy)
     // to solve a problem only the loud end has. OutputPass still runs, for the sRGB conversion.
     renderer.toneMapping = THREE.NoToneMapping
-    renderer.setClearColor(BG, 1)
+    renderer.setClearColor(transparent ? 0x000000 : BG, transparent ? 0 : 1)
 
     // Simulation textures must be renderable AND filterable-as-data. Full float is the target;
     // half float is the fallback on GPUs without EXT_color_buffer_float (positions stay within ±2
@@ -495,6 +500,12 @@ export class ChladniSim {
     const composer = new EffectComposer(renderer)
     composer.setPixelRatio(pr)
     composer.addPass(new RenderPass(scene, camera))
+    // TRANSPARENT mode only: capture the PRE-BLOOM scene (grains, no aura) so the ink composite can separate the
+    // sand's own coverage from the bloom and shape only the aura. SavePass has needsSwap=false — it copies the
+    // RenderPass output to its own target and leaves the chain untouched, so bloom/output/ink are unaffected and
+    // the non-transparent pipeline is byte-identical (SavePass is simply never added there).
+    let savePass = null
+    if (transparent) { savePass = new SavePass(); composer.addPass(savePass) }
     const bloom = new UnrealBloomPass(
       new THREE.Vector2(256, 256), BLOOM_STRENGTH, BLOOM_RADIUS, BLOOM_THRESHOLD,
     )
@@ -505,6 +516,11 @@ export class ChladniSim {
     // the frame loop). If the FPS guard sheds bloom it only disables the BLOOM pass, so the frame still runs
     // RenderPass → OutputPass → ink and the picture stays black-on-white (just without the glow aura).
     const inkPass = new ShaderPass(InkShader)
+    // uSand = the captured pre-bloom scene in transparent mode; a 1×1 dummy otherwise (the shader only samples it
+    // in the transparent branch, which never runs for a non-transparent sim, but the sampler must bind something).
+    const dummySandTex = new THREE.DataTexture(new Uint8Array([0, 0, 0, 255]), 1, 1, THREE.RGBAFormat)
+    dummySandTex.needsUpdate = true
+    inkPass.uniforms.uSand.value = savePass ? savePass.renderTarget.texture : dummySandTex
     composer.addPass(inkPass)
 
     // The two ink settings L toggles between. Precomputed so the frame loop only swaps uniform references.
@@ -930,13 +946,21 @@ export class ChladniSim {
                                   // Held on the sim (setColors), NOT read from look, so it is applied the moment
                                   // a (re)built sim is handed its props — the first rendered frame already has it.
       inkPass.uniforms.uTime.value = st.time
-      if (colors) {
-        // —— HOST-COLOURED MATTE. Same plain composite, but the fog is a FLAT host bg (no gradient/vignette,
-        // so no box edge) and the ink is the host's sand colour: out = mix(bg, ink, coverage). coverage comes
-        // from the scene luma exactly as in plain, and the scene is cleared to BLACK below so an empty pixel
-        // has coverage 0 → it resolves to EXACTLY bg (the matte, indistinguishable from the host surface). The
-        // bloom aura rides the same mix (it is extra coverage in the scene), so a light ink on a dark bg glows
-        // lighter, a dark ink on a light bg darkens — never an invisible wrong-way halo.
+      inkPass.uniforms.uTransparent.value = transparent ? 1 : 0
+      if (colors && transparent) {
+        // —— TRUE-TRANSPARENT. No fog/bg: the ink composite outputs premultiplied uInk with alpha = coverage ×
+        // edge mask (see the shader). The host surface shows through. Coverage is the scene luma exactly as in
+        // the matte path, so the scene is still cleared to BLACK below (empty ⇒ coverage 0 ⇒ alpha 0).
+        hostInkVec.set(colors.ink[0], colors.ink[1], colors.ink[2])
+        inkPass.uniforms.uInk.value = hostInkVec
+        inkPass.uniforms.uInkGamma.value = 1.0
+        inkPass.uniforms.uHazeAmp.value = 0.0
+        inkPass.uniforms.uAtmos.value = 0.0
+        inkPass.uniforms.uAtmosOn.value = 0
+        inkPass.uniforms.uVeilOn.value = 0
+      } else if (colors) {
+        // —— HOST-COLOURED MATTE. Flat host bg (no gradient/vignette → no box edge) + host ink:
+        // out = mix(bg, ink, coverage); empty ⇒ coverage 0 ⇒ exactly bg. Bloom rides the same mix.
         hostBgVec.set(colors.bg[0], colors.bg[1], colors.bg[2])
         hostInkVec.set(colors.ink[0], colors.ink[1], colors.ink[2])
         inkPass.uniforms.uFogCenter.value = hostBgVec
@@ -958,10 +982,16 @@ export class ChladniSim {
         inkPass.uniforms.uVeilOn.value = (arrival && look.veil) ? 1 : 0
       }
       inkPass.uniforms.uVeilAmt.value = look.veilAmt
+      // Transparent-only glow shaping (ignored by the non-transparent branch): cut the bloom's low-level tail to
+      // 0 so the glow hugs the sand. From look each frame (GLOW_REACH is live-tunable). 0/1 defaults leave the
+      // transparent branch's coverage unchanged, so a sim never given these is unaffected.
+      inkPass.uniforms.uGlowFloor.value = look.glowFloor || 0
+      inkPass.uniforms.uGlowGamma.value = look.glowGamma || 1
 
-      // Scene backdrop for the RenderPass: the host-matte path clears to BLACK (so an empty pixel's coverage is
-      // exactly 0 and the composite resolves it to exactly bg); the default look keeps the near-black panel BG.
-      renderer.setClearColor(colors ? 0x000000 : BG, 1)
+      // Scene backdrop for the RenderPass: BLACK for any host-colour path (so an empty pixel's coverage is
+      // exactly 0 → exactly bg in matte, alpha 0 in transparent); the default look keeps the near-black panel BG.
+      // Alpha 0 only in transparent mode, so the drawing buffer's empty pixels are fully transparent.
+      renderer.setClearColor(colors ? 0x000000 : BG, transparent ? 0 : 1)
 
       // Always through the composer: the ink pass must run in BOTH modes, so there is no raw-renderer path.
       // When the FPS guard has shed bloom, that pass is disabled (not removed), so the composer still does
@@ -1180,6 +1210,8 @@ export class ChladniSim {
       wispBlurMat.dispose()
       bloom.dispose()
       inkPass.dispose()   // composer.dispose() doesn't dispose its passes
+      savePass?.dispose()
+      dummySandTex.dispose()
       overlayGeo.dispose()
       overlayMat.dispose()
       composer.dispose()

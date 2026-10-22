@@ -13,7 +13,9 @@ declare module "@/vendor/chladni/portfolio/ChladniTones.jsx" {
   }
 
   export interface ChladniColors {
-    bg: string;
+    // bg omitted (colors={{ ink }}) selects TRUE-TRANSPARENT mode — no
+    // background on the root, host div, or canvas.
+    bg?: string;
     ink: string;
   }
 
@@ -28,6 +30,7 @@ declare module "@/vendor/chladni/portfolio/ChladniTones.jsx" {
     unstyled?: boolean;
     className?: string;
     colors?: ChladniColors;
+    glowReach?: number;
   }
 
   const ChladniTones: ComponentType<ChladniTonesProps>;

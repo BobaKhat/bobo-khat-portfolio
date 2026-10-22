@@ -1,4 +1,4 @@
-// GENERATED from chladni@1151010 (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
+// GENERATED from chladni@edc09cf (v5-portfolio). Do not edit here. Edit in ~/Desktop/chladni and re-sync.
 // —— Plate eigenmode physics (extracted from ChladniVisualizer.jsx, verbatim). The free-edge
 // circular-plate eigensolver, the solved mode table, the Bessel helpers for the nodal-line
 // overlay, and the driving/selection/tone tuning constants. Pure JS — no THREE, no DOM.
