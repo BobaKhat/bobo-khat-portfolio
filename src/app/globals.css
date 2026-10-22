@@ -462,7 +462,13 @@ body {
   margin-top: 100%;
   padding-top: 5px;
   display: flex;
-  flex-direction: column;
+  /* Row + wrap, not column: combined with .chladni-row below being
+     display:contents, this flattens BOTH vendor rows (tone presets, then
+     mute/math) into one single flex flow — so mute lands right after the
+     last tone button instead of on its own row underneath. */
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 8px;
   /* Visual-only shift: transform doesn't participate in layout, so this
@@ -470,11 +476,20 @@ body {
      the bottom frame/section stays exactly where it was. */
   transform: translateY(-15px);
 }
+/*
+  Vendor markup (not edited — see src/vendor/chladni/) nests tone presets and
+  mute/math in two separate .chladni-row divs under .chladni-controls.
+  display:contents drops the row's own box, lifting its buttons to become
+  direct flex items of .chladni-controls instead — flattening both rows into
+  the single flex-wrap row set up there. .chladni-math is hidden outright
+  (removed per design, not just visually de-emphasized); as a hidden flex
+  item it takes no space and needs no ordering.
+*/
 .chladni-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: contents;
+}
+.chladni-math {
+  display: none;
 }
 .chladni-tone,
 .chladni-mute,
