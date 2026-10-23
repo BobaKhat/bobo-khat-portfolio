@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import ArrowGlyph from "./ArrowGlyph";
 import { SpotlightOverlay, SpotlightCaption } from "./Spotlight";
+import { useKeyReleaseReveal } from "@/hooks/useKeyReleaseReveal";
 
 export type ProjectCardProps = {
   index: string;
@@ -22,6 +23,9 @@ export type ProjectCardProps = {
   videoClipTop?: number;
   size?: "large" | "small";
   id?: string;
+  /** Opt this card into the scroll-triggered "key release" reveal
+   *  (pressed → raised, with a status LED). Homepage case studies only. */
+  reveal?: boolean;
 };
 
 export default function ProjectCard({
@@ -37,9 +41,14 @@ export default function ProjectCard({
   videoClipTop,
   size = "large",
   id,
+  reveal = false,
 }: ProjectCardProps) {
   const isExternal = href.startsWith("http");
   const [arrowHover, setArrowHover] = useState(false);
+
+  // Scroll-triggered key-release reveal. The ref is only attached to the card
+  // when `reveal` is set, so other cards are untouched.
+  const revealRef = useKeyReleaseReveal<HTMLDivElement>(reveal);
 
   // Hover-to-play for `hoverVideo`: play on card enter, reset on leave.
   const hoverVideoRef = useRef<HTMLVideoElement>(null);
@@ -66,7 +75,17 @@ export default function ProjectCard({
     <>
       <SpotlightOverlay active={arrowHover} />
 
-      <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-5 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1 sm:p-6">
+      <div
+        ref={reveal ? revealRef : undefined}
+        className={`relative z-[1] flex flex-col rounded-3xl bg-module p-5 transition-transform duration-300 group-hover:-translate-y-1 sm:p-6 ${
+          reveal
+            ? "reveal-card"
+            : "overflow-hidden shadow-[var(--shadow-raised)]"
+        }`}
+      >
+        {/* Status LED — lit by the reveal, decorative-but-functional corner
+            indicator. Absolutely positioned, so it never shifts layout. */}
+        {reveal && <span aria-hidden="true" className="reveal-led" />}
         <div className="flex items-start gap-3 sm:gap-4">
           <div className="min-w-0">
             <h3

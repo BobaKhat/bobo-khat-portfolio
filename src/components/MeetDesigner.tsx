@@ -1,3 +1,7 @@
+"use client";
+
+import { useKeyReleaseReveal } from "@/hooks/useKeyReleaseReveal";
+
 /*
   Self-contained "Meet the Designer" card. Bio + portrait migrated from Figma
   (node 0-8). On desktop it sits to the right of the Product Advertisement card;
@@ -6,10 +10,14 @@
   case-study ProjectCard so the divider lines up with the other cards.
 */
 export default function MeetDesigner({ className = "" }: { className?: string }) {
+  const revealRef = useKeyReleaseReveal<HTMLDivElement>();
   return (
     <div
-      className={`relative flex flex-col overflow-hidden rounded-3xl bg-module p-5 shadow-[var(--shadow-raised)] sm:p-6 ${className}`}
+      ref={revealRef}
+      className={`reveal-card relative flex flex-col rounded-3xl bg-module p-5 sm:p-6 ${className}`}
     >
+      {/* Key-release status LED */}
+      <span aria-hidden="true" className="reveal-led" />
       {/* Header matches ProjectCard's title + subtitle so the divider aligns */}
       <div className="flex items-start gap-3 sm:gap-4">
         <div className="min-w-0">

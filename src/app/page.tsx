@@ -55,7 +55,7 @@ export default function Home() {
           row, with the bio beneath. Sits directly on the surface. */}
       <section className="flex flex-col items-center pt-28 pb-16 text-center sm:pt-32 sm:pb-24 md:pt-36">
         <h1 className="t-display max-w-[14ch] text-[clamp(2.5rem,11vw,4rem)] text-text-primary">
-          Bobo Khat is a Product Designer
+          Bobo Khat is a Product Designer and Builder
         </h1>
         <div className="mt-5 max-w-3xl sm:mt-6">
           <p className="t-subtitle text-base text-text-secondary sm:text-lg">
@@ -76,7 +76,7 @@ export default function Home() {
         */}
         <div className="grid grid-cols-1 gap-5 sm:gap-7 md:grid-flow-row-dense md:grid-cols-2">
           {primaryProjects.map((p) => (
-            <ProjectCard key={p.index} size="large" {...p} />
+            <ProjectCard key={p.index} size="large" {...p} reveal />
           ))}
 
           {/* Tablet: own full-width row (avoids the row-span white space when
@@ -96,6 +96,7 @@ export default function Home() {
             image="/images/lab/polaris-landing.jpg"
             hoverVideo="/videos/polaris-hover.mp4"
             size="large"
+            reveal
           />
 
           <LabCard previews={visualExperimentsPreview} />
@@ -107,6 +108,7 @@ export default function Home() {
             href="/lab/product-advertisement"
             image="/images/lab/product-ad/phone-1.png"
             size="large"
+            reveal
           />
 
           {/* Tablet (md–1199): full-width row at the bottom. Desktop: sits

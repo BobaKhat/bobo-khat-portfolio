@@ -8,6 +8,7 @@ import { AppDock } from "./AppDock";
 import { LiquidBlob } from "./LiquidBlob";
 import ArrowGlyph from "./ArrowGlyph";
 import { SpotlightOverlay, SpotlightCaption } from "./Spotlight";
+import { useKeyReleaseReveal } from "@/hooks/useKeyReleaseReveal";
 
 const MOCEANVAULT_URL = "https://moceanvault.vercel.app/";
 
@@ -103,6 +104,12 @@ export default function MicroInteractions({
   const [hovered, setHovered] = useState<string | null>(null);
   const anyHover = hovered !== null;
 
+  // Each of the three panels is its own neomorphic card, so each gets the
+  // key-release reveal.
+  const playRef = useKeyReleaseReveal<HTMLDivElement>();
+  const dockRef = useKeyReleaseReveal<HTMLDivElement>();
+  const blobRef = useKeyReleaseReveal<HTMLDivElement>();
+
   // Which buried demo is currently raised. Sticky state (not CSS :hover) so a
   // card stays up while you use it — it only drops when you leave the stage.
   const [playActive, setPlayActive] = useState<number | null>(null);
@@ -156,11 +163,11 @@ export default function MicroInteractions({
   ];
 
   const cellClass =
-    "relative rounded-2xl bg-module px-4 py-2.5 transition-shadow duration-300";
+    "reveal-card relative rounded-2xl bg-module px-4 py-2.5 transition-shadow duration-300";
+  // Base raised shadow now lives on the reveal-card pseudo-element; this inline
+  // shadow is just the orange hover glow layered on top (none at rest).
   const cellStyle = {
-    boxShadow: anyHover
-      ? "var(--shadow-raised), 0 0 24px rgba(232, 93, 44, 0.35)"
-      : "var(--shadow-raised)",
+    boxShadow: anyHover ? "0 0 24px rgba(232, 93, 44, 0.35)" : "none",
   };
 
   return (
@@ -179,23 +186,23 @@ export default function MicroInteractions({
             sticky JS state (not CSS :hover) so it stays up while you use it,
             dropping only when you leave the stage. */}
         <div
-          className="relative flex flex-none flex-col overflow-hidden rounded-3xl bg-module p-5 transition-shadow duration-300 sm:p-6"
+          ref={playRef}
+          className="reveal-card relative flex flex-none flex-col rounded-3xl bg-module p-5 transition-shadow duration-300 sm:p-6"
           // container-type lets .play-stage scale to THIS card's width (see
           // the @container rule in globals.css), fixing the fixed-size demos
           // overflowing the narrow Microinteractions column at tablet width.
           style={{ ...cellStyle, containerType: "inline-size" }}
         >
+          {/* Key-release status LED */}
+          <span aria-hidden="true" className="reveal-led" />
           {/* min-h + items-start so this header matches the taller ProjectCard
               header (whose arrow sits in a tag+arrow column), keeping the
               divider level with the case-study cards. */}
           <div className="flex min-h-[74px] flex-wrap items-start justify-between gap-x-6 gap-y-4">
             <div>
-              <div className="flex items-center gap-2.5">
-                <span className="h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                <span className="t-heading text-2xl text-text-primary sm:text-3xl">
-                  Microinteractions
-                </span>
-              </div>
+              <span className="block t-heading text-2xl text-text-primary sm:text-3xl">
+                Microinteractions
+              </span>
               <a
                 href={MOCEANVAULT_URL}
                 target="_blank"
@@ -245,9 +252,12 @@ export default function MicroInteractions({
         </div>
 
         <div
-          className={`flex flex-none items-center justify-center overflow-hidden ${cellClass}`}
+          ref={dockRef}
+          className={`flex flex-none items-center justify-center ${cellClass}`}
           style={cellStyle}
         >
+          {/* Key-release status LED — top-left, consistent with every card. */}
+          <span aria-hidden="true" className="reveal-led" />
           <MicroArrow
             id="dock"
             label="App Dock"
@@ -269,9 +279,12 @@ export default function MicroInteractions({
             The min-height keeps it presentable when the column stands alone on
             mobile. The canvas sizes to this box via its ResizeObserver. */}
         <div
-          className="relative flex min-h-[240px] flex-1 flex-col rounded-2xl bg-module transition-shadow duration-300 sm:min-h-[300px]"
+          ref={blobRef}
+          className="reveal-card relative flex min-h-[240px] flex-1 flex-col rounded-2xl bg-module transition-shadow duration-300 sm:min-h-[300px]"
           style={{ ...cellStyle, padding: 20 }}
         >
+          {/* Key-release status LED — top-left, consistent with every card. */}
+          <span aria-hidden="true" className="reveal-led" />
           <MicroArrow
             id="blob"
             label="Neural Network"

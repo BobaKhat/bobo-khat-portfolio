@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { useKeyReleaseReveal } from "@/hooks/useKeyReleaseReveal";
 
 /*
   Loads the vendored Chladni plate (src/vendor/chladni/) lazily, desktop/
@@ -31,6 +32,9 @@ const ChladniTones = dynamic(
   { ssr: false, loading: () => null },
 );
 
+// Vendored tone presets — must match the labels the plate's own buttons render.
+const TONES = ["244 Hz", "410 Hz", "1527 Hz", "1752 Hz", "3846 Hz"];
+
 type Status = "pending" | "ready" | "unsupported" | "failed";
 type PlateColors = { ink: string };
 
@@ -47,10 +51,41 @@ function readPlateColors(): PlateColors {
 
 export default function ChladniSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  // The outer frame is a neomorphic card, so it gets the key-release reveal.
+  // Merge the reveal ref with sectionRef (used for the lazy-load gate below)
+  // since both need the same <section> element.
+  const revealRef = useKeyReleaseReveal<HTMLElement>();
+  const setSectionRef = useCallback(
+    (node: HTMLElement | null) => {
+      sectionRef.current = node;
+      revealRef.current = node;
+    },
+    [revealRef],
+  );
   const [eligible, setEligible] = useState(false);
   const [nearViewport, setNearViewport] = useState(false);
   const [status, setStatus] = useState<Status>("pending");
   const [colors, setColors] = useState<PlateColors | null>(null);
+
+  // Hz tone presets (stable vendored config). We render our own buttons so they
+  // can sit beside the plaque, and proxy clicks to the real (visually hidden)
+  // vendor controls inside .chladni-controls, which drive the plate.
+  const [activeTone, setActiveTone] = useState<string | null>(null);
+  const [muted, setMuted] = useState(false);
+  const selectTone = (label: string) => {
+    sectionRef.current
+      ?.querySelectorAll<HTMLButtonElement>(".chladni-controls .chladni-tone")
+      .forEach((b) => {
+        if (b.textContent?.trim() === label) b.click();
+      });
+    setActiveTone(label);
+  };
+  const toggleMute = () => {
+    sectionRef.current
+      ?.querySelector<HTMLButtonElement>(".chladni-controls .chladni-mute")
+      ?.click();
+    setMuted((m) => !m);
+  };
 
   // Theme-aware colors: read once on mount, then re-read every time the
   // toggle flips <html data-theme="...">. Cheap (no chladni/three code
@@ -122,29 +157,56 @@ export default function ChladniSection() {
 
   return (
     <section
-      ref={sectionRef}
-      className="chladni-section relative overflow-hidden rounded-3xl bg-module p-[45px] shadow-[var(--shadow-raised)] md:col-span-2"
+      ref={setSectionRef}
+      className="chladni-section reveal-card reveal-card--no-scale relative rounded-3xl bg-module p-[45px] md:col-span-2"
     >
+      {/* Key-release status LED */}
+      <span aria-hidden="true" className="reveal-led" />
       {/* Raised 15px frame (above) around a sunken well showing the page's
           own surface + dot-grid texture, not the card color — a deliberate
           one-off: nothing else on the site is framed this way. */}
-      <div className="chladni-well relative flex flex-col overflow-hidden rounded-2xl p-5 sm:p-6">
-        <div className="flex items-center gap-2.5">
-          <span
-            className="h-2 w-2 shrink-0 rounded-full bg-accent"
-            aria-hidden="true"
-          />
-          <span className="t-heading text-2xl text-text-primary sm:text-3xl">
+      <div className="chladni-well relative flex flex-col items-center rounded-2xl p-5 sm:p-6">
+        {/* Heading plaque — centered at the top, text centered */}
+        <div className="rounded-2xl bg-module px-5 py-4 text-center shadow-[var(--shadow-raised)] sm:px-6 sm:py-5">
+          <span className="block t-heading text-2xl text-text-primary sm:text-3xl">
             Chladni Plate
           </span>
+          <p className="t-subtitle mt-2 text-sm text-text-secondary">
+            Sound finding its shape — the same physics behind Orion&apos;s
+            track visualizer. Tap a tone.
+          </p>
         </div>
-        <p className="t-subtitle mt-2 text-sm text-text-secondary">
-          Sound finding its shape — the same physics behind Orion&apos;s
-          track visualizer. Tap a tone.
-        </p>
 
-        <div className="mx-auto mt-5 w-full max-w-[640px]">
-          <div className="w-full overflow-hidden rounded-2xl">
+        {/* Hz buttons — centered below the plaque. Our own buttons (reusing the
+            vendor button styles) that proxy clicks to the hidden vendor
+            controls. */}
+        {status === "ready" && (
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+            {TONES.map((t) => (
+              <button
+                key={t}
+                type="button"
+                className="chladni-tone"
+                aria-pressed={activeTone === t}
+                onClick={() => selectTone(t)}
+              >
+                {t}
+              </button>
+            ))}
+            <button
+              type="button"
+              className="chladni-mute"
+              aria-pressed={muted}
+              onClick={toggleMute}
+            >
+              Mute
+            </button>
+          </div>
+        )}
+
+        {/* Plate — centered, self-sizing square (globals.css fills the host). */}
+        <div className="mt-6 w-full max-w-[640px]">
+          <div className="aspect-square w-full overflow-hidden rounded-2xl">
             {status === "ready" && (
               <ChladniTones
                 unstyled

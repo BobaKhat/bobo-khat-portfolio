@@ -35,6 +35,15 @@
     -6px -6px 15px rgba(255, 255, 255, 0.95),
     inset 2px 2px 3px rgba(255, 255, 255, 1),
     inset -2px -2px 4px rgba(0, 0, 0, 0.07);
+  /* Momentary "lifted higher" raised shadow — the key-release reveal pushes
+     the ::after shadow here at the peak of the bounce, then settles back to
+     --shadow-raised. Only the outer drop grows (bigger offset + blur, a touch
+     darker); the inset bevel rim is unchanged. Same top-left light source. */
+  --shadow-raised-overshoot: 6.5px 6.5px 13px rgba(0, 0, 0, 0.24),
+    17px 17px 34px rgba(0, 0, 0, 0.095),
+    -7px -7px 17px rgba(255, 255, 255, 0.95),
+    inset 2px 2px 3px rgba(255, 255, 255, 1),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.07);
   /* Recessed wells: the toggle track — deep top-left inner shadow, bright
      bottom-right light return, and a tight lip at the top-left edge. */
   --shadow-recessed: inset 5px 5px 11px rgba(0, 0, 0, 0.22),
@@ -80,6 +89,11 @@
   */
   --shadow-raised: 6px 6px 14px rgba(0, 0, 0, 0.55),
     -4px -4px 10px rgba(255, 255, 255, 0.035),
+    inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.12),
+    inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.4);
+  /* Overshoot colorway (see light-mode note above): deeper, farther drop. */
+  --shadow-raised-overshoot: 7.5px 7.5px 17px rgba(0, 0, 0, 0.58),
+    -5px -5px 12px rgba(255, 255, 255, 0.038),
     inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.12),
     inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.4);
   --shadow-recessed: inset 4px 4px 9px rgba(0, 0, 0, 0.5),
@@ -295,6 +309,147 @@ body {
 }
 
 /*
+  ─── Key-release reveal (every neomorphic card on the landing page) ─────
+  A Teenage-Engineering "key popping back up" reveal. Any module that opts in
+  gets the .reveal-card class + a status LED, wired to useKeyReleaseReveal
+  (which sets the data-revealed attribute this CSS keys off). It replays each
+  time the card scrolls back into view.
+
+  Shadows are NOT animated in place — box-shadow repaints every frame. The
+  resting raised shadow lives on ::after and the pressed inset shadow on
+  ::before, both absolutely positioned at inset:0, inheriting the card's
+  radius, pointer-events:none. They sit at z-index -1 (BELOW card content)
+  inside the card's own stacking context (isolation: isolate), so they never
+  disturb absolutely-positioned children. Only their opacity is animated, plus
+  a transform on the card itself. The LED is a separate 7px dot (absolute, so
+  it never shifts layout).
+
+  States, via the single data-revealed attribute:
+    (absent)  SSR / no-JS / reduced-motion → final raised state, LED on.
+    "false"   armed (hydrated, out of view) → pressed (inset shadow, scale, LED off).
+    "true"    in view                       → animate pressed → raised, LED flicks on.
+
+  Tunables (set on .reveal-card):
+    --reveal-duration   total reveal time — raise to slow the whole thing down.
+    --reveal-led-delay  when the LED flicks on, from reveal start (independent).
+  For less bounce, soften the overshoot bezier in @keyframes reveal-pop
+  (e.g. cubic-bezier(.3,1.4,.5,1) → cubic-bezier(.3,1.1,.5,1)).
+*/
+.reveal-card {
+  --reveal-duration: 650ms;
+  --reveal-led-delay: 500ms;
+  position: relative;
+  /* Own stacking context so the z-index:-1 shadow layers stay behind this
+     card's content but never fall behind the card itself onto the page. */
+  isolation: isolate;
+}
+/* Shadow layers: both fill the card, inherit its radius, sit below content. */
+.reveal-card::before,
+.reveal-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+}
+.reveal-card::before { box-shadow: var(--shadow-recessed); opacity: 0; } /* pressed */
+.reveal-card::after { box-shadow: var(--shadow-raised); opacity: 1; } /* raised */
+
+/* 7px status LED — always the top-left corner, the one consistent home for
+   it across every card (replacing the old static section bullets). Base = ON
+   (the final raised state, also the no-JS / reduced-motion state). Accent +
+   glow are the one allowed hardcoded color. */
+.reveal-card .reveal-led {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  z-index: 1;
+  background: var(--accent);
+  box-shadow: 0 0 6px 0.5px rgba(232, 93, 44, 0.6), 0 0 2px rgba(232, 93, 44, 0.9);
+}
+
+/* Armed: pressed into the surface. The press is the start state, not an
+   animated step, so kill the hover transition while armed. */
+.reveal-card[data-revealed="false"] {
+  transform: scale(0.985);
+  transition: none;
+}
+/* --no-scale stays flush (shadow-only press); never transforms. */
+.reveal-card--no-scale[data-revealed="false"] {
+  transform: none;
+}
+.reveal-card[data-revealed="false"]::before { opacity: 1; }
+.reveal-card[data-revealed="false"]::after { opacity: 0; }
+.reveal-card[data-revealed="false"] .reveal-led {
+  background: var(--text-secondary);
+  box-shadow: none;
+}
+
+/* Revealed: play the key-release once. Keyframes override the static styles
+   during playback; fill-mode none (transform/shadows) and backwards (LED)
+   hand control straight back afterward — nothing forwards-fills, so the
+   transform is never locked and hover/lift keeps working. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-card[data-revealed="true"] {
+    animation: reveal-pop var(--reveal-duration) linear;
+  }
+  /* --no-scale: shadow + LED reveal only, no transform. For cards that are an
+     ancestor of a background-attachment:fixed layer (the Chladni well's dot
+     grid), where an ancestor transform would re-anchor and misalign it. */
+  .reveal-card--no-scale[data-revealed="true"] {
+    animation: none;
+  }
+  .reveal-card[data-revealed="true"]::before {
+    animation: reveal-inset-out var(--reveal-duration) linear;
+  }
+  .reveal-card[data-revealed="true"]::after {
+    animation: reveal-raised-in var(--reveal-duration) linear;
+  }
+  /* --no-scale has no bounce, so a deepening shadow would read oddly — fade
+     the resting raised shadow straight in instead. */
+  .reveal-card--no-scale[data-revealed="true"]::after {
+    animation: reveal-raised-in-flat var(--reveal-duration) linear;
+  }
+  .reveal-card[data-revealed="true"] .reveal-led {
+    animation: reveal-led-on 1ms linear var(--reveal-led-delay) backwards;
+  }
+}
+
+/* 0–35%: held pressed while the inset fades out. 35–100%: scale to 1 with a
+   slight overshoot (the per-keyframe timing function governs that segment). */
+@keyframes reveal-pop {
+  0% { transform: scale(0.985); animation-timing-function: linear; }
+  35% { transform: scale(0.985); animation-timing-function: cubic-bezier(0.3, 1.15, 0.5, 1); }
+  100% { transform: scale(1); }
+}
+@keyframes reveal-inset-out {
+  0% { opacity: 1; }
+  35%, 100% { opacity: 0; }
+}
+/* 35–100%: raised shadow fades in, overshooting deeper near the bounce peak
+   (~70%) so it "lands" with the key, then settling to the resting shadow. The
+   box-shadow animates only across this one-shot reveal, not continuously. */
+@keyframes reveal-raised-in {
+  0%, 35% { opacity: 0; box-shadow: var(--shadow-raised); }
+  70% { opacity: 1; box-shadow: var(--shadow-raised-overshoot); }
+  100% { opacity: 1; box-shadow: var(--shadow-raised); }
+}
+/* Opacity-only raise (no shadow overshoot) — used by --no-scale cards. */
+@keyframes reveal-raised-in-flat {
+  0%, 35% { opacity: 0; }
+  100% { opacity: 1; }
+}
+/* 1ms animation at --reveal-led-delay = an instant flick, not a fade. */
+@keyframes reveal-led-on {
+  0% { background: var(--text-secondary); box-shadow: none; }
+  100% { background: var(--accent); box-shadow: 0 0 6px 0.5px rgba(232, 93, 44, 0.6), 0 0 2px rgba(232, 93, 44, 0.9); }
+}
+
+/*
   ─── Case-study prose ──────────────────────────────────────────
   A numbered section spine for scannability: each top-level <h2>
   gets an accent "01 / 02 …" kicker above it via a CSS counter, so
@@ -428,53 +583,27 @@ body {
 }
 
 /*
-  Controls below the plate, not over it. The vendor root (.chladni-fill,
-  rendered with `unstyled`) is one div holding two children: an absolutely
-  positioned canvas host (inset: 0, no class) and .chladni-controls in normal
-  flow. Left alone, the host's inset:0 stretches it to the root's full box
-  and the controls — out-of-flow siblings aside — paint at the root's top
-  edge, on top of the canvas.
-
-  Fix, CSS-only (root/host markup is vendor, untouched):
-  - .chladni-fill gets height:auto so it's free to grow taller than its
-    square parent instead of being pinned to 100% of it.
-  - the host (first child) keeps inset:0's top/left/right stretch but swaps
-    bottom:0 for aspect-ratio:1, so the rendered plate itself stays exactly
-    square no matter how tall the root grows.
-  - .chladni-controls gets margin-top:100%. Percentage margin-top resolves
-    against the CONTAINING BLOCK'S WIDTH (the old padding-bottom aspect-ratio
-    hack) — since the root's width is the plate's width, 100% is exactly the
-    square's height, so this reserves the plate's footprint and pushes
-    controls to sit right below it. The root's overflow:hidden (vendor-set)
-    creates a new block formatting context, so that margin is counted
-    towards the root's own auto height instead of collapsing away.
+  Plate = a self-sizing square; the Hz buttons are rendered by ChladniSection
+  itself (beside the plaque) and PROXY their clicks to these vendor controls,
+  which we hide. The vendor root (.chladni-fill, rendered with `unstyled`) is
+  one div holding an absolutely-positioned canvas host (inset:0) plus the
+  .chladni-controls. We size the host to fill the square wrapper (the
+  aspect-square box in ChladniSection) and hide the vendor controls — they stay
+  in the DOM and remain programmatically clickable (display:none still fires
+  .click()). The custom buttons reuse the .chladni-tone / .chladni-mute styles
+  below for a consistent look.
 */
 .chladni-fill {
-  height: auto !important;
+  height: 100% !important;
 }
 .chladni-fill > div:first-child {
-  bottom: auto !important;
-  aspect-ratio: 1 / 1 !important;
+  /* Host fills the square wrapper (vendor absolute positioning kept). */
+  inset: 0 !important;
+  aspect-ratio: auto !important;
 }
-
 .chladni-controls {
-  position: static;
-  margin-top: 100%;
-  padding-top: 5px;
-  display: flex;
-  /* Row + wrap, not column: combined with .chladni-row below being
-     display:contents, this flattens BOTH vendor rows (tone presets, then
-     mute/math) into one single flex flow — so mute lands right after the
-     last tone button instead of on its own row underneath. */
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  /* Visual-only shift: transform doesn't participate in layout, so this
-     moves the buttons up without changing .chladni-well's auto height —
-     the bottom frame/section stays exactly where it was. */
-  transform: translateY(-15px);
+  /* Hidden — the proxy buttons beside the plaque drive these. */
+  display: none !important;
 }
 /*
   Vendor markup (not edited — see src/vendor/chladni/) nests tone presets and

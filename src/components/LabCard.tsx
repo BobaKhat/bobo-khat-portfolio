@@ -3,9 +3,11 @@
 import { useState } from "react";
 import ArrowGlyph from "./ArrowGlyph";
 import { SpotlightOverlay, SpotlightCaption } from "./Spotlight";
+import { useKeyReleaseReveal } from "@/hooks/useKeyReleaseReveal";
 
 export default function LabCard({ previews }: { previews: string[] }) {
   const [arrowHover, setArrowHover] = useState(false);
+  const revealRef = useKeyReleaseReveal<HTMLDivElement>();
 
   return (
     <a
@@ -16,13 +18,15 @@ export default function LabCard({ previews }: { previews: string[] }) {
     >
       <SpotlightOverlay active={arrowHover} />
 
-      <div className="relative z-[1] flex flex-col overflow-hidden rounded-3xl bg-module p-5 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:-translate-y-1 sm:p-6 md:p-8">
+      <div
+        ref={revealRef}
+        className="reveal-card relative z-[1] flex flex-col rounded-3xl bg-module p-5 transition-transform duration-300 group-hover:-translate-y-1 sm:p-6 md:p-8"
+      >
+        {/* Key-release status LED */}
+        <span aria-hidden="true" className="reveal-led" />
         <div className="flex items-start gap-3 sm:gap-4">
           <div className="min-w-0">
-            <div className="flex items-center gap-2.5">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-              <span className="t-heading text-2xl text-text-primary sm:text-3xl">The Lab</span>
-            </div>
+            <span className="t-heading text-2xl text-text-primary sm:text-3xl">The Lab</span>
             <p className="t-subtitle mt-2 text-sm text-text-secondary">
               Visual Experiments — Graphic design + 3D renders
             </p>
