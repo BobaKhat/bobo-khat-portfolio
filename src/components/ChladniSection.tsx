@@ -72,19 +72,39 @@ export default function ChladniSection() {
   // vendor controls inside .chladni-controls, which drive the plate.
   const [activeTone, setActiveTone] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
+  // After each proxied click, mirror our buttons to the real (hidden) vendor
+  // controls' aria-pressed state — so toggling a tone back off clears our
+  // orange "active" styling too, instead of looking stuck-active.
+  const syncFromVendor = () => {
+    const root = sectionRef.current;
+    if (!root) return;
+    let active: string | null = null;
+    root
+      .querySelectorAll<HTMLButtonElement>(".chladni-controls .chladni-tone")
+      .forEach((b) => {
+        if (b.getAttribute("aria-pressed") === "true") {
+          active = b.textContent?.trim() ?? null;
+        }
+      });
+    setActiveTone(active);
+    const mute = root.querySelector<HTMLButtonElement>(
+      ".chladni-controls .chladni-mute",
+    );
+    setMuted(mute?.getAttribute("aria-pressed") === "true");
+  };
   const selectTone = (label: string) => {
     sectionRef.current
       ?.querySelectorAll<HTMLButtonElement>(".chladni-controls .chladni-tone")
       .forEach((b) => {
         if (b.textContent?.trim() === label) b.click();
       });
-    setActiveTone(label);
+    requestAnimationFrame(syncFromVendor);
   };
   const toggleMute = () => {
     sectionRef.current
       ?.querySelector<HTMLButtonElement>(".chladni-controls .chladni-mute")
       ?.click();
-    setMuted((m) => !m);
+    requestAnimationFrame(syncFromVendor);
   };
 
   // Theme-aware colors: read once on mount, then re-read every time the
