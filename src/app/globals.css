@@ -450,6 +450,222 @@ body {
 }
 
 /*
+  ─── Floating hero cursors (homepage) ──────────────────────────────────
+  Figma-style multiplayer cursors (see FloatingCursors.tsx). Each is an arrow
+  + a colored name tag, drifting within a small radius via an infinite float
+  keyframe. Three staggered keyframes/durations so they move independently.
+*/
+.cursor-tag svg {
+  display: block;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
+}
+/* Inner wrapper — the click "press" scales from near the arrow tip. */
+.cursor-inner {
+  position: relative;
+  transform-origin: 6px 5px;
+}
+@keyframes cursor-press {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+.cursor-inner.cursor-pressing {
+  animation: cursor-press 0.26s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-inner.cursor-pressing {
+    animation: none;
+  }
+}
+.cursor-label {
+  position: absolute;
+  top: 19px;
+  left: 17px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.4;
+  /* Neomorphic chip — same raised material as the site's modules, with the
+     cursor's color carried in the text (inherited from .cursor-tag). */
+  color: inherit;
+  background: var(--module);
+  box-shadow: var(--shadow-raised-sm);
+  white-space: nowrap;
+}
+
+/*
+  ─── Design cursor: heading selection frame ─────────────────────────────
+  Hovering the Design cursor "selects" the hero heading, Figma-style: a pink
+  outline, eight resize handles, and a live dimension badge snap on (shown via
+  the :has() rule below; the frame markup lives in HeadingSelection.tsx). It's
+  absolutely positioned just outside the wrapped heading and stays out of flow.
+*/
+.heading-selection {
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  border: 1.5px solid #ec4899;
+  border-radius: 3px;
+  opacity: 0;
+  transform: scale(0.99);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+}
+.hero-section:has(.cursor-tag--design:hover) .heading-selection {
+  opacity: 1;
+  transform: scale(1);
+}
+.hs-handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border: 1.5px solid #ec4899;
+  border-radius: 1.5px;
+}
+.hs-tl { top: -4px; left: -4px; }
+.hs-tr { top: -4px; right: -4px; }
+.hs-bl { bottom: -4px; left: -4px; }
+.hs-br { bottom: -4px; right: -4px; }
+.hs-tm { top: -4px; left: 50%; transform: translateX(-50%); }
+.hs-bm { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.hs-lm { top: 50%; left: -4px; transform: translateY(-50%); }
+.hs-rm { top: 50%; right: -4px; transform: translateY(-50%); }
+.hs-badge {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 7px);
+  background: #ec4899;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1.3;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+/* Pause the float on hover so the clickable cursors are an easy target (only
+   the interactive cursors receive pointer events, so only they can be hovered). */
+.cursor-tag:hover {
+  animation-play-state: paused;
+}
+
+/*
+  ─── Visual cursor color fan ────────────────────────────────────────────
+  Hover-driven: swatches rest collapsed at the cursor tip and fan out into an
+  upward arc on hover (per-swatch target --x/--y/--r set inline). They EASE in
+  on hover, and BOUNCE back out on hover-out — achieved by giving the open
+  (:hover) state a smooth ease and the closed (base) state a springy
+  overshoot, since each direction uses the transition of the state it lands in.
+*/
+.cursor-fan {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 0;
+  height: 0;
+}
+.fan-swatch {
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.22), inset 0 0 0 1.5px rgba(255, 255, 255, 0.45);
+  opacity: 0;
+  /* Rests at the PREVIOUS swatch's spot, tucked behind it. */
+  transform: translate(var(--px), var(--py)) rotate(var(--pr)) scale(0.72);
+  transform-origin: center;
+  transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.26s ease;
+}
+.cursor-tag:hover .fan-swatch {
+  opacity: 1;
+  /* Deals out to its own spot. */
+  transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1);
+  transition: transform 0.34s cubic-bezier(0.3, 1.25, 0.5, 1), opacity 0.22s ease;
+}
+/* Open: deal out one-by-one, first → last. */
+.cursor-tag:hover .cursor-fan > *:nth-child(1) { transition-delay: 0s; }
+.cursor-tag:hover .cursor-fan > *:nth-child(2) { transition-delay: 0.08s; }
+.cursor-tag:hover .cursor-fan > *:nth-child(3) { transition-delay: 0.16s; }
+.cursor-tag:hover .cursor-fan > *:nth-child(4) { transition-delay: 0.24s; }
+.cursor-tag:hover .cursor-fan > *:nth-child(5) { transition-delay: 0.32s; }
+/* Close: fold back in, last → first (each retracts into the next). */
+.cursor-fan > *:nth-child(5) { transition-delay: 0s; }
+.cursor-fan > *:nth-child(4) { transition-delay: 0.08s; }
+.cursor-fan > *:nth-child(3) { transition-delay: 0.16s; }
+.cursor-fan > *:nth-child(2) { transition-delay: 0.24s; }
+.cursor-fan > *:nth-child(1) { transition-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) {
+  .fan-swatch {
+    transition: opacity 0.2s ease;
+    transition-delay: 0s !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heading-selection {
+    transition: opacity 0.12s ease;
+  }
+}
+@keyframes cursor-float-1 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(10px, -8px); }
+  50% { transform: translate(16px, 7px); }
+  75% { transform: translate(4px, 14px); }
+}
+@keyframes cursor-float-2 {
+  0%, 100% { transform: translate(0, 0); }
+  30% { transform: translate(-12px, 9px); }
+  55% { transform: translate(-5px, -11px); }
+  80% { transform: translate(-15px, -2px); }
+}
+@keyframes cursor-float-3 {
+  0%, 100% { transform: translate(0, 0); }
+  22% { transform: translate(-9px, -12px); }
+  55% { transform: translate(11px, -5px); }
+  85% { transform: translate(-4px, 11px); }
+}
+/* Fly in from off-screen on load, then hand off to the gentle float loop. Each
+   float's delay = its fly duration + delay, so the loop picks up exactly where
+   the entrance lands (both at translate 0 → no jump). Staggered so the three
+   don't arrive in lockstep. */
+@keyframes cursor-fly-1 {
+  from { transform: translate(-200px, 50px); opacity: 0; }
+  to { transform: translate(0, 0); opacity: 1; }
+}
+@keyframes cursor-fly-2 {
+  from { transform: translate(240px, -130px); opacity: 0; }
+  to { transform: translate(0, 0); opacity: 1; }
+}
+@keyframes cursor-fly-3 {
+  from { transform: translate(280px, 70px); opacity: 0; }
+  to { transform: translate(0, 0); opacity: 1; }
+}
+.cursor-anim-1 {
+  animation: cursor-fly-1 0.8s cubic-bezier(0.34, 1.3, 0.64, 1) 0.15s both,
+    cursor-float-1 9s ease-in-out 0.95s infinite;
+}
+.cursor-anim-2 {
+  animation: cursor-fly-2 0.8s cubic-bezier(0.34, 1.3, 0.64, 1) 0.3s both,
+    cursor-float-2 11s ease-in-out 1.1s infinite;
+}
+.cursor-anim-3 {
+  animation: cursor-fly-3 0.8s cubic-bezier(0.34, 1.3, 0.64, 1) 0.45s both,
+    cursor-float-3 10s ease-in-out 1.25s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-anim-1,
+  .cursor-anim-2,
+  .cursor-anim-3 {
+    animation: none;
+  }
+}
+
+/*
   ─── Case-study prose ──────────────────────────────────────────
   A numbered section spine for scannability: each top-level <h2>
   gets an accent "01 / 02 …" kicker above it via a CSS counter, so

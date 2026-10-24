@@ -3,6 +3,9 @@ import MicroInteractions from "@/components/MicroInteractions";
 import LabCard from "@/components/LabCard";
 import MeetDesigner from "@/components/MeetDesigner";
 import ChladniSection from "@/components/ChladniSection";
+import FloatingCursors from "@/components/FloatingCursors";
+import GroundRipple from "@/components/GroundRipple";
+import HeadingSelection from "@/components/HeadingSelection";
 
 // Content per CLAUDE.md build spec. Orion, MyShake, and Group Canvas use
 // screen-recorded video on the homepage instead of static screenshots.
@@ -51,13 +54,21 @@ export default function Home() {
     <main className="mx-auto w-full max-w-[1800px] flex-1 px-5 sm:px-8">
       {/* Design-tool dot grid behind everything (landing page only). */}
       <div aria-hidden="true" className="dot-grid pointer-events-none fixed inset-0 -z-10" />
+      {/* Canvas that ripples the dot-grid when the Interaction cursor is clicked */}
+      <GroundRipple />
       {/* HERO — centered intro, no card. First name, memoji, last name in a
           row, with the bio beneath. Sits directly on the surface. */}
-      <section className="flex flex-col items-center pt-28 pb-16 text-center sm:pt-32 sm:pb-24 md:pt-36">
-        <h1 className="t-display max-w-[14ch] text-[clamp(2.5rem,11vw,4rem)] text-text-primary">
-          Bobo Khat is a Product Designer and Builder
-        </h1>
-        <div className="mt-5 max-w-3xl sm:mt-6">
+      <section className="hero-section relative flex flex-col items-center pt-28 pb-16 text-center sm:pt-32 sm:pb-24 md:pt-36">
+        <FloatingCursors />
+        {/* Wrapper hugs the heading so the Design cursor's selection frame
+            (shown on hover via :has()) snaps to the heading's box. */}
+        <div className="relative z-10 w-fit">
+          <h1 className="t-display max-w-[14ch] text-[clamp(2.5rem,11vw,4rem)] text-text-primary">
+            Bobo Khat is a Product Designer and Builder
+          </h1>
+          <HeadingSelection />
+        </div>
+        <div className="relative z-10 mt-5 max-w-3xl sm:mt-6">
           <p className="t-subtitle text-base text-text-secondary sm:text-lg">
             prev @ MyShake (4M Users) – UX-First With Motion and Visual
             Experiments – UC Berkeley – B.A. Cognitive Science
