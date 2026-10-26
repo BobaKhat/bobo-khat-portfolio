@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ConditionalWidgetBar from "@/components/ConditionalWidgetBar";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Bobo Khat is a Product Designer and Builder",
-  description: "I design digital things people can feel.",
+  metadataBase: new URL("https://bobokhat.com"),
+  ...pageMetadata({
+    title: "Bobo Khat is a Product Designer and Builder",
+    description: "I design digital things people can feel.",
+  }),
 };
 
 // Blocking script: apply the persisted / preferred theme before first paint

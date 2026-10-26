@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { GalleryItem } from "@/components/GalleryMasonry";
 import GalleryMasonryLoader from "@/components/GalleryMasonryLoader";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Visual Experiments — Bobo Khat",
+export const metadata = pageMetadata({
+  title: "Visual Experiments · Bobo Khat",
   description: "Graphic design and 3D renders",
-};
+  path: "/lab/visual-experiments",
+});
 
 const img = (file: string, aspect: number): GalleryItem => ({
   type: "image",

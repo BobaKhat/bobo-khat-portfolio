@@ -1,9 +1,11 @@
 import CaseStudyLayout from "@/components/CaseStudyLayout";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Orion — Bobo Khat",
+export const metadata = pageMetadata({
+  title: "Orion · Bobo Khat",
   description: "Spatial music discovery map",
-};
+  path: "/work/orion",
+});
 
 const semanticPoles = [
   { feature: "Energy", left: "Chill", right: "Intense" },

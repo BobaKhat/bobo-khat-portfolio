@@ -1,10 +1,12 @@
 import CaseStudyLayout from "@/components/CaseStudyLayout";
 import MyShakeAlert from "@/components/MyShakeAlert";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "MyShake — Bobo Khat",
+export const metadata = pageMetadata({
+  title: "MyShake · Bobo Khat",
   description: "Earthquake awareness platform",
-};
+  path: "/work/myshake",
+});
 
 export default function MyShakePage() {
   return (

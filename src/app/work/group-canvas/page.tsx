@@ -1,9 +1,11 @@
 import CaseStudyLayout from "@/components/CaseStudyLayout";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Group Canvas — Bobo Khat",
+export const metadata = pageMetadata({
+  title: "Group Canvas · Bobo Khat",
   description: "Real-time collaboration for GoodNotes",
-};
+  path: "/work/group-canvas",
+});
 
 export default function GroupCanvasPage() {
   return (

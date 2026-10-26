@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Product Advertisement — Bobo Khat",
+export const metadata = pageMetadata({
+  title: "Product Advertisement · Bobo Khat",
   description: "Concept product ad campaign",
-};
+  path: "/lab/product-advertisement",
+});
 
 const slides = [1, 2, 3, 4, 5, 6].map(
   (n) => `/images/lab/product-ad/phone-${n}.png`
