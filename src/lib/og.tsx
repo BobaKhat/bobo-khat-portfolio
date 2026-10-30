@@ -186,12 +186,42 @@ export async function projectImage({
   title,
   subtitle,
   heroPath,
+  fit = "cover",
+  // When set, the visual panel is sized to this aspect ratio (w/h) and fitted
+  // within the right-side box, so the whole image shows (use with fit:"contain").
+  // Omit to keep the default tall panel (center-cropped cover).
+  panelAspect,
 }: {
   title: string;
   subtitle: string;
   heroPath?: string;
+  fit?: "cover" | "contain";
+  panelAspect?: number;
 }) {
   const hero = heroPath ? await publicImageDataUri(heroPath) : null;
+
+  // Panel geometry. Default: the tall portrait panel (Orion, Visual). With
+  // panelAspect: fit a rectangle of that aspect into the right-side box,
+  // right-aligned and vertically centred, so the full image is visible.
+  const RIGHT_EDGE = 1148;
+  const MAX_W = 560;
+  const MAX_H = 510;
+  const CENTER_Y = 315;
+  let panelW = 500;
+  let panelH = 510;
+  let panelX = 644;
+  let panelY = 60;
+  if (panelAspect) {
+    if (panelAspect >= MAX_W / MAX_H) {
+      panelW = MAX_W;
+      panelH = Math.round(MAX_W / panelAspect);
+    } else {
+      panelH = MAX_H;
+      panelW = Math.round(MAX_H * panelAspect);
+    }
+    panelX = RIGHT_EDGE - panelW;
+    panelY = Math.round(CENTER_Y - panelH / 2);
+  }
   // Shrink the title just enough that its longest (unbreakable) word fits the
   // left column, so a long name like "Advertisement" can't overflow into the
   // panel. Short names keep the big 82px size. ~0.56em/char for Inter Black.
@@ -257,10 +287,10 @@ export async function projectImage({
             style={{
               display: "flex",
               position: "absolute",
-              top: 60,
-              right: 56,
-              bottom: 60,
-              width: 500,
+              left: panelX,
+              top: panelY,
+              width: panelW,
+              height: panelH,
               padding: 18,
               borderRadius: 28,
               backgroundColor: MODULE,
@@ -270,9 +300,9 @@ export async function projectImage({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={hero}
-              width={464}
-              height={474}
-              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16 }}
+              width={panelW - 36}
+              height={panelH - 36}
+              style={{ width: "100%", height: "100%", objectFit: fit, borderRadius: 16 }}
               alt=""
             />
           </div>

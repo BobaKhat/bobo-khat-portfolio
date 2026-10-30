@@ -8,5 +8,7 @@ export default async function Image() {
     title: "MyShake",
     subtitle: "Earthquake awareness platform",
     heroPath: "og/myshake.png",
+    fit: "contain",
+    panelAspect: 1150 / 1588, // the critical-alert screen (portrait)
   });
 }

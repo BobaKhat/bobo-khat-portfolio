@@ -8,5 +8,7 @@ export default async function Image() {
     title: "Product Advertisement",
     subtitle: "Concept product ad campaign",
     heroPath: "images/lab/product-ad/phone-1.png",
+    fit: "contain",
+    panelAspect: 2480 / 1859, // the full ad slide (landscape)
   });
 }
