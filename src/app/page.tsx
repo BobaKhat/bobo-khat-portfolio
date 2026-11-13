@@ -6,6 +6,7 @@ import ChladniSection from "@/components/ChladniSection";
 import FloatingCursors from "@/components/FloatingCursors";
 import GroundRipple from "@/components/GroundRipple";
 import HeadingSelection from "@/components/HeadingSelection";
+import ScrambleText from "@/components/ScrambleText";
 
 // Content per CLAUDE.md build spec. Orion, MyShake, and Group Canvas use
 // screen-recorded video on the homepage instead of static screenshots.
@@ -64,7 +65,7 @@ export default function Home() {
             (shown on hover via :has()) snaps to the heading's box. */}
         <div className="relative z-10 w-fit">
           <h1 className="t-display max-w-[14ch] text-[clamp(2.5rem,11vw,4rem)] text-text-primary">
-            Bobo Khat is a Product Designer and Builder
+            <ScrambleText text="Bobo Khat is a Product Designer and Builder" />
           </h1>
           <HeadingSelection />
         </div>
