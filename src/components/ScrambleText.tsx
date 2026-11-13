@@ -146,12 +146,25 @@ export default function ScrambleText({
       // (non-scrambling) letters are coalesced into a single text node so
       // their kerning is preserved — otherwise the plain runs render wider
       // than the real text and the line shifts when it settles.
+      // Every segment (plain run or scramble letter) is a fixed-width
+      // inline-block sized to its measured in-context width, so each word's
+      // total is pixel-exact against the real text — nothing shifts when the
+      // heading settles back to plain text, at any viewport width.
       el.textContent = "";
       let word: HTMLSpanElement | null = null;
       let buf = "";
+      let bufW = 0;
       const flush = () => {
-        if (buf && word) word.append(document.createTextNode(buf));
+        if (buf && word) {
+          const run = document.createElement("span");
+          run.textContent = buf;
+          run.style.display = "inline-block";
+          run.style.width = `${bufW}px`;
+          run.style.textAlign = "left";
+          word.append(run);
+        }
         buf = "";
+        bufW = 0;
       };
       chars.forEach((c, i) => {
         if (/\s/.test(c)) {
@@ -167,6 +180,7 @@ export default function ScrambleText({
         }
         if (Math.random() >= ratio) {
           buf += c;
+          bufW += widths[i];
           return;
         }
         flush(); // emit the plain run before this box
